@@ -18,6 +18,8 @@
 
 # THIS LIBRARY IS UNDER DEVELOPMENT STARTING 2/11/2022
 
+## This library will include [react-ig-embed](https://www.npmjs.com/package/react-ig-embed), which will soon be deprecated.
+
 ## Documentation
 
 Read the **[official documentation](https://justinmahar.github.io/react-social-media-embed/)**.
