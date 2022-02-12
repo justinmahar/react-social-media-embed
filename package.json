@@ -4,7 +4,7 @@
   "coreVersion": "2.0.2",
   "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "A template to build, test, and share React components and hooks easily.",
-  "homepage": "https://justinmahar.github.io/react-kindling/",
+  "homepage": "https://justinmahar.github.io/react-social-media-embed/",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -23,10 +23,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justinmahar/react-kindling.git"
+    "url": "git+https://github.com/justinmahar/react-social-media-embed.git"
   },
   "bugs": {
-    "url": "https://github.com/justinmahar/react-kindling/issues"
+    "url": "https://github.com/justinmahar/react-social-media-embed/issues"
   },
   "keywords": [],
   "peerDependencies": {
