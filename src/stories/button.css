@@ -1,0 +1,19 @@
+.button {
+  border: solid 1px rgb(182, 182, 182);
+  border-radius: 5px;
+  display: inline-block;
+  padding: 8px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  user-select: none;
+}
+
+.button:hover {
+  background-color: rgb(226, 226, 226);
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: rgb(192, 192, 192);
+  box-shadow: inset 0 0 5px #4b4b4b;
+  cursor: pointer;
+}

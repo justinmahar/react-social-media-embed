@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "coreVersion": "2.0.3",
   "author": "Justin Mahar <contact@justinmahar.com>",
-  "description": "Easily embed social media posts from Instagram, Facebook, TikTok, LinkedIn, and Twitter in React.",
+  "description": "Easily embed social media posts from Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube in React.",
   "homepage": "https://justinmahar.github.io/react-social-media-embed/",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -53,6 +53,8 @@
     "@storybook/addon-essentials": "^6.4.18",
     "@storybook/addon-links": "^6.4.18",
     "@storybook/react": "^6.4.18",
+    "@types/react-helmet": "^6.1.5",
+    "@types/styled-components": "^5.1.22",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "babel-loader": "^8.2.3",
@@ -68,5 +70,13 @@
     "react-markdown": "^8.0.0",
     "typescript": "^4.5.5",
     "webpack": "^4.46.0"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "react-bootstrap": "^2.1.2",
+    "react-helmet": "^6.1.0",
+    "react-twitter-embed": "^4.0.4",
+    "react-youtube": "^7.14.0",
+    "styled-components": "^5.3.3"
   }
 }

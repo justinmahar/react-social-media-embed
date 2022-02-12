@@ -1,8 +1,8 @@
 <h2 align="center">
-  🖼️ React Social Media Embed
+  📰 React Social Media Embed
 </h2>
 <h3 align="center">
-  Easily embed social media posts from Instagram, Facebook, TikTok, LinkedIn, and Twitter in React.
+  Easily embed social media posts from Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube in React.
 </h3>
 <p align="center">
   <a href="https://badge.fury.io/js/react-social-media-embed" target="_blank" rel="noopener noreferrer">
@@ -16,22 +16,22 @@
   </a>
 </p>
 
-# THIS LIBRARY IS UNDER DEVELOPMENT STARTING 2/11/2022
-
-## This library will include [react-ig-embed](https://www.npmjs.com/package/react-ig-embed), which will soon be deprecated.
-
 ## Documentation
 
 Read the **[official documentation](https://justinmahar.github.io/react-social-media-embed/)**.
 
 ## Overview
 
-This section will contain an overview so people can have a high-level understanding of the project.
+Easily embed content from several popular social media platforms in React.
+
+All embeds only require a URL to the post, with the exception of LinkedIn.
+
+Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube.
 
 ### Features include:
 
-- **🚀 List your features, use fun [emojis](https://emojipedia.org/search/?q=rocket)**
-  - Give a little more info on each feature or mention benefits.
+- **🚀 Quick and easy**
+  - Embed content quickly and easily from the most popular social media platforms
 
 ## Installation
 
@@ -39,16 +39,71 @@ This section will contain an overview so people can have a high-level understand
 npm i react-social-media-embed
 ```
 
-## Quick Start
+## Usage
 
-This section will contain a copy/paste example so people can get started quickly.
+### Facebook
 
 ```jsx
-import { Example } from 'react-social-media-embed';
+import { FacebookEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
-<Example label="Example Component" />
+<FacebookEmbed url="https://fb.watch/b67iYbdzNm/" />
+```
+
+### Instagram
+
+```jsx
+import { InstagramEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<InstagramEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" />
+```
+
+### LinkedIn
+
+```jsx
+import { LinkedInEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<LinkedInEmbed 
+  url="https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb"
+  iframeCode='<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473" height="587" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>' 
+/>
+```
+
+You must provide the iframe code from the "Embed" option next to the post.
+
+### TikTok
+
+```jsx
+import { TikTokEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<TikTokEmbed url="https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1" />
+```
+
+### Twitter
+
+```jsx
+import { TwitterEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<TwitterEmbed url="https://twitter.com/PixelAndBracket/status/1356633038717923333" />
+```
+
+### YouTube
+
+```jsx
+import { YouTubeEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<YouTubeEmbed url="https://www.youtube.com/watch?v=d-qqom30TZA" />
 ```
 
 ## TypeScript
