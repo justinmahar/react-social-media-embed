@@ -106,6 +106,16 @@ import { YouTubeEmbed } from 'react-social-media-embed';
 <YouTubeEmbed url="https://www.youtube.com/watch?v=d-qqom30TZA" />
 ```
 
+### Placeholder
+
+```jsx
+import { PlaceholderEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<PlaceholderEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" />
+```
+
 ## TypeScript
 
 Type definitions have been included for [TypeScript](https://www.typescriptlang.org/) support.
