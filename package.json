@@ -1,6 +1,6 @@
 {
-  "name": "react-kindling",
-  "version": "2.0.2",
+  "name": "react-social-media-embed",
+  "version": "1.0.0",
   "coreVersion": "2.0.2",
   "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "A template to build, test, and share React components and hooks easily.",
