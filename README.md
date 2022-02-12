@@ -16,6 +16,8 @@
   </a>
 </p>
 
+# THIS LIBRARY IS UNDER DEVELOPMENT STARTING 2/11/2022
+
 ## Documentation
 
 Read the **[official documentation](https://justinmahar.github.io/react-social-media-embed/)**.

@@ -28,7 +28,21 @@
   "bugs": {
     "url": "https://github.com/justinmahar/react-social-media-embed/issues"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "social",
+    "media",
+    "embed",
+    "post",
+    "ig",
+    "instagram",
+    "fb",
+    "facebook",
+    "tiktok",
+    "linkedin",
+    "twitter",
+    "tweet"
+  ],
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
