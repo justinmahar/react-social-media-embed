@@ -1,0 +1,92 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Hooks/useExample" />
+
+<h1>useExample</h1>
+
+## Description
+
+Description of the [hook](https://reactjs.org/docs/hooks-intro.html).
+
+## Usage
+
+```jsx
+import { useExample } from 'react-kindling';
+```
+
+In your function component:
+
+```jsx
+const [value, setValue] = useExample('Example value');
+```
+
+Describe how this would be used.
+
+## Signature
+
+`useExample(defaultValue: string) => [value, setValue]`
+
+### Props
+
+| Prop         | Type     | Description   |
+| ------------ | -------- | ------------- |
+| defaultValue | `string` | Default value |
+
+### Return
+
+The hook returns an [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) containing:
+
+| Index | Name     | Type                     | Description                    |
+| ----- | -------- | ------------------------ | ------------------------------ |
+| 0     | value    | `string`                 | The example value              |
+| 1     | setValue | `(value: string) ⇒ void` | A setter for the example value |
+
+<h5 style={{ color: 'red', background: 'yellow' }}>
+  &nbsp;OR <small>(choose return type, delete others)</small>
+</h5>
+
+The hook returns an [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) containing:
+
+| Property     | Type     | Description       |
+| ------------ | -------- | ----------------- |
+| propertyName | `string` | The example value |
+
+<h5 style={{ color: 'red', background: 'yellow' }}>
+  &nbsp;OR <small>(choose return type, delete others)</small>
+</h5>
+
+The hook returns a function, `functionName`.
+
+#### `functionName() => void`
+
+Describe what the function does.
+
+| Argument | Type     | Description                                  |
+| -------- | -------- | -------------------------------------------- |
+| argName  | `string` | Description of the return function argument. |
+
+##### Return Function Example:
+
+```jsx
+const functionName = useExample();
+...
+functionName("example")
+```
+
+<h5 style={{ color: 'red', background: 'yellow' }}>
+  &nbsp;OR <small>(choose return type, delete others)</small>
+</h5>
+
+The hook returns a `RETURN_TYPE` for WHAT_IT_IS_FOR.
+
+## Example
+
+```jsx
+import * as React from 'react';
+import { useExample } from 'react-kindling';
+
+export function Example() {
+  const [example] = useExample('blue');
+  return <div>Hook example - Color: {example}</div>;
+}
+```
