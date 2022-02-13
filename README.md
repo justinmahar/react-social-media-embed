@@ -70,8 +70,6 @@ import { LinkedInEmbed } from 'react-social-media-embed';
 ```jsx
 <LinkedInEmbed 
   url="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473"
-  postUrl="https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb"
-  height={587}
 />
 ```
 
@@ -84,6 +82,14 @@ The `url` must be be retrieved from the "Embed this post" option for the desired
 It is also recommended that you specify the `height` of the post. This has been pre-calculated in the `iframe` embed code as well.
 
 You can also specify a `postUrl` which will be used in the placeholder to link to the regular, non-embed version of the post.
+
+```jsx
+<LinkedInEmbed 
+  url="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473"
+  postUrl="https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb"
+  height={587}
+/>
+```
 
 ### TikTok
 
