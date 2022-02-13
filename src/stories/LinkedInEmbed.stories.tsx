@@ -23,7 +23,8 @@ const Template: ComponentStory<typeof LinkedInEmbed> = (args) => (
 export const UrlOnly = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 UrlOnly.args = {
-  url: 'https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb',
-  iframeCode:
-    '<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473" height="587" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>',
+  url: 'https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473',
+  postUrl:
+    'https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb',
+  height: 587,
 };

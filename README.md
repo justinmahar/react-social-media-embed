@@ -24,7 +24,7 @@ Read the **[official documentation](https://justinmahar.github.io/react-social-m
 
 Easily embed content from several popular social media platforms in React.
 
-All embeds only require a URL to the post, with the exception of LinkedIn.
+All embeds only require a URL to the post.
 
 Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube.
 
@@ -69,12 +69,21 @@ import { LinkedInEmbed } from 'react-social-media-embed';
 
 ```jsx
 <LinkedInEmbed 
-  url="https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb"
-  iframeCode='<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473" height="587" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>' 
+  url="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473"
+  postUrl="https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb"
+  height={587}
 />
 ```
 
-You must provide the iframe code from the "Embed" option next to the post.
+The `url` must be be retrieved from the "Embed this post" option for the desired post. Use the `src` attribute of the `iframe`:
+
+```html
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473" height="587" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+```
+
+It is also recommended that you specify the `height` of the post. This has been pre-calculated in the `iframe` embed code as well.
+
+You can also specify a `postUrl` which will be used in the placeholder to link to the regular, non-embed version of the post.
 
 ### TikTok
 
