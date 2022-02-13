@@ -2,6 +2,7 @@
 import { DivProps } from 'react-html-props';
 export interface LinkedInEmbedProps extends DivProps {
     url: string;
-    iframeCode: string;
+    postUrl?: string;
+    height?: string | number;
 }
-export declare const LinkedInEmbed: ({ url, iframeCode: embedMeta, ...divProps }: LinkedInEmbedProps) => JSX.Element;
+export declare const LinkedInEmbed: ({ postUrl, url, height, ...divProps }: LinkedInEmbedProps) => JSX.Element;
