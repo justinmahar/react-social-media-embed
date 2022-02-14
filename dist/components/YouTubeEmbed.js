@@ -23,25 +23,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.YouTubeEmbed = void 0;
+const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_youtube_1 = __importDefault(require("react-youtube"));
-const styled_components_1 = __importDefault(require("styled-components"));
-const YouTubeEmbed = ({ url, ...divProps }) => {
-    let ytVideoId = '00000000';
-    const match = url.match(/[?&]v=(.+?)(?:$|[&])/);
-    if (match) {
-        ytVideoId = match[1];
+const __1 = require("..");
+require("./rsme.css");
+const YouTubeEmbed = ({ url, youTubeProps, width, height, embedPlaceholder, placeholderDisabled, ...divProps }) => {
+    const [ready, setReady] = React.useState(false);
+    let videoId = '00000000';
+    const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&])/);
+    if (videoIdMatch) {
+        videoId = videoIdMatch[1];
     }
-    console.log('ytVideoId', ytVideoId);
-    return (React.createElement(YTDiv, { ...divProps, style: { maxWidth: 550, width: '100%', ...divProps.style } },
-        React.createElement(react_youtube_1.default, { className: "yt-div", videoId: ytVideoId, opts: {
-                playerVars: { autoplay: 0, controls: 0, modestbranding: 1 },
-            } })));
+    let opts = {};
+    if (typeof width !== 'undefined') {
+        opts.width = `${width}`;
+    }
+    if (typeof height !== 'undefined') {
+        opts.height = `${height}`;
+    }
+    opts = { ...opts, ...youTubeProps?.opts };
+    const placeholder = embedPlaceholder ?? (React.createElement(__1.EmbedPlaceholder, { url: url, style: {
+            width: divProps.style?.width ? '100%' : width ?? 640,
+            height: divProps.style?.height ? '100%' : height ?? 360,
+            borderRadius: divProps.style?.borderRadius ?? 0,
+        } }));
+    return (React.createElement("div", { ...divProps, className: (0, classnames_1.default)('rsme-embed rsme-youtube-embed', divProps.className), style: {
+            overflow: 'hidden',
+            width: width ?? undefined,
+            height: height ?? undefined,
+            ...divProps.style,
+        } },
+        React.createElement("div", { className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
+            React.createElement(react_youtube_1.default, { ...youTubeProps, className: youTubeProps?.className ?? 'youtube-iframe', videoId: youTubeProps?.videoId ?? videoId, opts: opts, onReady: (e) => {
+                    setReady(true);
+                    if (youTubeProps && youTubeProps.onReady) {
+                        youTubeProps?.onReady(e);
+                    }
+                } })),
+        !ready && !placeholderDisabled && placeholder));
 };
 exports.YouTubeEmbed = YouTubeEmbed;
-const YTDiv = styled_components_1.default.div `
-  border-radius: 5px;
-  iframe {
-    width: 100% !important;
-  }
-`;

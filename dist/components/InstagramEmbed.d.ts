@@ -1,4 +1,5 @@
 import { DivProps } from 'react-html-props';
+import './rsme.css';
 export interface InstagramEmbedProps extends DivProps {
     url: string;
     backgroundUrl?: string;

@@ -26,6 +26,8 @@ exports.InstagramEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const styled_components_1 = __importDefault(require("styled-components"));
+const uuid_1 = require("./uuid");
+require("./rsme.css");
 const defaultIgVersion = '14';
 const defaultLinkText = 'View this post on Instagram';
 const defaultProcessDelay = 100;
@@ -39,7 +41,7 @@ const InstagramEmbed = ({ url, backgroundUrl, igVersion = defaultIgVersion, link
     const [retryDelay, setRetryDelay] = React.useState(retryInitialDelay);
     const [retrying, setRetrying] = React.useState(false);
     const [retryTime, setRetryTime] = React.useState(-1);
-    const uuidRef = React.useRef(generateUUID());
+    const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     React.useEffect(() => {
         const win = typeof window !== 'undefined' ? window : undefined;
         if (win && processTime >= 0) {
@@ -96,7 +98,7 @@ const InstagramEmbed = ({ url, backgroundUrl, igVersion = defaultIgVersion, link
     }, [scriptLoadDisabled]);
     const urlWithNoQuery = url.replace(/[?].*$/, '');
     const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
-    return (React.createElement("div", { className: (0, classnames_1.default)('instagram-media-container', divProps.className), style: { overflow: 'hidden', width: '100%', maxWidth: '540px', ...divProps.style }, key: `${uuidRef}-${retryTime}` },
+    return (React.createElement("div", { className: (0, classnames_1.default)('rsme-embed rsme-instagram-embed', divProps.className), style: { overflow: 'hidden', width: '100%', maxWidth: '540px', ...divProps.style }, key: `${uuidRef}-${retryTime}` },
         React.createElement("blockquote", { className: "instagram-media", "data-instgrm-permalink": `${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`, "data-instgrm-version": igVersion, ...divProps, style: {
                 background: '#FFF',
                 borderRadius: '3px',
@@ -269,26 +271,6 @@ const IGFooter = () => {
                     width: '224px',
                 } }),
             React.createElement("div", { style: { backgroundColor: '#F4F4F4', borderRadius: '4px', flexGrow: 0, height: '14px', width: '144px' } }))));
-};
-// https://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid
-const generateUUID = () => {
-    // Public Domain/MIT
-    let d = new Date().getTime(); //Timestamp
-    let d2 = (typeof performance !== 'undefined' && performance.now && performance.now() * 1000) || 0; //Time in microseconds since page-load or 0 if unsupported
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        let r = Math.random() * 16; //random number between 0 and 16
-        if (d > 0) {
-            //Use timestamp until depleted
-            r = (d + r) % 16 | 0;
-            d = Math.floor(d / 16);
-        }
-        else {
-            //Use microseconds since page-load if supported
-            r = (d2 + r) % 16 | 0;
-            d2 = Math.floor(d2 / 16);
-        }
-        return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16);
-    });
 };
 const Spinner = styled_components_1.default.div `
   & {

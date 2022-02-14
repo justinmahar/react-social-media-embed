@@ -26,18 +26,24 @@ exports.TwitterEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_twitter_embed_1 = require("react-twitter-embed");
-const styled_components_1 = __importDefault(require("styled-components"));
 const EmbedPlaceholder_1 = require("./EmbedPlaceholder");
-const TwitterEmbed = ({ url, ...divProps }) => {
+require("./rsme.css");
+const TwitterEmbed = ({ url, twitterTweetEmbedProps, width, height, embedPlaceholder, placeholderDisabled, ...divProps }) => {
     const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
-    return (React.createElement("div", { ...divProps, className: (0, classnames_1.default)(divProps.className), style: { ...divProps.style } },
-        React.createElement(TwitterDiv, { ...divProps, className: (0, classnames_1.default)('twitter-embed-container', divProps.className), style: { minWidth: 250, maxWidth: 550, ...divProps.style } },
-            React.createElement(react_twitter_embed_1.TwitterTweetEmbed, { tweetId: tweetId, placeholder: React.createElement(EmbedPlaceholder_1.EmbedPlaceholder, { url: url, style: { width: '100%' } }) }))));
+    const placeholder = embedPlaceholder ?? (React.createElement(EmbedPlaceholder_1.EmbedPlaceholder, { url: url, style: {
+            width: divProps.style?.width ? '100%' : width ?? '100%',
+            height: divProps.style?.height ? '100%' : height ?? 400,
+            borderRadius: divProps.style?.borderRadius ?? '12px',
+            borderColor: '#c9d4d9',
+            minWidth: 250,
+            maxWidth: 550,
+        } }));
+    return (React.createElement("div", { ...divProps, className: (0, classnames_1.default)('rsme-embed rsme-twitter-embed', divProps.className), style: {
+            overflow: 'hidden',
+            width: width ?? undefined,
+            height: height ?? undefined,
+            ...divProps.style,
+        } },
+        React.createElement(react_twitter_embed_1.TwitterTweetEmbed, { tweetId: tweetId, placeholder: placeholderDisabled ? undefined : placeholder, ...twitterTweetEmbedProps })));
 };
 exports.TwitterEmbed = TwitterEmbed;
-const TwitterDiv = styled_components_1.default.div `
-  width: 100%;
-  .twitter-tweet iframe {
-    width: 100% !important;
-  }
-`;

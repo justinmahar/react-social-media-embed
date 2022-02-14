@@ -21,13 +21,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmbedPlaceholder = void 0;
 const React = __importStar(require("react"));
+require("./rsme.css");
 function EmbedPlaceholder({ url, image, ...divProps }) {
     return (React.createElement("div", { ...divProps, style: {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            border: 'solid 1px gray',
-            borderRadius: '3px',
+            border: 'solid 1px #c9d4d9',
+            borderRadius: '5px',
+            boxSizing: 'border-box',
             width: 540,
             height: 540,
             backgroundImage: image ? `url("${image}")` : undefined,
