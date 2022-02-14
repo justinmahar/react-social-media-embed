@@ -20,8 +20,14 @@ const Template: ComponentStory<typeof FacebookEmbed> = (args) => (
   </EmbedToggler>
 );
 
-export const UrlOnly = Template.bind({});
+export const UrlOnlyPost = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-UrlOnly.args = {
+UrlOnlyPost.args = {
+  url: 'https://www.facebook.com/photo/?fbid=451970492960733&set=a.234241234733661',
+};
+
+export const UrlOnlyVideo = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+UrlOnlyVideo.args = {
   url: 'https://fb.watch/b67iYbdzNm/',
 };
