@@ -111,6 +111,8 @@ import { TwitterEmbed } from 'react-social-media-embed';
 <TwitterEmbed url="https://twitter.com/PixelAndBracket/status/1356633038717923333" />
 ```
 
+This component uses the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed content. You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
+
 ### YouTube
 
 ```jsx
@@ -120,6 +122,8 @@ import { YouTubeEmbed } from 'react-social-media-embed';
 ```jsx
 <YouTubeEmbed url="https://www.youtube.com/watch?v=d-qqom30TZA" />
 ```
+
+This component uses the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed content. You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
 ### Placeholder
 
