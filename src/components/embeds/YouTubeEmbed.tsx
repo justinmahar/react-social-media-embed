@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import YouTube, { Options, YouTubeProps } from 'react-youtube';
-import { EmbedPlaceholder } from '..';
+import { EmbedPlaceholder } from '../..';
 
-import './rsme.css';
+import '../rsme.css';
 
 export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   url: string;

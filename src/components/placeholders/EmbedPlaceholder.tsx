@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import './rsme.css';
+import '../rsme.css';
+import { Spinner } from './Spinner';
 
 export interface DefaultEmbedProps extends DivProps {
   url: string;
@@ -15,7 +16,7 @@ export function EmbedPlaceholder({ url, image, ...divProps }: DefaultEmbedProps)
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        border: 'solid 1px #c9d4d9',
+        border: 'solid 1px rgb(219, 219, 219)',
         borderRadius: '5px',
         boxSizing: 'border-box',
         width: 540,
@@ -32,16 +33,19 @@ export function EmbedPlaceholder({ url, image, ...divProps }: DefaultEmbedProps)
           <div
             style={{
               display: 'flex',
+              flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
+              rowGap: '10px',
               width: '100%',
               height: '100%',
-              backgroundColor: 'rgba(255,255,255,0.7)',
-              backdropFilter: 'blur(4px)',
-              WebkitBackdropFilter: 'blur(4px)',
+              fontFamily: 'sans-serif',
             }}
           >
-            <div>View Post</div>
+            <div>
+              <Spinner size={30} />
+            </div>
+            <div>View this post</div>
           </div>
         </div>
       </a>

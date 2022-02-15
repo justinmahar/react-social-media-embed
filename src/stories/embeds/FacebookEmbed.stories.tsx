@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { FacebookEmbed } from '../components/FacebookEmbed';
-import { EmbedToggler } from './EmbedToggler';
+import { FacebookEmbed } from '../../components/embeds/FacebookEmbed';
+import { EmbedToggler } from '../EmbedToggler';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/FacebookEmbed',
+  title: 'Embeds/FacebookEmbed',
   component: FacebookEmbed,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // argTypes: {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { YouTubeEmbed } from '../components/YouTubeEmbed';
-import { EmbedToggler } from './EmbedToggler';
+import { YouTubeEmbed } from '../../components/embeds/YouTubeEmbed';
+import { EmbedToggler } from '../EmbedToggler';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/YouTubeEmbed',
+  title: 'Embeds/YouTubeEmbed',
   component: YouTubeEmbed,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // argTypes: {

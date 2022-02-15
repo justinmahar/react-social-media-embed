@@ -1,20 +1,22 @@
 import classNames from 'classnames';
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import { EmbedPlaceholder } from '..';
-import './rsme.css';
-import { generateUUID } from './uuid';
+import { IGPlaceholder } from '../placeholders/IGPlaceholder';
+import '../rsme.css';
+import { generateUUID } from '../uuid';
 
+const defaultIgVersion = '14';
+const defaultLinkText = 'View this post on Instagram';
 const defaultProcessDelay = 100;
 const defaultRetryInitialDelay = 1000;
 const defaultRetryBackoffMaxDelay = 30000;
-export interface TikTokEmbedProps extends DivProps {
+
+let embedScriptLoaded = false;
+
+export interface InstagramEmbedProps extends DivProps {
   url: string;
-  width?: string | number;
-  height?: string | number;
-  embedPlaceholder?: React.ReactNode;
-  placeholderDisabled?: boolean;
+  igVersion?: string;
+  linkText?: string;
   processDelay?: number;
   scriptLoadDisabled?: boolean;
   retryDisabled?: boolean;
@@ -22,25 +24,17 @@ export interface TikTokEmbedProps extends DivProps {
   retryBackoffMaxDelay?: number;
 }
 
-export const TikTokEmbed = ({
+export const InstagramEmbed = ({
   url,
-  width,
-  height,
-  embedPlaceholder,
-  placeholderDisabled,
+  igVersion = defaultIgVersion,
+  linkText = defaultLinkText,
   processDelay = defaultProcessDelay,
   scriptLoadDisabled = false,
   retryDisabled = false,
   retryInitialDelay = defaultRetryInitialDelay,
   retryBackoffMaxDelay = defaultRetryBackoffMaxDelay,
   ...divProps
-}: TikTokEmbedProps): JSX.Element => {
-  // Format: https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1
-  const embedId = url.replace(/[?].*$/, '').replace(/^.+\//, '');
-  // console.log(embedId);
-
-  const urlStripped = url.replace(/[?].*/, '');
-
+}: InstagramEmbedProps): JSX.Element => {
   const [initialized, setInitialized] = React.useState(false);
   const [processTime, setProcessTime] = React.useState(-1);
   const [retryDelay, setRetryDelay] = React.useState(retryInitialDelay);
@@ -50,12 +44,12 @@ export const TikTokEmbed = ({
   React.useEffect(() => {
     const win = typeof window !== 'undefined' ? (window as any) : undefined;
     if (win && processTime >= 0) {
-      // This call will use the TikTok embed script to process all elements with the `tiktok-embed` class name.
-      if (win.instgrm?.Embeds) {
+      // This call will use the IG embed script to process all elements with the `instagram-media` class name.
+      if (typeof win.instgrm !== 'undefined' && win.instgrm.Embeds) {
         // console.log('Processing...', Date.now());
         win.instgrm.Embeds.process();
       } else {
-        console.error('TikTok embed script not found. Unable to process TikTok embed:', url);
+        console.error('Instagram embed script not found. Unable to process Instagram embed:', url);
       }
     }
   }, [processTime, url]);
@@ -95,45 +89,51 @@ export const TikTokEmbed = ({
     return () => clearTimeout(timeout);
   }, [initialized, retryBackoffMaxDelay, retryDelay, retryDisabled, retryTime]);
 
+  React.useEffect(() => {
+    if (typeof document !== 'undefined' && !scriptLoadDisabled && !embedScriptLoaded) {
+      const win = typeof window !== 'undefined' ? (window as any) : undefined;
+      if (!win.instgrm?.Embeds) {
+        const igScript = document.createElement('script');
+        igScript.setAttribute('src', '//www.instagram.com/embed.js');
+        document.head.appendChild(igScript);
+      }
+      embedScriptLoaded = true;
+    }
+  }, [scriptLoadDisabled]);
+
   const urlWithNoQuery = url.replace(/[?].*$/, '');
   const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
 
-  const placeholder = embedPlaceholder ?? (
-    <EmbedPlaceholder
-      url={url}
+  const placeholder = (
+    <IGPlaceholder
+      className="instagram-media-pre-embed"
+      id={uuidRef.current}
       style={{
-        width: divProps.style?.width ? '100%' : width ?? 325,
-        height: divProps.style?.height ? '100%' : height ?? 500,
-        borderColor: divProps.style?.borderColor ?? 'rgba(22,24,35,0.12)',
-        borderRadius: divProps.style?.borderRadius ?? 8,
+        width: 'calc(100% + 2px)',
       }}
     />
   );
 
   return (
     <div
-      {...divProps}
-      className={classNames('rsme-embed rsme-tiktok-embed', divProps.className)}
-      style={{ width: '100%', maxWidth: 605, minWidth: 325, minHeight: 500, ...divProps.style }}
+      className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
+      style={{ overflow: 'hidden', width: '100%', maxWidth: '540px', ...divProps.style }}
+      key={`${uuidRef}-${retryTime}`}
     >
-      <div
-        className={classNames('tiktok-embed-container', divProps.className)}
-        style={{ overflow: 'hidden', width: '100%', maxWidth: '540px' }}
-        key={`${uuidRef}-${retryTime}`}
+      <blockquote
+        className="instagram-media"
+        data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
+        data-instgrm-version={igVersion}
+        style={{
+          margin: 0,
+          maxWidth: '540px',
+          minWidth: '326px',
+          width: 'calc(100% - 2px)',
+          ...divProps.style,
+        }}
       >
-        {!scriptLoadDisabled && (
-          <Helmet key={`tt-embed-${processTime}`}>
-            {<script src={`https://www.tiktok.com/embed.js?t=${processTime}`}></script>}
-          </Helmet>
-        )}
-        <blockquote className="tiktok-embed" cite={url} data-video-id={embedId}>
-          {!placeholderDisabled ? (
-            <div style={{ display: 'flex', justifyContent: 'center' }}>{placeholder}</div>
-          ) : (
-            <div style={{ display: 'none' }}>&nbsp;</div>
-          )}
-        </blockquote>
-      </div>
+        {placeholder}
+      </blockquote>
     </div>
   );
 };

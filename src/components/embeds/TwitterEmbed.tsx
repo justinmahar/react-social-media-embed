@@ -3,8 +3,8 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { TwitterTweetEmbedProps } from 'react-twitter-embed/dist/components/TwitterTweetEmbed';
-import { EmbedPlaceholder } from './EmbedPlaceholder';
-import './rsme.css';
+import { EmbedPlaceholder } from '../placeholders/EmbedPlaceholder';
+import '../rsme.css';
 
 export interface TwitterEmbedProps extends DivPropsWithoutRef {
   url: string;

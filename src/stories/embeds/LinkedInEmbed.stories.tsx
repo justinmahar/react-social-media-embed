@@ -1,11 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { LinkedInEmbed } from '../components/LinkedInEmbed';
-import { EmbedToggler } from './EmbedToggler';
+import { LinkedInEmbed } from '../../components/embeds/LinkedInEmbed';
+import { EmbedToggler } from '../EmbedToggler';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/LinkedInEmbed',
+  title: 'Embeds/LinkedInEmbed',
   component: LinkedInEmbed,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // argTypes: {
@@ -26,5 +26,5 @@ UrlOnly.args = {
   url: 'https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473',
   postUrl:
     'https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb',
-  height: 587,
+  height: 592,
 };

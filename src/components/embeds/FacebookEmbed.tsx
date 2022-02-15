@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { DivProps } from 'react-html-props';
-import { EmbedPlaceholder } from '..';
-import { generateUUID } from './uuid';
-import './rsme.css';
+import { EmbedPlaceholder } from '../..';
+import { generateUUID } from '../uuid';
+import '../rsme.css';
 
 export interface FacebookEmbedProps extends DivProps {
   url: string;
@@ -30,32 +30,14 @@ export const FacebookEmbed = ({
   const uuidRef = React.useRef(generateUUID());
 
   React.useEffect(() => {
-    const timeout: any = setTimeout(() => {
-      if (typeof document !== 'undefined') {
-        [...document.getElementsByTagName('script')].forEach((script) => {
-          // if (script.src.includes('connect.facebook.net')) {
-          //   console.log('Removing', script);
-          //   script.remove();
-          // }
-        });
-        (window as any).FB = undefined;
-        setProcessTime(Date.now());
-      }
-    }, 1000);
-    return () => clearTimeout(timeout);
+    if (show && typeof window !== 'undefined') {
+      // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
+      (window as any).FB?.XFBML?.parse();
+    }
+    setProcessTime(Date.now());
   }, [show]);
 
-  const placeholder = embedPlaceholder ?? (
-    <EmbedPlaceholder
-      url={url}
-      style={{
-        width: divProps.style?.width ? '100%' : width ?? 550,
-        height: divProps.style?.height ? '100%' : height ?? 372,
-        borderRadius: divProps.style?.borderRadius ?? 3,
-      }}
-    />
-  );
-
+  // Check for successful embed, mark as ready
   React.useEffect(() => {
     let timeout: any = undefined;
     if (!ready) {
@@ -71,10 +53,21 @@ export const FacebookEmbed = ({
             }
           }
         }
-      }, 50);
+      }, 10);
     }
     return () => clearInterval(timeout);
   }, [ready]);
+
+  const placeholder = embedPlaceholder ?? (
+    <EmbedPlaceholder
+      url={url}
+      style={{
+        width: divProps.style?.width ? '100%' : width ?? 550,
+        height: divProps.style?.height ? '100%' : height ?? 372,
+        borderRadius: divProps.style?.borderRadius ?? 3,
+      }}
+    />
+  );
 
   return (
     <div
@@ -91,14 +84,7 @@ export const FacebookEmbed = ({
         <div className="fb-post" data-href={url}></div>
       </div>
       {processTime > 0 && (
-        <Helmet>
-          {
-            <script
-              key={`facebook-embed-${processTime}`}
-              src={`https://connect.facebook.net/en_US/sdk.js?t=${processTime}#xfbml=1&version=v3.2`}
-            ></script>
-          }
-        </Helmet>
+        <Helmet>{<script src={`https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`}></script>}</Helmet>
       )}
       {!ready && !placeholderDisabled && placeholder}
     </div>

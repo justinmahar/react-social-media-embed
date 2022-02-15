@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import { EmbedPlaceholder } from './EmbedPlaceholder';
-import './rsme.css';
+import { EmbedPlaceholder } from '../placeholders/EmbedPlaceholder';
+import '../rsme.css';
 
 export interface LinkedInEmbedProps extends DivProps {
   url: string;

@@ -1,148 +1,31 @@
 import classNames from 'classnames';
-import * as React from 'react';
-import { DivProps, DivPropsWithoutRef } from 'react-html-props';
-import styled from 'styled-components';
-import { generateUUID } from './uuid';
-import './rsme.css';
+import React from 'react';
+import { DivProps } from 'react-html-props';
+import { generateUUID } from '../uuid';
+import { Spinner } from './Spinner';
 
-const defaultIgVersion = '14';
-const defaultLinkText = 'View this post on Instagram';
-const defaultProcessDelay = 100;
-const defaultRetryInitialDelay = 1000;
-const defaultRetryBackoffMaxDelay = 30000;
-const defaultBackgroundBlurAnimationDuration = 700;
+export interface IGPlaceholderProps extends DivProps {}
 
-let embedScriptLoaded = false;
-
-export interface InstagramEmbedProps extends DivProps {
-  url: string;
-  backgroundUrl?: string;
-  igVersion?: string;
-  linkText?: string;
-  processDelay?: number;
-  scriptLoadDisabled?: boolean;
-  linkTextDisabled?: boolean;
-  backgroundBlurDisabled?: boolean;
-  backgroundBlurAnimationDisabled?: boolean;
-  backgroundBlurAnimationDuration?: number;
-  spinnerDisabled?: boolean;
-  softFilterDisabled?: boolean;
-  retryDisabled?: boolean;
-  retryInitialDelay?: number;
-  retryBackoffMaxDelay?: number;
-}
-
-export const InstagramEmbed = ({
-  url,
-  backgroundUrl,
-  igVersion = defaultIgVersion,
-  linkText = defaultLinkText,
-  processDelay = defaultProcessDelay,
-  scriptLoadDisabled = false,
-  linkTextDisabled = false,
-  backgroundBlurDisabled = false,
-  backgroundBlurAnimationDisabled = false,
-  backgroundBlurAnimationDuration = defaultBackgroundBlurAnimationDuration,
-  spinnerDisabled = false,
-  softFilterDisabled = false,
-  retryDisabled = false,
-  retryInitialDelay = defaultRetryInitialDelay,
-  retryBackoffMaxDelay = defaultRetryBackoffMaxDelay,
-  ...divProps
-}: InstagramEmbedProps): JSX.Element => {
-  const [initialized, setInitialized] = React.useState(false);
-  const [processTime, setProcessTime] = React.useState(-1);
-  const [retryDelay, setRetryDelay] = React.useState(retryInitialDelay);
-  const [retrying, setRetrying] = React.useState(false);
-  const [retryTime, setRetryTime] = React.useState(-1);
+export const IGPlaceholder = ({ ...divProps }: IGPlaceholderProps) => {
+  const url = '#';
   const uuidRef = React.useRef(generateUUID());
-  React.useEffect(() => {
-    const win = typeof window !== 'undefined' ? (window as any) : undefined;
-    if (win && processTime >= 0) {
-      // This call will use the IG embed script to process all elements with the `instagram-media` class name.
-      if (typeof win.instgrm !== 'undefined' && win.instgrm.Embeds) {
-        // console.log('Processing...', Date.now());
-        win.instgrm.Embeds.process();
-      } else {
-        console.error('Instagram embed script not found. Unable to process Instagram embed:', url);
-      }
-    }
-  }, [processTime, url]);
-
-  // Initialization
-  React.useEffect(() => {
-    const timeout: any = undefined;
-    if (!initialized) {
-      if (typeof processDelay !== 'undefined' && processDelay > 0) {
-        setTimeout(() => {
-          setProcessTime(Date.now());
-          setInitialized(true);
-        }, Math.max(0, processDelay));
-      } else if (processDelay === 0) {
-        setProcessTime(Date.now());
-        setInitialized(true);
-      }
-    }
-    return () => clearTimeout(timeout);
-  }, [initialized, processDelay]);
-
-  // Exponential backoff retry
-  React.useEffect(() => {
-    let timeout: any = undefined;
-    if (initialized && !retryDisabled && typeof document !== 'undefined') {
-      timeout = setTimeout(() => {
-        const preEmbedElement = document.getElementById(uuidRef.current);
-        if (!!preEmbedElement) {
-          setProcessTime(Date.now());
-          setRetryDelay(Math.max(0, Math.min(retryDelay * 2, retryBackoffMaxDelay)));
-          setRetryTime(Date.now());
-          setRetrying(true);
-        }
-      }, Math.max(0, retryDelay));
-    }
-
-    return () => clearTimeout(timeout);
-  }, [initialized, retryBackoffMaxDelay, retryDelay, retryDisabled, retryTime]);
-
-  React.useEffect(() => {
-    if (typeof document !== 'undefined' && !scriptLoadDisabled && !embedScriptLoaded) {
-      const igScript = document.createElement('script');
-      igScript.setAttribute('src', '//www.instagram.com/embed.js');
-      document.head.appendChild(igScript);
-      embedScriptLoaded = true;
-    }
-  }, [scriptLoadDisabled]);
-
-  const urlWithNoQuery = url.replace(/[?].*$/, '');
-  const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
-
   return (
-    <div
-      className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
-      style={{ overflow: 'hidden', width: '100%', maxWidth: '540px', ...divProps.style }}
-      key={`${uuidRef}-${retryTime}`}
-    >
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
-        data-instgrm-version={igVersion}
-        {...divProps}
+    <div {...divProps} className={classNames(divProps.className)} style={{ ...divProps.style }}>
+      <div
         style={{
           background: '#FFF',
           borderRadius: '3px',
           border: '1px solid #dee2e6',
-          // boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)',
           margin: 0,
           maxWidth: '540px',
           minWidth: '326px',
           padding: 0,
           width: 'calc(100% - 2px)',
-          ...divProps.style,
         }}
       >
         <div className="instagram-media-pre-embed" id={uuidRef.current} style={{ padding: '16px 0' }}>
           <a
-            href={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
+            href={`${url}?utm_source=ig_embed&utm_campaign=loading`}
             style={{
               background: '#FFFFFF',
               lineHeight: 0,
@@ -154,26 +37,17 @@ export const InstagramEmbed = ({
             target="_blank"
             rel="noreferrer"
           >
-            <IGHeader showSpinner={!spinnerDisabled} />
-            <IGBody
-              url={cleanUrlWithEndingSlash}
-              backgroundUrl={backgroundUrl}
-              linkText={linkText}
-              linkTextDisabled={linkTextDisabled}
-              backgroundBlurDisabled={backgroundBlurDisabled}
-              backgroundBlurAnimationDisabled={retrying || backgroundBlurAnimationDisabled}
-              backgroundBlurAnimationDuration={backgroundBlurAnimationDuration}
-              softFilterDisabled={softFilterDisabled}
-            />
+            <IGHeader />
+            <IGBody url={url} linkText={'View this post'} />
             <IGFooter />
           </a>
         </div>
-      </blockquote>
+      </div>
     </div>
   );
 };
 
-const IGHeader = (props: { showSpinner: boolean }) => {
+const IGHeader = () => {
   return (
     <div
       className="instagram-media-header"
@@ -210,11 +84,9 @@ const IGHeader = (props: { showSpinner: boolean }) => {
           }}
         />
       </div>
-      {props.showSpinner && (
-        <div>
-          <Spinner size={30} />
-        </div>
-      )}
+      <div>
+        <Spinner size={30} />
+      </div>
     </div>
   );
 };
@@ -231,32 +103,8 @@ interface IGBodyProps {
 }
 const IGBody = (props: IGBodyProps) => {
   return (
-    <IGBodyDiv
-      backgroundBlurAnimationDuration={Math.abs(
-        typeof props.backgroundBlurAnimationDuration === 'number'
-          ? props.backgroundBlurAnimationDuration
-          : defaultBackgroundBlurAnimationDuration,
-      )}
-      className="instagram-media-body"
-      style={{
-        backgroundImage: props.backgroundUrl ? `url("${props.backgroundUrl}")` : undefined,
-        backgroundRepeat: props.backgroundUrl ? 'no-repeat' : undefined,
-        backgroundPosition: props.backgroundUrl ? 'center' : undefined,
-        backgroundSize: props.backgroundUrl ? 'cover' : undefined,
-        marginTop: props.backgroundUrl ? '16px' : undefined,
-        marginBottom: props.backgroundUrl ? '16px' : undefined,
-      }}
-    >
-      <div
-        className={props.backgroundBlurDisabled || props.backgroundBlurAnimationDisabled ? undefined : 'backdrop-blur'}
-        style={{
-          backdropFilter:
-            props.backgroundBlurDisabled || !props.backgroundBlurAnimationDisabled ? undefined : 'blur(4px)',
-          WebkitBackdropFilter:
-            props.backgroundBlurDisabled || !props.backgroundBlurAnimationDisabled ? undefined : 'blur(4px)',
-          backgroundColor: props.softFilterDisabled ? undefined : 'rgba(255,255,255,0.7)',
-        }}
-      >
+    <div className="instagram-media-body">
+      <div>
         <div style={{ padding: '16% 0' }} />
         <div style={{ display: 'block', height: '50px', margin: '0 auto 12px', width: '50px' }}>
           {!props.linkTextDisabled && !!props.linkText && (
@@ -296,7 +144,7 @@ const IGBody = (props: IGBodyProps) => {
         </div>
         <div style={{ padding: '15.5% 0' }} />
       </div>
-    </IGBodyDiv>
+    </div>
   );
 };
 
@@ -409,50 +257,3 @@ const IGFooter = () => {
     </div>
   );
 };
-
-interface SpinnerProps extends DivPropsWithoutRef {
-  size: number;
-}
-
-const Spinner: (props: SpinnerProps) => JSX.Element = styled.div`
-  & {
-    border: ${(props: SpinnerProps) => Math.max(Math.round(0.13333 * props.size), 1)}px solid #f3f3f3; /* Light grey */
-    border-top: ${(props: SpinnerProps) => Math.max(Math.round(0.13333 * props.size), 1)}px solid #000000; /* Black */
-    border-radius: 50%;
-    width: ${(props: SpinnerProps) => Math.max(props.size, 1)}px;
-    height: ${(props: SpinnerProps) => Math.max(props.size, 1)}px;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-`;
-
-interface IGBodyDivProps extends DivPropsWithoutRef {
-  backgroundBlurAnimationDuration: number;
-}
-
-const IGBodyDiv: (props: IGBodyDivProps) => JSX.Element = styled.div`
-  .backdrop-blur {
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    animation: bgBlur ${(props: IGBodyDivProps) => props.backgroundBlurAnimationDuration / 1000}s ease 1;
-  }
-
-  @keyframes bgBlur {
-    0% {
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    100% {
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-  }
-`;

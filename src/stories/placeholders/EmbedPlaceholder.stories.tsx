@@ -1,27 +1,34 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { TwitterEmbed } from '../components/TwitterEmbed';
-import { EmbedToggler } from './EmbedToggler';
+
+import { EmbedPlaceholder } from '../../components/placeholders/EmbedPlaceholder';
+import { EmbedToggler } from '../EmbedToggler';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Components/TwitterEmbed',
-  component: TwitterEmbed,
+  title: 'Placeholders/EmbedPlaceholder',
+  component: EmbedPlaceholder,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // argTypes: {
   //   backgroundColor: { control: 'color' },
   // },
-} as ComponentMeta<typeof TwitterEmbed>;
+} as ComponentMeta<typeof EmbedPlaceholder>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof TwitterEmbed> = (args) => (
+const Template: ComponentStory<typeof EmbedPlaceholder> = (args) => (
   <EmbedToggler>
-    <TwitterEmbed {...args} />
+    <EmbedPlaceholder {...args} />
   </EmbedToggler>
 );
 
 export const UrlOnly = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 UrlOnly.args = {
-  url: 'https://twitter.com/PixelAndBracket/status/1356633038717923333',
+  url: 'https://www.instagram.com/p/CUbHfhpswxt/',
+};
+
+export const WithImage = Template.bind({});
+WithImage.args = {
+  url: 'https://www.instagram.com/p/CUbHfhpswxt/',
+  image: 'https://placekitten.com/540/540',
 };

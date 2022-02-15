@@ -76,7 +76,7 @@ import { LinkedInEmbed } from 'react-social-media-embed';
 The `url` must be be retrieved from the "Embed this post" option for the desired post. Use the `src` attribute of the `iframe`:
 
 ```html
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473" height="587" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473" height="592" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 ```
 
 It is also recommended that you specify the `height` of the post. This has been pre-calculated in the `iframe` embed code as well.
@@ -87,7 +87,7 @@ You can also specify a `postUrl` which will be used in the placeholder to link t
 <LinkedInEmbed 
   url="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473"
   postUrl="https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb"
-  height={587}
+  height={592}
 />
 ```
 
