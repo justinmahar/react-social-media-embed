@@ -33,6 +33,27 @@ Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTub
 - **🚀 Quick and easy**
   - Embed content quickly and easily from the most popular social media platforms
 
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Overview](#overview)
+  - [Features include:](#features-include)
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Facebook](#facebook)
+  - [Instagram](#instagram)
+  - [LinkedIn](#linkedin)
+  - [TikTok](#tiktok)
+  - [Twitter](#twitter)
+  - [YouTube](#youtube)
+  - [Placeholder](#placeholder)
+- [TypeScript](#typescript)
+- [Icon Attribution](#icon-attribution)
+- [Contributing](#contributing)
+- [⭐ Found It Helpful? Star It!](#-found-it-helpful-star-it)
+- [License](#license)
+
 ## Installation
 
 ```
