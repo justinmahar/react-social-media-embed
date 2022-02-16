@@ -21,7 +21,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmbedPlaceholder = void 0;
 const React = __importStar(require("react"));
-require("../rsme.css");
 const Spinner_1 = require("./Spinner");
 function EmbedPlaceholder({ url, image, ...divProps }) {
     return (React.createElement("div", { ...divProps, style: {

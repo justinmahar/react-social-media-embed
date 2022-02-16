@@ -1,6 +1,5 @@
 /// <reference types="react" />
 import { DivProps } from 'react-html-props';
-import '../rsme.css';
 export interface DefaultEmbedProps extends DivProps {
     url: string;
     image?: string;

@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TikTokEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const react_helmet_1 = require("react-helmet");
 const __1 = require("../..");
-require("../rsme.css");
+const EmbedDiv_1 = require("./EmbedDiv");
 const uuid_1 = require("../uuid");
+// DOCS: https://developers.tiktok.com/doc/embed-videos
 const defaultProcessDelay = 100;
 const defaultRetryInitialDelay = 3000;
 const defaultRetryBackoffMaxDelay = 30000;
@@ -68,9 +68,22 @@ const TikTokEmbed = ({ url, width, height, embedPlaceholder, placeholderDisabled
             borderColor: divProps.style?.borderColor ?? 'rgba(22,24,35,0.12)',
             borderRadius: divProps.style?.borderRadius ?? 8,
         } }));
+    react_1.default.useEffect(() => {
+        if (typeof document !== 'undefined' && !scriptLoadDisabled) {
+            const scriptId = `tiktok-embed-script`;
+            const prevScript = document.getElementById(scriptId);
+            if (prevScript) {
+                prevScript.remove();
+            }
+            const scriptElement = document.createElement('script');
+            scriptElement.setAttribute('src', `https://www.tiktok.com/embed.js?t=${Date.now()}`);
+            scriptElement.setAttribute('id', scriptId);
+            document.head.appendChild(scriptElement);
+        }
+    }, [scriptLoadDisabled]);
     return (react_1.default.createElement("div", { ...divProps, className: (0, classnames_1.default)('rsme-embed rsme-tiktok-embed', divProps.className), style: { overflow: 'hidden', maxWidth: 325, ...divProps.style } },
-        react_1.default.createElement("div", { className: (0, classnames_1.default)('tiktok-embed-container', divProps.className), key: `${uuidRef}-${retryTime}` },
-            !scriptLoadDisabled && (react_1.default.createElement(react_helmet_1.Helmet, { key: `tt-embed-${processTime}` }, react_1.default.createElement("script", { src: `https://www.tiktok.com/embed.js?t=${processTime}` }))),
-            react_1.default.createElement("blockquote", { className: "tiktok-embed", cite: url, "data-video-id": embedId }, !placeholderDisabled ? (react_1.default.createElement("div", { id: uuidRef.current, style: { display: 'flex', justifyContent: 'center' } }, placeholder)) : (react_1.default.createElement("div", { id: uuidRef.current, style: { display: 'none' } }, "\u00A0"))))));
+        react_1.default.createElement(EmbedDiv_1.EmbedDiv, null,
+            react_1.default.createElement("div", { className: (0, classnames_1.default)('tiktok-embed-container', divProps.className), key: `${uuidRef}-${retryTime}` },
+                react_1.default.createElement("blockquote", { className: "tiktok-embed", cite: url, "data-video-id": embedId }, !placeholderDisabled ? (react_1.default.createElement("div", { id: uuidRef.current, style: { display: 'flex', justifyContent: 'center' } }, placeholder)) : (react_1.default.createElement("div", { id: uuidRef.current, style: { display: 'none' } }, "\u00A0")))))));
 };
 exports.TikTokEmbed = TikTokEmbed;

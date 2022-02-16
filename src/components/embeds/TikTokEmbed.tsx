@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { DivProps } from 'react-html-props';
 import { EmbedPlaceholder } from '../..';
-import '../rsme.css';
+import { EmbedDiv } from './EmbedDiv';
+
 import { generateUUID } from '../uuid';
+
+// DOCS: https://developers.tiktok.com/doc/embed-videos
 
 const defaultProcessDelay = 100;
 const defaultRetryInitialDelay = 3000;
@@ -101,30 +103,41 @@ export const TikTokEmbed = ({
     />
   );
 
+  React.useEffect(() => {
+    if (typeof document !== 'undefined' && !scriptLoadDisabled) {
+      const scriptId = `tiktok-embed-script`;
+      const prevScript = document.getElementById(scriptId);
+      if (prevScript) {
+        prevScript.remove();
+      }
+      const scriptElement = document.createElement('script');
+      scriptElement.setAttribute('src', `https://www.tiktok.com/embed.js?t=${Date.now()}`);
+      scriptElement.setAttribute('id', scriptId);
+      document.head.appendChild(scriptElement);
+    }
+  }, [scriptLoadDisabled]);
+
   return (
     <div
       {...divProps}
       className={classNames('rsme-embed rsme-tiktok-embed', divProps.className)}
       style={{ overflow: 'hidden', maxWidth: 325, ...divProps.style }}
     >
-      <div className={classNames('tiktok-embed-container', divProps.className)} key={`${uuidRef}-${retryTime}`}>
-        {!scriptLoadDisabled && (
-          <Helmet key={`tt-embed-${processTime}`}>
-            {<script src={`https://www.tiktok.com/embed.js?t=${processTime}`}></script>}
-          </Helmet>
-        )}
-        <blockquote className="tiktok-embed" cite={url} data-video-id={embedId}>
-          {!placeholderDisabled ? (
-            <div id={uuidRef.current} style={{ display: 'flex', justifyContent: 'center' }}>
-              {placeholder}
-            </div>
-          ) : (
-            <div id={uuidRef.current} style={{ display: 'none' }}>
-              &nbsp;
-            </div>
-          )}
-        </blockquote>
-      </div>
+      <EmbedDiv>
+        <div className={classNames('tiktok-embed-container', divProps.className)} key={`${uuidRef}-${retryTime}`}>
+          <blockquote className="tiktok-embed" cite={url} data-video-id={embedId}>
+            {!placeholderDisabled ? (
+              <div id={uuidRef.current} style={{ display: 'flex', justifyContent: 'center' }}>
+                {placeholder}
+              </div>
+            ) : (
+              <div id={uuidRef.current} style={{ display: 'none' }}>
+                &nbsp;
+              </div>
+            )}
+          </blockquote>
+        </div>
+      </EmbedDiv>
     </div>
   );
 };

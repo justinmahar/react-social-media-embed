@@ -26,8 +26,8 @@ exports.InstagramEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const IGPlaceholder_1 = require("../placeholders/IGPlaceholder");
-require("../rsme.css");
 const uuid_1 = require("../uuid");
+const EmbedDiv_1 = require("./EmbedDiv");
 const defaultIgVersion = '14';
 const defaultLinkText = 'View this post on Instagram';
 const defaultProcessDelay = 100;
@@ -91,9 +91,9 @@ const InstagramEmbed = ({ url, igVersion = defaultIgVersion, linkText = defaultL
         if (typeof document !== 'undefined' && !scriptLoadDisabled && !embedScriptLoaded) {
             const win = typeof window !== 'undefined' ? window : undefined;
             if (!win.instgrm?.Embeds) {
-                const igScript = document.createElement('script');
-                igScript.setAttribute('src', '//www.instagram.com/embed.js');
-                document.head.appendChild(igScript);
+                const scriptElement = document.createElement('script');
+                scriptElement.setAttribute('src', '//www.instagram.com/embed.js');
+                document.head.appendChild(scriptElement);
             }
             embedScriptLoaded = true;
         }
@@ -104,12 +104,13 @@ const InstagramEmbed = ({ url, igVersion = defaultIgVersion, linkText = defaultL
             width: 'calc(100% + 2px)',
         } }));
     return (React.createElement("div", { className: (0, classnames_1.default)('rsme-embed rsme-instagram-embed', divProps.className), style: { overflow: 'hidden', width: '100%', maxWidth: '540px', ...divProps.style }, key: `${uuidRef}-${retryTime}` },
-        React.createElement("blockquote", { className: "instagram-media", "data-instgrm-permalink": `${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`, "data-instgrm-version": igVersion, style: {
-                margin: 0,
-                maxWidth: '540px',
-                minWidth: '326px',
-                width: 'calc(100% - 2px)',
-                ...divProps.style,
-            } }, placeholder)));
+        React.createElement(EmbedDiv_1.EmbedDiv, null,
+            React.createElement("blockquote", { className: "instagram-media", "data-instgrm-permalink": `${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`, "data-instgrm-version": igVersion, style: {
+                    margin: 0,
+                    maxWidth: '540px',
+                    minWidth: '326px',
+                    width: 'calc(100% - 2px)',
+                    ...divProps.style,
+                } }, placeholder))));
 };
 exports.InstagramEmbed = InstagramEmbed;

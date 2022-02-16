@@ -2,8 +2,9 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
 import { IGPlaceholder } from '../placeholders/IGPlaceholder';
-import '../rsme.css';
+
 import { generateUUID } from '../uuid';
+import { EmbedDiv } from './EmbedDiv';
 
 const defaultIgVersion = '14';
 const defaultLinkText = 'View this post on Instagram';
@@ -93,9 +94,9 @@ export const InstagramEmbed = ({
     if (typeof document !== 'undefined' && !scriptLoadDisabled && !embedScriptLoaded) {
       const win = typeof window !== 'undefined' ? (window as any) : undefined;
       if (!win.instgrm?.Embeds) {
-        const igScript = document.createElement('script');
-        igScript.setAttribute('src', '//www.instagram.com/embed.js');
-        document.head.appendChild(igScript);
+        const scriptElement = document.createElement('script');
+        scriptElement.setAttribute('src', '//www.instagram.com/embed.js');
+        document.head.appendChild(scriptElement);
       }
       embedScriptLoaded = true;
     }
@@ -120,20 +121,22 @@ export const InstagramEmbed = ({
       style={{ overflow: 'hidden', width: '100%', maxWidth: '540px', ...divProps.style }}
       key={`${uuidRef}-${retryTime}`}
     >
-      <blockquote
-        className="instagram-media"
-        data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
-        data-instgrm-version={igVersion}
-        style={{
-          margin: 0,
-          maxWidth: '540px',
-          minWidth: '326px',
-          width: 'calc(100% - 2px)',
-          ...divProps.style,
-        }}
-      >
-        {placeholder}
-      </blockquote>
+      <EmbedDiv>
+        <blockquote
+          className="instagram-media"
+          data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
+          data-instgrm-version={igVersion}
+          style={{
+            margin: 0,
+            maxWidth: '540px',
+            minWidth: '326px',
+            width: 'calc(100% - 2px)',
+            ...divProps.style,
+          }}
+        >
+          {placeholder}
+        </blockquote>
+      </EmbedDiv>
     </div>
   );
 };

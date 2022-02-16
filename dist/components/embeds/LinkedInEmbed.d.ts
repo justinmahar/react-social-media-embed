@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import '../rsme.css';
 export interface LinkedInEmbedProps extends DivProps {
     url: string;
     postUrl?: string;

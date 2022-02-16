@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
 import { EmbedPlaceholder } from '../placeholders/EmbedPlaceholder';
-import '../rsme.css';
+import { EmbedDiv } from './EmbedDiv';
 
 export interface LinkedInEmbedProps extends DivProps {
   url: string;
@@ -49,20 +49,22 @@ export const LinkedInEmbed = ({
         ...divProps.style,
       }}
     >
-      <div
-        className="linkedin-embed-container"
-        style={{ width: '100%', minWidth: 300, maxWidth: 550, position: 'relative' }}
-      >
-        <iframe
-          className={classNames('linkedin-post', !ready && 'rsme-d-none')}
-          src={url}
-          width="100%"
-          height={!ready ? 0 : height}
-          frameBorder="0"
-          onLoad={() => setReady(true)}
-        ></iframe>
-        {true && !placeholderDisabled && placeholder}
-      </div>
+      <EmbedDiv>
+        <div
+          className="linkedin-embed-container"
+          style={{ width: '100%', minWidth: 300, maxWidth: 550, position: 'relative' }}
+        >
+          <iframe
+            className={classNames('linkedin-post', !ready && 'rsme-d-none')}
+            src={url}
+            width="100%"
+            height={!ready ? 0 : height}
+            frameBorder="0"
+            onLoad={() => setReady(true)}
+          ></iframe>
+          {true && !placeholderDisabled && placeholder}
+        </div>
+      </EmbedDiv>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { DivProps } from 'react-html-props';
 import { EmbedPlaceholder } from '../..';
 import { generateUUID } from '../uuid';
-import '../rsme.css';
+
+import { EmbedDiv } from './EmbedDiv';
 
 export interface FacebookEmbedProps extends DivProps {
   url: string;
@@ -12,6 +12,7 @@ export interface FacebookEmbedProps extends DivProps {
   height?: string | number;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
+  scriptLoadDisabled?: boolean;
 }
 
 // https://developers.facebook.com/docs/plugins/embedded-posts/?prefill_href=https%3A%2F%2Fwww.facebook.com%2Fandrewismusic%2Fposts%2F451971596293956#code-generator
@@ -22,6 +23,7 @@ export const FacebookEmbed = ({
   height,
   embedPlaceholder,
   placeholderDisabled,
+  scriptLoadDisabled,
   ...divProps
 }: FacebookEmbedProps) => {
   const [ready, setReady] = React.useState(false);
@@ -69,6 +71,16 @@ export const FacebookEmbed = ({
     />
   );
 
+  React.useEffect(() => {
+    if (typeof document !== 'undefined' && typeof window !== 'undefined' && !scriptLoadDisabled) {
+      if (!(window as any).FB?.XFBML?.parse) {
+        const scriptElement = document.createElement('script');
+        scriptElement.setAttribute('src', `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`);
+        document.head.appendChild(scriptElement);
+      }
+    }
+  }, [scriptLoadDisabled]);
+
   return (
     <div
       {...divProps}
@@ -80,13 +92,12 @@ export const FacebookEmbed = ({
         ...divProps.style,
       }}
     >
-      <div id={uuidRef.current} className={classNames(!ready && 'rsme-d-none')}>
-        <div className="fb-post" data-href={url}></div>
-      </div>
-      {processTime > 0 && (
-        <Helmet>{<script src={`https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`}></script>}</Helmet>
-      )}
-      {!ready && !placeholderDisabled && placeholder}
+      <EmbedDiv>
+        <div id={uuidRef.current} className={classNames(!ready && 'rsme-d-none')}>
+          <div className="fb-post" data-href={url}></div>
+        </div>
+        {!ready && !placeholderDisabled && placeholder}
+      </EmbedDiv>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import '../rsme.css';
 export interface TikTokEmbedProps extends DivProps {
     url: string;
     width?: string | number;

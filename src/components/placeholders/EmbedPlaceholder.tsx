@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import '../rsme.css';
+
 import { Spinner } from './Spinner';
 
 export interface DefaultEmbedProps extends DivProps {

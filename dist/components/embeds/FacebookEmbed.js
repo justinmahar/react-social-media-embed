@@ -6,12 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FacebookEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const react_helmet_1 = require("react-helmet");
 const __1 = require("../..");
 const uuid_1 = require("../uuid");
-require("../rsme.css");
+const EmbedDiv_1 = require("./EmbedDiv");
 // https://developers.facebook.com/docs/plugins/embedded-posts/?prefill_href=https%3A%2F%2Fwww.facebook.com%2Fandrewismusic%2Fposts%2F451971596293956#code-generator
-const FacebookEmbed = ({ url, width, height, embedPlaceholder, placeholderDisabled, ...divProps }) => {
+const FacebookEmbed = ({ url, width, height, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, ...divProps }) => {
     const [ready, setReady] = react_1.default.useState(false);
     const [processTime, setProcessTime] = react_1.default.useState(-1);
     const [show, setShow] = react_1.default.useState(true);
@@ -48,15 +47,24 @@ const FacebookEmbed = ({ url, width, height, embedPlaceholder, placeholderDisabl
             height: divProps.style?.height ? '100%' : height ?? 372,
             borderRadius: divProps.style?.borderRadius ?? 3,
         } }));
+    react_1.default.useEffect(() => {
+        if (typeof document !== 'undefined' && typeof window !== 'undefined' && !scriptLoadDisabled) {
+            if (!window.FB?.XFBML?.parse) {
+                const scriptElement = document.createElement('script');
+                scriptElement.setAttribute('src', `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`);
+                document.head.appendChild(scriptElement);
+            }
+        }
+    }, [scriptLoadDisabled]);
     return (react_1.default.createElement("div", { ...divProps, className: (0, classnames_1.default)('rsme-embed rsme-facebook-embed', divProps.className), style: {
             overflow: 'hidden',
             width: width ?? undefined,
             height: height ?? undefined,
             ...divProps.style,
         } },
-        react_1.default.createElement("div", { id: uuidRef.current, className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
-            react_1.default.createElement("div", { className: "fb-post", "data-href": url })),
-        processTime > 0 && (react_1.default.createElement(react_helmet_1.Helmet, null, react_1.default.createElement("script", { src: `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2` }))),
-        !ready && !placeholderDisabled && placeholder));
+        react_1.default.createElement(EmbedDiv_1.EmbedDiv, null,
+            react_1.default.createElement("div", { id: uuidRef.current, className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
+                react_1.default.createElement("div", { className: "fb-post", "data-href": url })),
+            !ready && !placeholderDisabled && placeholder)));
 };
 exports.FacebookEmbed = FacebookEmbed;

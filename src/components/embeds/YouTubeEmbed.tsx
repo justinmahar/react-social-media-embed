@@ -3,8 +3,7 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import YouTube, { Options, YouTubeProps } from 'react-youtube';
 import { EmbedPlaceholder } from '../..';
-
-import '../rsme.css';
+import { EmbedDiv } from './EmbedDiv';
 
 export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   url: string;
@@ -63,21 +62,23 @@ export const YouTubeEmbed = ({
         ...divProps.style,
       }}
     >
-      <div className={classNames(!ready && 'rsme-d-none')}>
-        <YouTube
-          {...youTubeProps}
-          className={youTubeProps?.className ?? 'youtube-iframe'}
-          videoId={youTubeProps?.videoId ?? videoId}
-          opts={opts}
-          onReady={(e) => {
-            setReady(true);
-            if (youTubeProps && youTubeProps.onReady) {
-              youTubeProps?.onReady(e);
-            }
-          }}
-        />
-      </div>
-      {!ready && !placeholderDisabled && placeholder}
+      <EmbedDiv>
+        <div className={classNames(!ready && 'rsme-d-none')}>
+          <YouTube
+            {...youTubeProps}
+            className={youTubeProps?.className ?? 'youtube-iframe'}
+            videoId={youTubeProps?.videoId ?? videoId}
+            opts={opts}
+            onReady={(e) => {
+              setReady(true);
+              if (youTubeProps && youTubeProps.onReady) {
+                youTubeProps?.onReady(e);
+              }
+            }}
+          />
+        </div>
+        {!ready && !placeholderDisabled && placeholder}
+      </EmbedDiv>
     </div>
   );
 };

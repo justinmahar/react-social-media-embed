@@ -27,7 +27,7 @@ const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_youtube_1 = __importDefault(require("react-youtube"));
 const __1 = require("../..");
-require("../rsme.css");
+const EmbedDiv_1 = require("./EmbedDiv");
 const YouTubeEmbed = ({ url, youTubeProps, width, height, embedPlaceholder, placeholderDisabled, ...divProps }) => {
     const [ready, setReady] = React.useState(false);
     let videoId = '00000000';
@@ -54,13 +54,14 @@ const YouTubeEmbed = ({ url, youTubeProps, width, height, embedPlaceholder, plac
             height: height ?? undefined,
             ...divProps.style,
         } },
-        React.createElement("div", { className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
-            React.createElement(react_youtube_1.default, { ...youTubeProps, className: youTubeProps?.className ?? 'youtube-iframe', videoId: youTubeProps?.videoId ?? videoId, opts: opts, onReady: (e) => {
-                    setReady(true);
-                    if (youTubeProps && youTubeProps.onReady) {
-                        youTubeProps?.onReady(e);
-                    }
-                } })),
-        !ready && !placeholderDisabled && placeholder));
+        React.createElement(EmbedDiv_1.EmbedDiv, null,
+            React.createElement("div", { className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
+                React.createElement(react_youtube_1.default, { ...youTubeProps, className: youTubeProps?.className ?? 'youtube-iframe', videoId: youTubeProps?.videoId ?? videoId, opts: opts, onReady: (e) => {
+                        setReady(true);
+                        if (youTubeProps && youTubeProps.onReady) {
+                            youTubeProps?.onReady(e);
+                        }
+                    } })),
+            !ready && !placeholderDisabled && placeholder)));
 };
 exports.YouTubeEmbed = YouTubeEmbed;
