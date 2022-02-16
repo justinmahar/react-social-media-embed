@@ -3,7 +3,8 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import YouTube, { Options, YouTubeProps } from 'react-youtube';
 import { EmbedPlaceholder } from '../..';
-import { EmbedDiv } from './EmbedDiv';
+import { generateUUID } from '../uuid';
+import { EmbedStyle } from './EmbedStyle';
 
 export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   url: string;
@@ -23,6 +24,7 @@ export const YouTubeEmbed = ({
   placeholderDisabled,
   ...divProps
 }: YouTubeEmbedProps) => {
+  const uuidRef = React.useRef(generateUUID());
   const [ready, setReady] = React.useState(false);
 
   let videoId = '00000000';
@@ -62,23 +64,22 @@ export const YouTubeEmbed = ({
         ...divProps.style,
       }}
     >
-      <EmbedDiv>
-        <div className={classNames(!ready && 'rsme-d-none')}>
-          <YouTube
-            {...youTubeProps}
-            className={youTubeProps?.className ?? 'youtube-iframe'}
-            videoId={youTubeProps?.videoId ?? videoId}
-            opts={opts}
-            onReady={(e) => {
-              setReady(true);
-              if (youTubeProps && youTubeProps.onReady) {
-                youTubeProps?.onReady(e);
-              }
-            }}
-          />
-        </div>
-        {!ready && !placeholderDisabled && placeholder}
-      </EmbedDiv>
+      <EmbedStyle />
+      <div className={classNames(!ready && 'rsme-d-none')}>
+        <YouTube
+          {...youTubeProps}
+          className={youTubeProps?.className ?? 'youtube-iframe'}
+          videoId={youTubeProps?.videoId ?? videoId}
+          opts={opts}
+          onReady={(e) => {
+            setReady(true);
+            if (youTubeProps && youTubeProps.onReady) {
+              youTubeProps?.onReady(e);
+            }
+          }}
+        />
+      </div>
+      {!ready && !placeholderDisabled && placeholder}
     </div>
   );
 };

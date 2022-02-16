@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
 import { EmbedPlaceholder } from '../placeholders/EmbedPlaceholder';
-import { EmbedDiv } from './EmbedDiv';
+import { generateUUID } from '../uuid';
+import { EmbedStyle } from './EmbedStyle';
 
 export interface LinkedInEmbedProps extends DivProps {
   url: string;
@@ -22,6 +23,7 @@ export const LinkedInEmbed = ({
   placeholderDisabled,
   ...divProps
 }: LinkedInEmbedProps) => {
+  const uuidRef = React.useRef(generateUUID());
   const [ready, setReady] = React.useState(false);
 
   const placeholder = embedPlaceholder ?? (
@@ -49,22 +51,16 @@ export const LinkedInEmbed = ({
         ...divProps.style,
       }}
     >
-      <EmbedDiv>
-        <div
-          className="linkedin-embed-container"
-          style={{ width: '100%', minWidth: 300, maxWidth: 550, position: 'relative' }}
-        >
-          <iframe
-            className={classNames('linkedin-post', !ready && 'rsme-d-none')}
-            src={url}
-            width="100%"
-            height={!ready ? 0 : height}
-            frameBorder="0"
-            onLoad={() => setReady(true)}
-          ></iframe>
-          {true && !placeholderDisabled && placeholder}
-        </div>
-      </EmbedDiv>
+      <EmbedStyle />
+      <iframe
+        className={classNames('linkedin-post', !ready && 'rsme-d-none')}
+        src={url}
+        width="100%"
+        height={!ready ? 0 : height}
+        frameBorder="0"
+        onLoad={() => setReady(true)}
+      ></iframe>
+      {true && !placeholderDisabled && placeholder}
     </div>
   );
 };

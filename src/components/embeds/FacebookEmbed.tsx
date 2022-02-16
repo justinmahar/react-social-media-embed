@@ -3,8 +3,7 @@ import React from 'react';
 import { DivProps } from 'react-html-props';
 import { EmbedPlaceholder } from '../..';
 import { generateUUID } from '../uuid';
-
-import { EmbedDiv } from './EmbedDiv';
+import { EmbedStyle } from './EmbedStyle';
 
 export interface FacebookEmbedProps extends DivProps {
   url: string;
@@ -84,7 +83,7 @@ export const FacebookEmbed = ({
   return (
     <div
       {...divProps}
-      className={classNames('rsme-embed rsme-facebook-embed', divProps.className)}
+      className={classNames('rsme-embed rsme-facebook-embed', uuidRef.current, divProps.className)}
       style={{
         overflow: 'hidden',
         width: width ?? undefined,
@@ -92,12 +91,11 @@ export const FacebookEmbed = ({
         ...divProps.style,
       }}
     >
-      <EmbedDiv>
-        <div id={uuidRef.current} className={classNames(!ready && 'rsme-d-none')}>
-          <div className="fb-post" data-href={url}></div>
-        </div>
-        {!ready && !placeholderDisabled && placeholder}
-      </EmbedDiv>
+      <EmbedStyle />
+      <div id={uuidRef.current} className={classNames(!ready && 'rsme-d-none')}>
+        <div className="fb-post" data-href={url}></div>
+      </div>
+      {!ready && !placeholderDisabled && placeholder}
     </div>
   );
 };

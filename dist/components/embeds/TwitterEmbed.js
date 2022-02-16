@@ -27,8 +27,10 @@ const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_twitter_embed_1 = require("react-twitter-embed");
 const EmbedPlaceholder_1 = require("../placeholders/EmbedPlaceholder");
-const EmbedDiv_1 = require("./EmbedDiv");
+const uuid_1 = require("../uuid");
+const EmbedStyle_1 = require("./EmbedStyle");
 const TwitterEmbed = ({ url, twitterTweetEmbedProps, width, height, embedPlaceholder, placeholderDisabled, ...divProps }) => {
+    const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
     const placeholder = embedPlaceholder ?? (React.createElement(EmbedPlaceholder_1.EmbedPlaceholder, { url: url, style: {
             width: divProps.style?.width ? '100%' : width ?? '100%',
@@ -44,7 +46,7 @@ const TwitterEmbed = ({ url, twitterTweetEmbedProps, width, height, embedPlaceho
             height: height ?? undefined,
             ...divProps.style,
         } },
-        React.createElement(EmbedDiv_1.EmbedDiv, null,
-            React.createElement(react_twitter_embed_1.TwitterTweetEmbed, { tweetId: tweetId, placeholder: placeholderDisabled ? undefined : placeholder, ...twitterTweetEmbedProps }))));
+        React.createElement(EmbedStyle_1.EmbedStyle, null),
+        React.createElement(react_twitter_embed_1.TwitterTweetEmbed, { tweetId: tweetId, placeholder: placeholderDisabled ? undefined : placeholder, ...twitterTweetEmbedProps })));
 };
 exports.TwitterEmbed = TwitterEmbed;

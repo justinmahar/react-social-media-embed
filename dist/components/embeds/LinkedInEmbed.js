@@ -26,8 +26,10 @@ exports.LinkedInEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const EmbedPlaceholder_1 = require("../placeholders/EmbedPlaceholder");
-const EmbedDiv_1 = require("./EmbedDiv");
+const uuid_1 = require("../uuid");
+const EmbedStyle_1 = require("./EmbedStyle");
 const LinkedInEmbed = ({ postUrl, url, width, height = 500, embedPlaceholder, placeholderDisabled, ...divProps }) => {
+    const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const [ready, setReady] = React.useState(false);
     const placeholder = embedPlaceholder ?? (React.createElement(EmbedPlaceholder_1.EmbedPlaceholder, { url: postUrl ?? url, style: {
             width: divProps.style?.width ? '100%' : width ?? '100%',
@@ -43,9 +45,8 @@ const LinkedInEmbed = ({ postUrl, url, width, height = 500, embedPlaceholder, pl
             height: height ?? undefined,
             ...divProps.style,
         } },
-        React.createElement(EmbedDiv_1.EmbedDiv, null,
-            React.createElement("div", { className: "linkedin-embed-container", style: { width: '100%', minWidth: 300, maxWidth: 550, position: 'relative' } },
-                React.createElement("iframe", { className: (0, classnames_1.default)('linkedin-post', !ready && 'rsme-d-none'), src: url, width: "100%", height: !ready ? 0 : height, frameBorder: "0", onLoad: () => setReady(true) }),
-                true && !placeholderDisabled && placeholder))));
+        React.createElement(EmbedStyle_1.EmbedStyle, null),
+        React.createElement("iframe", { className: (0, classnames_1.default)('linkedin-post', !ready && 'rsme-d-none'), src: url, width: "100%", height: !ready ? 0 : height, frameBorder: "0", onLoad: () => setReady(true) }),
+        true && !placeholderDisabled && placeholder));
 };
 exports.LinkedInEmbed = LinkedInEmbed;

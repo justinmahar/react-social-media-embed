@@ -26,5 +26,6 @@ UrlOnly.args = {
   url: 'https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473',
   postUrl:
     'https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb',
+  width: 504,
   height: 592,
 };

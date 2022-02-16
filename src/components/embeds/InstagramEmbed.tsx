@@ -2,9 +2,8 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
 import { IGPlaceholder } from '../placeholders/IGPlaceholder';
-
 import { generateUUID } from '../uuid';
-import { EmbedDiv } from './EmbedDiv';
+import { EmbedStyle } from './EmbedStyle';
 
 const defaultIgVersion = '14';
 const defaultLinkText = 'View this post on Instagram';
@@ -118,25 +117,24 @@ export const InstagramEmbed = ({
   return (
     <div
       className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
-      style={{ overflow: 'hidden', width: '100%', maxWidth: '540px', ...divProps.style }}
+      style={{ overflow: 'hidden', ...divProps.style }}
       key={`${uuidRef}-${retryTime}`}
     >
-      <EmbedDiv>
-        <blockquote
-          className="instagram-media"
-          data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
-          data-instgrm-version={igVersion}
-          style={{
-            margin: 0,
-            maxWidth: '540px',
-            minWidth: '326px',
-            width: 'calc(100% - 2px)',
-            ...divProps.style,
-          }}
-        >
-          {placeholder}
-        </blockquote>
-      </EmbedDiv>
+      <EmbedStyle />
+      <blockquote
+        className="instagram-media"
+        data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
+        data-instgrm-version={igVersion}
+        style={{
+          margin: 0,
+          maxWidth: '540px',
+          minWidth: '326px',
+          width: 'calc(100% - 2px)',
+          ...divProps.style,
+        }}
+      >
+        {placeholder}
+      </blockquote>
     </div>
   );
 };

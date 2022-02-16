@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
 import { EmbedPlaceholder } from '../..';
-import { EmbedDiv } from './EmbedDiv';
+import { EmbedStyle } from './EmbedStyle';
 
 import { generateUUID } from '../uuid';
 
@@ -121,23 +121,22 @@ export const TikTokEmbed = ({
     <div
       {...divProps}
       className={classNames('rsme-embed rsme-tiktok-embed', divProps.className)}
-      style={{ overflow: 'hidden', maxWidth: 325, ...divProps.style }}
+      style={{ overflow: 'hidden', ...divProps.style }}
     >
-      <EmbedDiv>
-        <div className={classNames('tiktok-embed-container', divProps.className)} key={`${uuidRef}-${retryTime}`}>
-          <blockquote className="tiktok-embed" cite={url} data-video-id={embedId}>
-            {!placeholderDisabled ? (
-              <div id={uuidRef.current} style={{ display: 'flex', justifyContent: 'center' }}>
-                {placeholder}
-              </div>
-            ) : (
-              <div id={uuidRef.current} style={{ display: 'none' }}>
-                &nbsp;
-              </div>
-            )}
-          </blockquote>
-        </div>
-      </EmbedDiv>
+      <EmbedStyle />
+      <div className={classNames('tiktok-embed-container', divProps.className)} key={`${uuidRef}-${retryTime}`}>
+        <blockquote className="tiktok-embed" cite={url} data-video-id={embedId}>
+          {!placeholderDisabled ? (
+            <div id={uuidRef.current} style={{ display: 'flex', justifyContent: 'center' }}>
+              {placeholder}
+            </div>
+          ) : (
+            <div id={uuidRef.current} style={{ display: 'none' }}>
+              &nbsp;
+            </div>
+          )}
+        </blockquote>
+      </div>
     </div>
   );
 };
