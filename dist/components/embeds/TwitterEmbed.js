@@ -47,7 +47,7 @@ const TwitterEmbed = (_a) => {
     const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
     const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(TwitterPlaceholder_1.TwitterPlaceholder, { url: url, style: {
             width: ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.width) ? '100%' : width !== null && width !== void 0 ? width : '100%',
-            height: ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.height) ? '100%' : height !== null && height !== void 0 ? height : 300,
+            height: ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.height) ? '100%' : height !== null && height !== void 0 ? height : 350,
             minWidth: 250,
             maxWidth: 550,
         }, imageUrl: placeholderImageUrl }));
