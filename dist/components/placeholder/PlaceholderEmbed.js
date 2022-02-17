@@ -21,6 +21,7 @@ const EngagementIconsPlaceholder_1 = require("./parts/EngagementIconsPlaceholder
 const ProfilePlaceholder_1 = require("./parts/ProfilePlaceholder");
 const Spinner_1 = require("./parts/Spinner");
 const PlaceholderEmbed = (_a) => {
+    var _b;
     var { url, linkText = 'View post', imageUrl } = _a, divProps = __rest(_a, ["url", "linkText", "imageUrl"]);
     return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)(divProps.className), style: Object.assign({ overflow: 'hidden', border: '1px solid #dee2e6', backgroundColor: '#ffffff', borderRadius: 0, boxSizing: 'border-box', position: 'relative' }, divProps.style) }),
         react_1.default.createElement("a", { href: url, style: { textDecoration: 'none' }, target: "_blank", rel: "noopener noreferrer" },
@@ -68,8 +69,17 @@ const PlaceholderEmbed = (_a) => {
                             lineHeight: '18px',
                             textAlign: 'center',
                         } }, linkText)))),
-                imageUrl && (react_1.default.createElement("div", { style: { width: '100%', paddingBottom: 40 } },
-                    react_1.default.createElement("img", { src: imageUrl, style: { width: '100%' } })))),
+                imageUrl &&
+                    (typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' ? (react_1.default.createElement("div", { style: {
+                            width: '100%',
+                            height: '100%',
+                            background: `url("${imageUrl}")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            marginBottom: 40,
+                        } })) : (react_1.default.createElement("div", { style: { width: '100%', marginBottom: 40 } },
+                        react_1.default.createElement("img", { src: imageUrl, style: { width: '100%' } }))))),
             react_1.default.createElement("div", { style: {
                     position: 'absolute',
                     bottom: 0,
