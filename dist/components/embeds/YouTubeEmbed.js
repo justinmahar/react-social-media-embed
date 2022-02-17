@@ -37,12 +37,12 @@ exports.YouTubeEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_youtube_1 = __importDefault(require("react-youtube"));
-const __1 = require("../..");
+const YouTubePlaceholder_1 = require("../placeholders/YouTubePlaceholder");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const YouTubeEmbed = (_a) => {
     var _b, _c, _d, _e, _f, _g;
-    var { url, youTubeProps, width, height, embedPlaceholder, placeholderDisabled } = _a, divProps = __rest(_a, ["url", "youTubeProps", "width", "height", "embedPlaceholder", "placeholderDisabled"]);
+    var { url, youTubeProps, width, height, embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "youTubeProps", "width", "height", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const [ready, setReady] = React.useState(false);
     let videoId = '00000000';
@@ -58,11 +58,11 @@ const YouTubeEmbed = (_a) => {
         opts.height = `${height}`;
     }
     opts = Object.assign(Object.assign({}, opts), youTubeProps === null || youTubeProps === void 0 ? void 0 : youTubeProps.opts);
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(__1.EmbedPlaceholder, { url: url, style: {
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(YouTubePlaceholder_1.YouTubePlaceholder, { url: url, style: {
             width: ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.width) ? '100%' : width !== null && width !== void 0 ? width : 640,
             height: ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.height) ? '100%' : height !== null && height !== void 0 ? height : 360,
             borderRadius: (_e = (_d = divProps.style) === null || _d === void 0 ? void 0 : _d.borderRadius) !== null && _e !== void 0 ? _e : 0,
-        } }));
+        }, imageUrl: placeholderImageUrl }));
     return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-youtube-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         React.createElement(EmbedStyle_1.EmbedStyle, null),
         React.createElement("div", { className: (0, classnames_1.default)(!ready && 'rsme-d-none') },

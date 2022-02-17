@@ -17,13 +17,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FacebookEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const __1 = require("../..");
+const FacebookPlaceholder_1 = require("../placeholders/FacebookPlaceholder");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 // https://developers.facebook.com/docs/plugins/embedded-posts/?prefill_href=https%3A%2F%2Fwww.facebook.com%2Fandrewismusic%2Fposts%2F451971596293956#code-generator
 const FacebookEmbed = (_a) => {
-    var _b, _c, _d, _e;
-    var { url, width, height, embedPlaceholder, placeholderDisabled, scriptLoadDisabled } = _a, divProps = __rest(_a, ["url", "width", "height", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled"]);
+    var _b, _c;
+    var { url, width, height, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "width", "height", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "placeholderImageUrl"]);
     const [ready, setReady] = react_1.default.useState(false);
     const [processTime, setProcessTime] = react_1.default.useState(-1);
     const [show, setShow] = react_1.default.useState(true);
@@ -56,11 +56,10 @@ const FacebookEmbed = (_a) => {
         }
         return () => clearInterval(timeout);
     }, [ready]);
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (react_1.default.createElement(__1.EmbedPlaceholder, { url: url, style: {
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (react_1.default.createElement(FacebookPlaceholder_1.FacebookPlaceholder, { url: url, style: {
             width: ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.width) ? '100%' : width !== null && width !== void 0 ? width : 550,
             height: ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.height) ? '100%' : height !== null && height !== void 0 ? height : 372,
-            borderRadius: (_e = (_d = divProps.style) === null || _d === void 0 ? void 0 : _d.borderRadius) !== null && _e !== void 0 ? _e : 3,
-        } }));
+        }, imageUrl: placeholderImageUrl }));
     react_1.default.useEffect(() => {
         var _a, _b;
         if (typeof document !== 'undefined' && typeof window !== 'undefined' && !scriptLoadDisabled) {

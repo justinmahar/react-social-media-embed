@@ -17,11 +17,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.IGPlaceholder = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const uuid_1 = require("../uuid");
-const CaptionPlaceholder_1 = require("./CaptionPlaceholder");
-const EngagementIcons_1 = require("./EngagementIcons");
-const ProfilePlaceholder_1 = require("./ProfilePlaceholder");
-const Spinner_1 = require("./Spinner");
+const uuid_1 = require("../../uuid");
+const CaptionPlaceholder_1 = require("../parts/CaptionPlaceholder");
+const EngagementIconsPlaceholder_1 = require("../parts/EngagementIconsPlaceholder");
+const ProfilePlaceholder_1 = require("../parts/ProfilePlaceholder");
+const Spinner_1 = require("../parts/Spinner");
 const IGPlaceholder = (_a) => {
     var divProps = __rest(_a, []);
     const url = '#';
@@ -85,7 +85,7 @@ const IGBody = (props) => {
 const IGFooter = () => {
     return (react_1.default.createElement("div", { style: { paddingLeft: 16, paddingRight: 16 } },
         react_1.default.createElement("div", { style: { display: 'flex', flexDirection: 'row', marginBottom: 14, justifyContent: 'space-between' } },
-            react_1.default.createElement(EngagementIcons_1.EngagementIcons, null),
+            react_1.default.createElement(EngagementIconsPlaceholder_1.EngagementIconsPlaceholder, null),
             react_1.default.createElement(BookmarkIcon, null)),
         react_1.default.createElement(CaptionPlaceholder_1.CaptionPlaceholder, { style: { marginBottom: 24 } })));
 };

@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Spinner = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const uuid_1 = require("../uuid");
+const uuid_1 = require("../../uuid");
 const Spinner = (_a) => {
     var _b, _c;
     var { size = 20 } = _a, divProps = __rest(_a, ["size"]);

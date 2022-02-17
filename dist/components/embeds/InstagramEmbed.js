@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.InstagramEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
-const IGPlaceholder_1 = require("../placeholders/IGPlaceholder");
+const InstagramPlaceholder_1 = require("../placeholders/InstagramPlaceholder");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const defaultIgVersion = '14';
@@ -46,7 +46,7 @@ const defaultRetryInitialDelay = 1000;
 const defaultRetryBackoffMaxDelay = 30000;
 let embedScriptLoaded = false;
 const InstagramEmbed = (_a) => {
-    var { url, igVersion = defaultIgVersion, linkText = defaultLinkText, processDelay = defaultProcessDelay, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = defaultRetryInitialDelay, retryBackoffMaxDelay = defaultRetryBackoffMaxDelay } = _a, divProps = __rest(_a, ["url", "igVersion", "linkText", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay"]);
+    var { url, igVersion = defaultIgVersion, linkText = defaultLinkText, processDelay = defaultProcessDelay, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = defaultRetryInitialDelay, retryBackoffMaxDelay = defaultRetryBackoffMaxDelay, embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "igVersion", "linkText", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
     const [initialized, setInitialized] = React.useState(false);
     const [processTime, setProcessTime] = React.useState(-1);
     const [retryDelay, setRetryDelay] = React.useState(retryInitialDelay);
@@ -58,8 +58,7 @@ const InstagramEmbed = (_a) => {
         if (win && processTime >= 0) {
             // This call will use the IG embed script to process all elements with the `instagram-media` class name.
             if (typeof win.instgrm !== 'undefined' && win.instgrm.Embeds) {
-                // console.log('Processing...', Date.now());
-                // win.instgrm.Embeds.process();
+                win.instgrm.Embeds.process();
             }
             else {
                 console.error('Instagram embed script not found. Unable to process Instagram embed:', url);
@@ -113,11 +112,16 @@ const InstagramEmbed = (_a) => {
     }, [scriptLoadDisabled]);
     const urlWithNoQuery = url.replace(/[?].*$/, '');
     const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
-    const placeholder = (React.createElement(IGPlaceholder_1.IGPlaceholder, { className: "instagram-media-pre-embed", id: uuidRef.current, style: {
-            width: 'calc(100% + 2px)',
-        } }));
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(InstagramPlaceholder_1.InstagramPlaceholder, { url: cleanUrlWithEndingSlash, id: uuidRef.current, linkText: linkText, imageUrl: placeholderImageUrl }));
     return (React.createElement("div", { className: (0, classnames_1.default)('rsme-embed rsme-instagram-embed', divProps.className), style: Object.assign({ overflow: 'hidden' }, divProps.style), key: `${uuidRef}-${retryTime}` },
         React.createElement(EmbedStyle_1.EmbedStyle, null),
-        React.createElement("blockquote", { className: "instagram-media", "data-instgrm-permalink": `${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`, "data-instgrm-version": igVersion, style: Object.assign({ margin: 0, maxWidth: '540px', minWidth: '326px', width: 'calc(100% - 2px)' }, divProps.style) }, placeholder)));
+        React.createElement("blockquote", { className: "instagram-media", "data-instgrm-permalink": `${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`, "data-instgrm-version": igVersion, style: {
+                margin: 0,
+                maxWidth: '540px',
+                minWidth: '326px',
+                width: 'calc(100% - 2px)',
+            } },
+            !placeholderDisabled && placeholder,
+            React.createElement("div", { className: "instagram-media-pre-embed rsme-d-none" }, "\u00A0"))));
 };
 exports.InstagramEmbed = InstagramEmbed;

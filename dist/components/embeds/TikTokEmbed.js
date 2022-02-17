@@ -17,16 +17,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TikTokEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const __1 = require("../..");
 const EmbedStyle_1 = require("./EmbedStyle");
 const uuid_1 = require("../uuid");
+const TikTokPlaceholder_1 = require("../placeholders/TikTokPlaceholder");
 // DOCS: https://developers.tiktok.com/doc/embed-videos
 const defaultProcessDelay = 100;
 const defaultRetryInitialDelay = 3000;
 const defaultRetryBackoffMaxDelay = 30000;
 const TikTokEmbed = (_a) => {
-    var _b, _c, _d, _e, _f, _g;
-    var { url, width, height, embedPlaceholder, placeholderDisabled, processDelay = defaultProcessDelay, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = defaultRetryInitialDelay, retryBackoffMaxDelay = defaultRetryBackoffMaxDelay } = _a, divProps = __rest(_a, ["url", "width", "height", "embedPlaceholder", "placeholderDisabled", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay"]);
+    var _b, _c;
+    var { url, width, height, embedPlaceholder, placeholderDisabled, processDelay = defaultProcessDelay, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = defaultRetryInitialDelay, retryBackoffMaxDelay = defaultRetryBackoffMaxDelay, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "width", "height", "embedPlaceholder", "placeholderDisabled", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "placeholderImageUrl"]);
     // Format: https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1
     const embedId = url.replace(/[?].*$/, '').replace(/^.+\//, '');
     // console.log(embedId);
@@ -73,14 +73,12 @@ const TikTokEmbed = (_a) => {
     }, [initialized, retryBackoffMaxDelay, retryDelay, retryDisabled, retryTime]);
     const urlWithNoQuery = url.replace(/[?].*$/, '');
     const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (react_1.default.createElement(__1.EmbedPlaceholder, { url: url, style: {
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (react_1.default.createElement(TikTokPlaceholder_1.TikTokPlaceholder, { url: url, style: {
             width: ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.width) ? '100%' : width !== null && width !== void 0 ? width : 325,
             height: ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.height) ? '100%' : height !== null && height !== void 0 ? height : 500,
             minWidth: 325,
-            minHeight: 500,
-            borderColor: (_e = (_d = divProps.style) === null || _d === void 0 ? void 0 : _d.borderColor) !== null && _e !== void 0 ? _e : 'rgba(22,24,35,0.12)',
-            borderRadius: (_g = (_f = divProps.style) === null || _f === void 0 ? void 0 : _f.borderRadius) !== null && _g !== void 0 ? _g : 8,
-        } }));
+            maxWidth: 480,
+        }, imageUrl: placeholderImageUrl }));
     react_1.default.useEffect(() => {
         if (typeof document !== 'undefined' && !scriptLoadDisabled) {
             const scriptId = `tiktok-embed-script`;

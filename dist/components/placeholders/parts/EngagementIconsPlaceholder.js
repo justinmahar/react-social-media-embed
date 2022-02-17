@@ -14,17 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShareArrowIcon = exports.ChatBubbleIcon = exports.HeartIcon = exports.EngagementIcons = void 0;
+exports.ShareArrowIcon = exports.ChatBubbleIcon = exports.HeartIcon = exports.EngagementIconsPlaceholder = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const EngagementIcons = (_a) => {
+const EngagementIconsPlaceholder = (_a) => {
     var divProps = __rest(_a, []);
     return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)(divProps.className), style: Object.assign({ display: 'flex', alignItems: 'center', columnGap: 14 }, divProps.style) }),
         react_1.default.createElement(exports.HeartIcon, null),
         react_1.default.createElement(exports.ChatBubbleIcon, null),
         react_1.default.createElement(exports.ShareArrowIcon, null)));
 };
-exports.EngagementIcons = EngagementIcons;
+exports.EngagementIconsPlaceholder = EngagementIconsPlaceholder;
 const HeartIcon = (props) => {
     return (react_1.default.createElement("div", Object.assign({}, props),
         react_1.default.createElement("div", { style: {

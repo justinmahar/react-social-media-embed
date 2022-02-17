@@ -10,7 +10,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./components/placeholders/EmbedPlaceholder"), exports);
+__exportStar(require("./components/placeholders/old/EmbedPlaceholder"), exports);
 __exportStar(require("./components/embeds/FacebookEmbed"), exports);
 __exportStar(require("./components/embeds/InstagramEmbed"), exports);
 __exportStar(require("./components/embeds/LinkedInEmbed"), exports);

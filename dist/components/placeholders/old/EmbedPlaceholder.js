@@ -32,10 +32,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmbedPlaceholder = void 0;
 const React = __importStar(require("react"));
-const Spinner_1 = require("./Spinner");
+const Spinner_1 = require("../parts/Spinner");
 function EmbedPlaceholder(_a) {
     var { url, image } = _a, divProps = __rest(_a, ["url", "image"]);
-    return (React.createElement("div", Object.assign({}, divProps, { style: Object.assign({ display: 'flex', justifyContent: 'center', alignItems: 'center', border: 'solid 1px rgb(219, 219, 219)', borderRadius: '5px', boxSizing: 'border-box', width: 540, height: 540, backgroundImage: image ? `url("${image}")` : undefined, backgroundRepeat: image ? 'no-repeat' : undefined, backgroundPosition: image ? 'center' : undefined, backgroundSize: image ? 'cover' : undefined }, divProps.style) }),
+    return (React.createElement("div", Object.assign({}, divProps, { style: Object.assign({ display: 'flex', justifyContent: 'center', alignItems: 'center', border: 'solid 1px rgb(219, 219, 219)', borderRadius: '5px', boxSizing: 'border-box', width: 540, height: 540 }, divProps.style) }),
         React.createElement("a", { href: url, target: "_blank", rel: "noopener noreferrer", style: { textDecoration: 'none', color: 'inherit' } },
             React.createElement("div", null,
                 React.createElement("div", { style: {

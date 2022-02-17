@@ -7,5 +7,6 @@ export interface LinkedInEmbedProps extends DivProps {
     height?: string | number;
     embedPlaceholder?: React.ReactNode;
     placeholderDisabled?: boolean;
+    placeholderImageUrl?: string;
 }
-export declare const LinkedInEmbed: ({ postUrl, url, width, height, embedPlaceholder, placeholderDisabled, ...divProps }: LinkedInEmbedProps) => JSX.Element;
+export declare const LinkedInEmbed: ({ postUrl, url, width, height, embedPlaceholder, placeholderDisabled, placeholderImageUrl, ...divProps }: LinkedInEmbedProps) => JSX.Element;
