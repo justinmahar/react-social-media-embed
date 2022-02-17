@@ -40,6 +40,8 @@ const react_youtube_1 = __importDefault(require("react-youtube"));
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
+const maxPlaceholderWidth = 640;
+const defaultPlaceholderHeight = 360;
 const YouTubeEmbed = (_a) => {
     var _b, _c, _d, _e;
     var { url, youTubeProps, width, height, linkText = 'Watch on YouTube', embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "youTubeProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
@@ -60,13 +62,13 @@ const YouTubeEmbed = (_a) => {
     opts = Object.assign(Object.assign({}, opts), youTubeProps === null || youTubeProps === void 0 ? void 0 : youTubeProps.opts);
     // === Placeholder ===
     const placeholderStyle = {
-        maxWidth: 640,
+        maxWidth: maxPlaceholderWidth,
         width: typeof width !== 'undefined' ? width : '100%',
         height: typeof height !== 'undefined'
             ? height
             : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
                 ? '100%'
-                : 360,
+                : defaultPlaceholderHeight,
         border: '1px solid #dee2e6',
         borderRadius: 0,
     };

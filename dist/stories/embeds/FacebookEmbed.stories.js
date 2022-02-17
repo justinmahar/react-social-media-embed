@@ -23,8 +23,7 @@ exports.UrlOnlyPost = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 exports.UrlOnlyPost.args = {
     url: 'https://www.facebook.com/photo/?fbid=451970492960733&set=a.234241234733661',
-    width: 200,
-    height: 100,
+    width: 325,
 };
 exports.UrlOnlyVideo = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

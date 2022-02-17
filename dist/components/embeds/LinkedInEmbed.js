@@ -39,6 +39,9 @@ const React = __importStar(require("react"));
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
+const minPlaceholderWidth = 300;
+const maxPlaceholderWidth = 550;
+const defaultPlaceholderHeight = 550;
 const LinkedInEmbed = (_a) => {
     var _b, _c;
     var { postUrl, url, width, height = 500, linkText = 'View post on LinkedIn', embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["postUrl", "url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
@@ -46,14 +49,14 @@ const LinkedInEmbed = (_a) => {
     const [ready, setReady] = React.useState(false);
     // === Placeholder ===
     const placeholderStyle = {
-        minWidth: 300,
-        maxWidth: 550,
+        minWidth: minPlaceholderWidth,
+        maxWidth: maxPlaceholderWidth,
         width: typeof width !== 'undefined' ? width : '100%',
         height: typeof height !== 'undefined'
             ? height
             : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
                 ? '100%'
-                : 550,
+                : defaultPlaceholderHeight,
         border: 'solid 1px rgba(0, 0, 0, 0.15)',
         borderRadius: 8,
     };

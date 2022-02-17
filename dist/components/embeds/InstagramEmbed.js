@@ -40,9 +40,12 @@ const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 let embedScriptLoaded = false;
+const minPlaceholderWidth = 326;
+const maxPlaceholderWidth = 540;
+const defaultPlaceholderHeight = 372;
 const InstagramEmbed = (_a) => {
     var _b, _c;
-    var { url, igVersion = '14', width, height, linkText = 'View post on Instagram', processDelay = 100, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = 1000, retryBackoffMaxDelay = 30000, embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "igVersion", "width", "height", "linkText", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
+    var { url, igVersion = '14', width, height, linkText = 'View post on Instagram', processDelay = 100, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = 1000, retryBackoffMaxDelay = 5000, embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "igVersion", "width", "height", "linkText", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
     const [initialized, setInitialized] = React.useState(false);
     const [processTime, setProcessTime] = React.useState(-1);
     const [retryDelay, setRetryDelay] = React.useState(retryInitialDelay);
@@ -110,27 +113,24 @@ const InstagramEmbed = (_a) => {
     const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
     // === Placeholder ===
     const placeholderStyle = {
-        minWidth: 326,
-        maxWidth: 540,
+        minWidth: minPlaceholderWidth,
+        maxWidth: maxPlaceholderWidth,
         width: typeof width !== 'undefined' ? width : '100%',
         height: typeof height !== 'undefined'
             ? height
             : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
                 ? '100%'
-                : 550,
+                : defaultPlaceholderHeight,
         border: '1px solid #dee2e6',
         borderRadius: 3,
-        // width: 'calc(100% - 2px)',
     };
     const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, { url: cleanUrlWithEndingSlash, id: uuidRef.current, linkText: linkText, imageUrl: placeholderImageUrl, style: placeholderStyle }));
     // === END Placeholder ===
     return (React.createElement("div", { className: (0, classnames_1.default)('rsme-embed rsme-instagram-embed', divProps.className), style: Object.assign({ overflow: 'hidden' }, divProps.style), key: `${uuidRef}-${retryTime}` },
         React.createElement(EmbedStyle_1.EmbedStyle, null),
         React.createElement("blockquote", { className: "instagram-media", "data-instgrm-permalink": `${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`, "data-instgrm-version": igVersion, style: {
-                margin: 0,
-                maxWidth: '540px',
-                minWidth: '326px',
-                width: 'calc(100% - 2px)',
+                width: width !== null && width !== void 0 ? width : 'calc(100% - 2px)',
+                height: height !== null && height !== void 0 ? height : undefined,
             } },
             !placeholderDisabled && placeholder,
             React.createElement("div", { className: "instagram-media-pre-embed rsme-d-none" }, "\u00A0"))));

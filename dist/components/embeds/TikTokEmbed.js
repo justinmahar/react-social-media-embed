@@ -21,12 +21,12 @@ const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 // DOCS: https://developers.tiktok.com/doc/embed-videos
-const defaultProcessDelay = 100;
-const defaultRetryInitialDelay = 3000;
-const defaultRetryBackoffMaxDelay = 30000;
+const minPlaceholderWidth = 325;
+const maxPlaceholderWidth = 480;
+const defaultPlaceholderHeight = 550;
 const TikTokEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on TikTok', embedPlaceholder, placeholderDisabled, processDelay = defaultProcessDelay, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = defaultRetryInitialDelay, retryBackoffMaxDelay = defaultRetryBackoffMaxDelay, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "placeholderImageUrl"]);
+    var { url, width, height, linkText = 'View post on TikTok', embedPlaceholder, placeholderDisabled, processDelay = 100, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = 3000, retryBackoffMaxDelay = 30000, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "placeholderImageUrl"]);
     // Format: https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1
     const embedId = url.replace(/[?].*$/, '').replace(/^.+\//, '');
     // console.log(embedId);
@@ -88,14 +88,14 @@ const TikTokEmbed = (_a) => {
     }, [scriptLoadDisabled]);
     // === Placeholder ===
     const placeholderStyle = {
-        minWidth: 325,
-        maxWidth: 480,
+        minWidth: minPlaceholderWidth,
+        maxWidth: maxPlaceholderWidth,
         width: typeof width !== 'undefined' ? width : '100%',
         height: typeof height !== 'undefined'
             ? height
             : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
                 ? '100%'
-                : 550,
+                : defaultPlaceholderHeight,
         border: 'solid 1px rgba(22,24,35,0.12)',
         borderRadius: 8,
     };

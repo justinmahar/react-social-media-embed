@@ -20,6 +20,9 @@ const react_1 = __importDefault(require("react"));
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
+const defaultEmbedWidth = 550;
+const maxPlaceholderWidth = defaultEmbedWidth;
+const defaultPlaceholderHeight = 372;
 // https://developers.facebook.com/docs/plugins/embedded-posts/?prefill_href=https%3A%2F%2Fwww.facebook.com%2Fandrewismusic%2Fposts%2F451971596293956#code-generator
 const FacebookEmbed = (_a) => {
     var _b, _c;
@@ -68,13 +71,13 @@ const FacebookEmbed = (_a) => {
     }, [scriptLoadDisabled]);
     // === Placeholder ===
     const placeholderStyle = {
-        maxWidth: 550,
+        maxWidth: maxPlaceholderWidth,
         width: typeof width !== 'undefined' ? width : '100%',
         height: typeof height !== 'undefined'
             ? height
             : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
                 ? '100%'
-                : 372,
+                : defaultPlaceholderHeight,
         border: '1px solid #dee2e6',
         borderRadius: 3,
     };
@@ -83,7 +86,7 @@ const FacebookEmbed = (_a) => {
     return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-facebook-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         react_1.default.createElement(EmbedStyle_1.EmbedStyle, null),
         react_1.default.createElement("div", { id: uuidRef.current, className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
-            react_1.default.createElement("div", { className: "fb-post", "data-href": url, style: { width: width !== null && width !== void 0 ? width : 550, height: height !== null && height !== void 0 ? height : undefined } })),
+            react_1.default.createElement("div", { className: "fb-post", "data-href": url, style: { width: width !== null && width !== void 0 ? width : defaultEmbedWidth, height: height !== null && height !== void 0 ? height : undefined } })),
         !ready && !placeholderDisabled && placeholder));
 };
 exports.FacebookEmbed = FacebookEmbed;

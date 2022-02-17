@@ -40,6 +40,9 @@ const react_twitter_embed_1 = require("react-twitter-embed");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
+const minPlaceholderWidth = 250;
+const maxPlaceholderWidth = 550;
+const defaultPlaceholderHeight = 350;
 const TwitterEmbed = (_a) => {
     var _b, _c;
     var { url, twitterTweetEmbedProps, width, height, linkText = 'View post on Twitter', embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "twitterTweetEmbedProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
@@ -47,14 +50,14 @@ const TwitterEmbed = (_a) => {
     const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
     // === Placeholder ===
     const placeholderStyle = {
-        minWidth: 250,
-        maxWidth: 550,
+        minWidth: minPlaceholderWidth,
+        maxWidth: maxPlaceholderWidth,
         width: typeof width !== 'undefined' ? width : '100%',
         height: typeof height !== 'undefined'
             ? height
             : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
                 ? '100%'
-                : 350,
+                : defaultPlaceholderHeight,
         border: 'solid 1px #c9d4d9',
         borderRadius: 12,
     };
