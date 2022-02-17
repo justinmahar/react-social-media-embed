@@ -35,7 +35,7 @@ export const TwitterEmbed = ({
       url={url}
       style={{
         width: divProps.style?.width ? '100%' : width ?? '100%',
-        height: divProps.style?.height ? '100%' : height ?? 300,
+        height: divProps.style?.height ? '100%' : height ?? 350,
         minWidth: 250,
         maxWidth: 550,
       }}
