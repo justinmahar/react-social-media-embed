@@ -89,11 +89,24 @@ export const PlaceholderEmbed = ({ url, linkText = 'View post', imageUrl, ...div
               )}
             </div>
           )}
-          {imageUrl && (
-            <div style={{ width: '100%', paddingBottom: 40 }}>
-              <img src={imageUrl} style={{ width: '100%' }} />
-            </div>
-          )}
+          {imageUrl &&
+            (typeof divProps.style?.height !== 'undefined' ? (
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  background: `url("${imageUrl}")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  marginBottom: 40,
+                }}
+              />
+            ) : (
+              <div style={{ width: '100%', marginBottom: 40 }}>
+                <img src={imageUrl} style={{ width: '100%' }} />
+              </div>
+            ))}
         </div>
         <div
           style={{
