@@ -18,7 +18,7 @@ exports.default = {
 };
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template = (args) => (react_1.default.createElement(EmbedToggler_1.EmbedToggler, null,
-    react_1.default.createElement(InstagramEmbed_1.InstagramEmbed, { ...args })));
+    react_1.default.createElement(InstagramEmbed_1.InstagramEmbed, Object.assign({}, args))));
 exports.UrlOnly = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 exports.UrlOnly.args = {

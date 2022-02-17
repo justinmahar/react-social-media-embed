@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
 
-import { Spinner } from './Spinner';
+import { Spinner } from '../parts/Spinner';
 
-export interface DefaultEmbedProps extends DivProps {
+export interface EmbedPlaceholderProps extends DivProps {
   url: string;
   image?: string;
 }
 
-export function EmbedPlaceholder({ url, image, ...divProps }: DefaultEmbedProps) {
+export function EmbedPlaceholder({ url, image, ...divProps }: EmbedPlaceholderProps) {
   return (
     <div
       {...divProps}
@@ -21,10 +21,6 @@ export function EmbedPlaceholder({ url, image, ...divProps }: DefaultEmbedProps)
         boxSizing: 'border-box',
         width: 540,
         height: 540,
-        backgroundImage: image ? `url("${image}")` : undefined,
-        backgroundRepeat: image ? 'no-repeat' : undefined,
-        backgroundPosition: image ? 'center' : undefined,
-        backgroundSize: image ? 'cover' : undefined,
         ...divProps.style,
       }}
     >

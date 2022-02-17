@@ -3,6 +3,7 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import YouTube, { Options, YouTubeProps } from 'react-youtube';
 import { EmbedPlaceholder } from '../..';
+import { YouTubePlaceholder } from '../placeholders/YouTubePlaceholder';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -13,6 +14,7 @@ export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   height?: string | number;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
+  placeholderImageUrl?: string;
 }
 
 export const YouTubeEmbed = ({
@@ -22,6 +24,7 @@ export const YouTubeEmbed = ({
   height,
   embedPlaceholder,
   placeholderDisabled,
+  placeholderImageUrl,
   ...divProps
 }: YouTubeEmbedProps) => {
   const uuidRef = React.useRef(generateUUID());
@@ -43,13 +46,14 @@ export const YouTubeEmbed = ({
   opts = { ...opts, ...youTubeProps?.opts };
 
   const placeholder = embedPlaceholder ?? (
-    <EmbedPlaceholder
+    <YouTubePlaceholder
       url={url}
       style={{
         width: divProps.style?.width ? '100%' : width ?? 640,
         height: divProps.style?.height ? '100%' : height ?? 360,
         borderRadius: divProps.style?.borderRadius ?? 0,
       }}
+      imageUrl={placeholderImageUrl}
     />
   );
 

@@ -5,6 +5,7 @@ import { EmbedPlaceholder } from '../..';
 import { EmbedStyle } from './EmbedStyle';
 
 import { generateUUID } from '../uuid';
+import { TikTokPlaceholder } from '../placeholders/TikTokPlaceholder';
 
 // DOCS: https://developers.tiktok.com/doc/embed-videos
 
@@ -22,6 +23,7 @@ export interface TikTokEmbedProps extends DivProps {
   retryDisabled?: boolean;
   retryInitialDelay?: number;
   retryBackoffMaxDelay?: number;
+  placeholderImageUrl?: string;
 }
 
 export const TikTokEmbed = ({
@@ -35,6 +37,7 @@ export const TikTokEmbed = ({
   retryDisabled = false,
   retryInitialDelay = defaultRetryInitialDelay,
   retryBackoffMaxDelay = defaultRetryBackoffMaxDelay,
+  placeholderImageUrl,
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
   // Format: https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1
@@ -90,16 +93,15 @@ export const TikTokEmbed = ({
   const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
 
   const placeholder = embedPlaceholder ?? (
-    <EmbedPlaceholder
+    <TikTokPlaceholder
       url={url}
       style={{
         width: divProps.style?.width ? '100%' : width ?? 325,
         height: divProps.style?.height ? '100%' : height ?? 500,
         minWidth: 325,
-        minHeight: 500,
-        borderColor: divProps.style?.borderColor ?? 'rgba(22,24,35,0.12)',
-        borderRadius: divProps.style?.borderRadius ?? 8,
+        maxWidth: 480,
       }}
+      imageUrl={placeholderImageUrl}
     />
   );
 

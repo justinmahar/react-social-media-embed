@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import { generateUUID } from '../uuid';
+import { generateUUID } from '../../uuid';
 
 export interface SpinnerProps extends DivProps {
   size?: number;
@@ -10,7 +10,7 @@ export interface SpinnerProps extends DivProps {
 export const Spinner = ({ size = 20, ...divProps }: SpinnerProps) => {
   const uuidRef = React.useRef(generateUUID());
   const className = `rsme-spinner-${uuidRef.current}`;
-  const borderSize = Math.max(Math.round(0.3 * size), 1);
+  const borderSize = Math.max(Math.round(0.2 * size), 1);
   const sideLength = Math.max(size - borderSize * 2, 1);
   const style = (
     <style>

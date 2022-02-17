@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import { EmbedPlaceholder } from '../placeholders/EmbedPlaceholder';
+import { LinkedInPlaceholder } from '../placeholders/LinkedInPlaceholder';
+import { EmbedPlaceholder } from '../placeholders/old/EmbedPlaceholder';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -12,6 +13,7 @@ export interface LinkedInEmbedProps extends DivProps {
   height?: string | number;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
+  placeholderImageUrl?: string;
 }
 
 export const LinkedInEmbed = ({
@@ -21,22 +23,22 @@ export const LinkedInEmbed = ({
   height = 500,
   embedPlaceholder,
   placeholderDisabled,
+  placeholderImageUrl,
   ...divProps
 }: LinkedInEmbedProps) => {
   const uuidRef = React.useRef(generateUUID());
   const [ready, setReady] = React.useState(false);
 
   const placeholder = embedPlaceholder ?? (
-    <EmbedPlaceholder
+    <LinkedInPlaceholder
       url={postUrl ?? url}
       style={{
         width: divProps.style?.width ? '100%' : width ?? '100%',
         height: divProps.style?.height ? '100%' : height ?? 400,
-        borderRadius: divProps.style?.borderRadius ?? '8px',
-        borderColor: 'rgba(0, 0, 0, 0.15)',
         minWidth: 300,
         maxWidth: 550,
       }}
+      imageUrl={placeholderImageUrl}
     />
   );
 
@@ -60,7 +62,7 @@ export const LinkedInEmbed = ({
         frameBorder="0"
         onLoad={() => setReady(true)}
       ></iframe>
-      {true && !placeholderDisabled && placeholder}
+      {!placeholderDisabled && placeholder}
     </div>
   );
 };

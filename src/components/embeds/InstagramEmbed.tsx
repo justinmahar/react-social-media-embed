@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import { IGPlaceholder } from '../placeholders/IGPlaceholder';
+import { InstagramPlaceholder } from '../placeholders/InstagramPlaceholder';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -15,6 +15,8 @@ let embedScriptLoaded = false;
 
 export interface InstagramEmbedProps extends DivProps {
   url: string;
+  width?: string | number;
+  height?: string | number;
   igVersion?: string;
   linkText?: string;
   processDelay?: number;
@@ -22,6 +24,9 @@ export interface InstagramEmbedProps extends DivProps {
   retryDisabled?: boolean;
   retryInitialDelay?: number;
   retryBackoffMaxDelay?: number;
+  embedPlaceholder?: React.ReactNode;
+  placeholderDisabled?: boolean;
+  placeholderImageUrl?: string;
 }
 
 export const InstagramEmbed = ({
@@ -33,6 +38,9 @@ export const InstagramEmbed = ({
   retryDisabled = false,
   retryInitialDelay = defaultRetryInitialDelay,
   retryBackoffMaxDelay = defaultRetryBackoffMaxDelay,
+  embedPlaceholder,
+  placeholderDisabled,
+  placeholderImageUrl,
   ...divProps
 }: InstagramEmbedProps): JSX.Element => {
   const [initialized, setInitialized] = React.useState(false);
@@ -46,7 +54,6 @@ export const InstagramEmbed = ({
     if (win && processTime >= 0) {
       // This call will use the IG embed script to process all elements with the `instagram-media` class name.
       if (typeof win.instgrm !== 'undefined' && win.instgrm.Embeds) {
-        // console.log('Processing...', Date.now());
         win.instgrm.Embeds.process();
       } else {
         console.error('Instagram embed script not found. Unable to process Instagram embed:', url);
@@ -104,13 +111,12 @@ export const InstagramEmbed = ({
   const urlWithNoQuery = url.replace(/[?].*$/, '');
   const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
 
-  const placeholder = (
-    <IGPlaceholder
-      className="instagram-media-pre-embed"
+  const placeholder = embedPlaceholder ?? (
+    <InstagramPlaceholder
+      url={cleanUrlWithEndingSlash}
       id={uuidRef.current}
-      style={{
-        width: 'calc(100% + 2px)',
-      }}
+      linkText={linkText}
+      imageUrl={placeholderImageUrl}
     />
   );
 
@@ -130,10 +136,10 @@ export const InstagramEmbed = ({
           maxWidth: '540px',
           minWidth: '326px',
           width: 'calc(100% - 2px)',
-          ...divProps.style,
         }}
       >
-        {placeholder}
+        {!placeholderDisabled && placeholder}
+        <div className="instagram-media-pre-embed rsme-d-none">&nbsp;</div>
       </blockquote>
     </div>
   );

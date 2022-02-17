@@ -47,7 +47,7 @@ Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTub
   - [TikTok](#tiktok)
   - [Twitter](#twitter)
   - [YouTube](#youtube)
-  - [Placeholder](#placeholder)
+  - [Placeholders](#placeholders)
 - [TypeScript](#typescript)
 - [Icon Attribution](#icon-attribution)
 - [Contributing](#contributing)
@@ -147,15 +147,26 @@ import { YouTubeEmbed } from 'react-social-media-embed';
 
 This component uses the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed content. You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
-### Placeholder
+### Placeholders
+
+Default placeholders have been included for each social media platform. If you do not specify a placeholder via `embedPlaceholder`, a default will be used.
 
 ```jsx
-import { PlaceholderEmbed } from 'react-social-media-embed';
+import { FacebookPlaceholder } from 'react-social-media-embed';
+import { InstagramPlaceholder } from 'react-social-media-embed';
+import { LinkedInPlaceholder } from 'react-social-media-embed';
+import { TikTokPlaceholder } from 'react-social-media-embed';
+import { EmbedPlaceholder } from 'react-social-media-embed';
+import { EmbedPlaceholder } from 'react-social-media-embed';
 ```
 
-```jsx
-<PlaceholderEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" />
-```
+Each placeholder takes a `url` to the post. Clicking the placeholder will navigate to the provided URL in a new tab.
+
+Optionally, provide `linkText` to customize the text, and `imageUrl` to show a placeholder image. 
+
+If you provide an image URL, the placeholder will size the image to 100% width.
+
+Disable the placeholder with the `placeholderDisabled` prop.
 
 ## TypeScript
 

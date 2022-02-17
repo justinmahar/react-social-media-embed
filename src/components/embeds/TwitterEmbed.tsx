@@ -3,7 +3,7 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { TwitterTweetEmbedProps } from 'react-twitter-embed/dist/components/TwitterTweetEmbed';
-import { EmbedPlaceholder } from '../placeholders/EmbedPlaceholder';
+import { TwitterPlaceholder } from '../placeholders/TwitterPlaceholder';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -14,6 +14,7 @@ export interface TwitterEmbedProps extends DivPropsWithoutRef {
   height?: string | number;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
+  placeholderImageUrl?: string;
 }
 
 export const TwitterEmbed = ({
@@ -23,22 +24,22 @@ export const TwitterEmbed = ({
   height,
   embedPlaceholder,
   placeholderDisabled,
+  placeholderImageUrl,
   ...divProps
 }: TwitterEmbedProps) => {
   const uuidRef = React.useRef(generateUUID());
   const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
 
   const placeholder = embedPlaceholder ?? (
-    <EmbedPlaceholder
+    <TwitterPlaceholder
       url={url}
       style={{
         width: divProps.style?.width ? '100%' : width ?? '100%',
-        height: divProps.style?.height ? '100%' : height ?? 400,
-        borderRadius: divProps.style?.borderRadius ?? '12px',
-        borderColor: '#c9d4d9',
+        height: divProps.style?.height ? '100%' : height ?? 300,
         minWidth: 250,
         maxWidth: 550,
       }}
+      imageUrl={placeholderImageUrl}
     />
   );
 

@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -10,15 +21,18 @@ const __1 = require("../..");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 // https://developers.facebook.com/docs/plugins/embedded-posts/?prefill_href=https%3A%2F%2Fwww.facebook.com%2Fandrewismusic%2Fposts%2F451971596293956#code-generator
-const FacebookEmbed = ({ url, width, height, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, ...divProps }) => {
+const FacebookEmbed = (_a) => {
+    var _b, _c, _d, _e;
+    var { url, width, height, embedPlaceholder, placeholderDisabled, scriptLoadDisabled } = _a, divProps = __rest(_a, ["url", "width", "height", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled"]);
     const [ready, setReady] = react_1.default.useState(false);
     const [processTime, setProcessTime] = react_1.default.useState(-1);
     const [show, setShow] = react_1.default.useState(true);
     const uuidRef = react_1.default.useRef((0, uuid_1.generateUUID)());
     react_1.default.useEffect(() => {
+        var _a, _b;
         if (show && typeof window !== 'undefined') {
             // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
-            window.FB?.XFBML?.parse();
+            (_b = (_a = window.FB) === null || _a === void 0 ? void 0 : _a.XFBML) === null || _b === void 0 ? void 0 : _b.parse();
         }
         setProcessTime(Date.now());
     }, [show]);
@@ -42,26 +56,22 @@ const FacebookEmbed = ({ url, width, height, embedPlaceholder, placeholderDisabl
         }
         return () => clearInterval(timeout);
     }, [ready]);
-    const placeholder = embedPlaceholder ?? (react_1.default.createElement(__1.EmbedPlaceholder, { url: url, style: {
-            width: divProps.style?.width ? '100%' : width ?? 550,
-            height: divProps.style?.height ? '100%' : height ?? 372,
-            borderRadius: divProps.style?.borderRadius ?? 3,
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (react_1.default.createElement(__1.EmbedPlaceholder, { url: url, style: {
+            width: ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.width) ? '100%' : width !== null && width !== void 0 ? width : 550,
+            height: ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.height) ? '100%' : height !== null && height !== void 0 ? height : 372,
+            borderRadius: (_e = (_d = divProps.style) === null || _d === void 0 ? void 0 : _d.borderRadius) !== null && _e !== void 0 ? _e : 3,
         } }));
     react_1.default.useEffect(() => {
+        var _a, _b;
         if (typeof document !== 'undefined' && typeof window !== 'undefined' && !scriptLoadDisabled) {
-            if (!window.FB?.XFBML?.parse) {
+            if (!((_b = (_a = window.FB) === null || _a === void 0 ? void 0 : _a.XFBML) === null || _b === void 0 ? void 0 : _b.parse)) {
                 const scriptElement = document.createElement('script');
                 scriptElement.setAttribute('src', `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`);
                 document.head.appendChild(scriptElement);
             }
         }
     }, [scriptLoadDisabled]);
-    return (react_1.default.createElement("div", { ...divProps, className: (0, classnames_1.default)('rsme-embed rsme-facebook-embed', uuidRef.current, divProps.className), style: {
-            overflow: 'hidden',
-            width: width ?? undefined,
-            height: height ?? undefined,
-            ...divProps.style,
-        } },
+    return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-facebook-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         react_1.default.createElement(EmbedStyle_1.EmbedStyle, null),
         react_1.default.createElement("div", { id: uuidRef.current, className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
             react_1.default.createElement("div", { className: "fb-post", "data-href": url })),
