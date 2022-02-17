@@ -5,6 +5,10 @@ import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
+const defaultEmbedWidth = 550;
+const maxPlaceholderWidth = defaultEmbedWidth;
+const defaultPlaceholderHeight = 372;
+
 export interface FacebookEmbedProps extends DivProps {
   url: string;
   width?: string | number;
@@ -75,14 +79,14 @@ export const FacebookEmbed = ({
 
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
-    maxWidth: 550,
+    maxWidth: maxPlaceholderWidth,
     width: typeof width !== 'undefined' ? width : '100%',
     height:
       typeof height !== 'undefined'
         ? height
         : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
         ? '100%'
-        : 372,
+        : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
     borderRadius: 3,
   };
@@ -104,7 +108,11 @@ export const FacebookEmbed = ({
     >
       <EmbedStyle />
       <div id={uuidRef.current} className={classNames(!ready && 'rsme-d-none')}>
-        <div className="fb-post" data-href={url} style={{ width: width ?? 550, height: height ?? undefined }}></div>
+        <div
+          className="fb-post"
+          data-href={url}
+          style={{ width: width ?? defaultEmbedWidth, height: height ?? undefined }}
+        ></div>
       </div>
       {!ready && !placeholderDisabled && placeholder}
     </div>

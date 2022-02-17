@@ -6,6 +6,9 @@ import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
+const maxPlaceholderWidth = 640;
+const defaultPlaceholderHeight = 360;
+
 export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   url: string;
   youTubeProps: YouTubeProps;
@@ -48,14 +51,14 @@ export const YouTubeEmbed = ({
 
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
-    maxWidth: 640,
+    maxWidth: maxPlaceholderWidth,
     width: typeof width !== 'undefined' ? width : '100%',
     height:
       typeof height !== 'undefined'
         ? height
         : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
         ? '100%'
-        : 360,
+        : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
     borderRadius: 0,
   };

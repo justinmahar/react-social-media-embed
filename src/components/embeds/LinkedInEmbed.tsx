@@ -5,6 +5,10 @@ import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
+const minPlaceholderWidth = 300;
+const maxPlaceholderWidth = 550;
+const defaultPlaceholderHeight = 550;
+
 export interface LinkedInEmbedProps extends DivProps {
   url: string;
   postUrl?: string;
@@ -32,15 +36,15 @@ export const LinkedInEmbed = ({
 
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
-    minWidth: 300,
-    maxWidth: 550,
+    minWidth: minPlaceholderWidth,
+    maxWidth: maxPlaceholderWidth,
     width: typeof width !== 'undefined' ? width : '100%',
     height:
       typeof height !== 'undefined'
         ? height
         : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
         ? '100%'
-        : 550,
+        : defaultPlaceholderHeight,
     border: 'solid 1px rgba(0, 0, 0, 0.15)',
     borderRadius: 8,
   };

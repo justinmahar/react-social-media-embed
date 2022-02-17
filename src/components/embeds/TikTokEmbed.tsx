@@ -7,9 +7,10 @@ import { EmbedStyle } from './EmbedStyle';
 
 // DOCS: https://developers.tiktok.com/doc/embed-videos
 
-const defaultProcessDelay = 100;
-const defaultRetryInitialDelay = 3000;
-const defaultRetryBackoffMaxDelay = 30000;
+const minPlaceholderWidth = 325;
+const maxPlaceholderWidth = 480;
+const defaultPlaceholderHeight = 550;
+
 export interface TikTokEmbedProps extends DivProps {
   url: string;
   width?: string | number;
@@ -32,11 +33,11 @@ export const TikTokEmbed = ({
   linkText = 'View post on TikTok',
   embedPlaceholder,
   placeholderDisabled,
-  processDelay = defaultProcessDelay,
+  processDelay = 100,
   scriptLoadDisabled = false,
   retryDisabled = false,
-  retryInitialDelay = defaultRetryInitialDelay,
-  retryBackoffMaxDelay = defaultRetryBackoffMaxDelay,
+  retryInitialDelay = 3000,
+  retryBackoffMaxDelay = 30000,
   placeholderImageUrl,
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
@@ -108,15 +109,15 @@ export const TikTokEmbed = ({
 
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
-    minWidth: 325,
-    maxWidth: 480,
+    minWidth: minPlaceholderWidth,
+    maxWidth: maxPlaceholderWidth,
     width: typeof width !== 'undefined' ? width : '100%',
     height:
       typeof height !== 'undefined'
         ? height
         : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
         ? '100%'
-        : 550,
+        : defaultPlaceholderHeight,
     border: 'solid 1px rgba(22,24,35,0.12)',
     borderRadius: 8,
   };

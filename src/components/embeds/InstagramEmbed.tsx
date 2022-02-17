@@ -7,6 +7,10 @@ import { EmbedStyle } from './EmbedStyle';
 
 let embedScriptLoaded = false;
 
+const minPlaceholderWidth = 326;
+const maxPlaceholderWidth = 540;
+const defaultPlaceholderHeight = 372;
+
 export interface InstagramEmbedProps extends DivProps {
   url: string;
   width?: string | number;
@@ -33,7 +37,7 @@ export const InstagramEmbed = ({
   scriptLoadDisabled = false,
   retryDisabled = false,
   retryInitialDelay = 1000,
-  retryBackoffMaxDelay = 30000,
+  retryBackoffMaxDelay = 5000,
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
@@ -110,18 +114,17 @@ export const InstagramEmbed = ({
   // === Placeholder ===
 
   const placeholderStyle: React.CSSProperties = {
-    minWidth: 326,
-    maxWidth: 540,
+    minWidth: minPlaceholderWidth,
+    maxWidth: maxPlaceholderWidth,
     width: typeof width !== 'undefined' ? width : '100%',
     height:
       typeof height !== 'undefined'
         ? height
         : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
         ? '100%'
-        : 550,
+        : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
     borderRadius: 3,
-    // width: 'calc(100% - 2px)',
   };
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
@@ -146,10 +149,8 @@ export const InstagramEmbed = ({
         data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
         data-instgrm-version={igVersion}
         style={{
-          margin: 0,
-          maxWidth: '540px',
-          minWidth: '326px',
-          width: 'calc(100% - 2px)',
+          width: width ?? 'calc(100% - 2px)',
+          height: height ?? undefined,
         }}
       >
         {!placeholderDisabled && placeholder}

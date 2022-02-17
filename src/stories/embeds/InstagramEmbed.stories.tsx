@@ -24,4 +24,5 @@ export const UrlOnly = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 UrlOnly.args = {
   url: 'https://www.instagram.com/p/CUbHfhpswxt/',
+  width: 540,
 };
