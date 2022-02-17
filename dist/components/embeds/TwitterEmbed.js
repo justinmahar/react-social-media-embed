@@ -37,20 +37,29 @@ exports.TwitterEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_twitter_embed_1 = require("react-twitter-embed");
-const TwitterPlaceholder_1 = require("../placeholders/TwitterPlaceholder");
+const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const TwitterEmbed = (_a) => {
     var _b, _c;
-    var { url, twitterTweetEmbedProps, width, height, embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "twitterTweetEmbedProps", "width", "height", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
+    var { url, twitterTweetEmbedProps, width, height, linkText = 'View post on Twitter', embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "twitterTweetEmbedProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(TwitterPlaceholder_1.TwitterPlaceholder, { url: url, style: {
-            width: ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.width) ? '100%' : width !== null && width !== void 0 ? width : '100%',
-            height: ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.height) ? '100%' : height !== null && height !== void 0 ? height : 350,
-            minWidth: 250,
-            maxWidth: 550,
-        }, imageUrl: placeholderImageUrl }));
+    // === Placeholder ===
+    const placeholderStyle = {
+        minWidth: 250,
+        maxWidth: 550,
+        width: typeof width !== 'undefined' ? width : '100%',
+        height: typeof height !== 'undefined'
+            ? height
+            : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
+                ? '100%'
+                : 350,
+        border: 'solid 1px #c9d4d9',
+        borderRadius: 12,
+    };
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, { url: url, style: placeholderStyle, imageUrl: placeholderImageUrl, linkText: linkText }));
+    // === END Placeholder ===
     return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-twitter-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         React.createElement(EmbedStyle_1.EmbedStyle, null),
         React.createElement(react_twitter_embed_1.TwitterTweetEmbed, Object.assign({ tweetId: tweetId, placeholder: placeholderDisabled ? undefined : placeholder }, twitterTweetEmbedProps))));

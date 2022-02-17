@@ -31,7 +31,11 @@ const Spinner = (_a) => {
           border-top: ${borderSize}px solid ${(_c = (_b = divProps.style) === null || _b === void 0 ? void 0 : _b.color) !== null && _c !== void 0 ? _c : '#000000'};
           border-radius: 50%;
           width: ${sideLength}px;
+          min-width: ${sideLength}px;
+          max-width: ${sideLength}px;
           height: ${sideLength}px;
+          min-height: ${sideLength}px;
+          max-height: ${sideLength}px;
           animation: ${className}-spin 1s linear infinite;
         }
 

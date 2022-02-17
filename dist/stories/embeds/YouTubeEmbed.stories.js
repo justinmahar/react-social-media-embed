@@ -22,5 +22,7 @@ const Template = (args) => (react_1.default.createElement(EmbedToggler_1.EmbedTo
 exports.UrlOnly = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 exports.UrlOnly.args = {
-    url: 'https://www.youtube.com/watch?v=d-qqom30TZA',
+    url: 'https://www.youtube.com/watch?v=HpVOs5imUN0',
+    width: 200,
+    height: 100,
 };

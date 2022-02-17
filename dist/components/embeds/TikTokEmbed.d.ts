@@ -4,6 +4,7 @@ export interface TikTokEmbedProps extends DivProps {
     url: string;
     width?: string | number;
     height?: string | number;
+    linkText?: string;
     embedPlaceholder?: React.ReactNode;
     placeholderDisabled?: boolean;
     processDelay?: number;
@@ -13,4 +14,4 @@ export interface TikTokEmbedProps extends DivProps {
     retryBackoffMaxDelay?: number;
     placeholderImageUrl?: string;
 }
-export declare const TikTokEmbed: ({ url, width, height, embedPlaceholder, placeholderDisabled, processDelay, scriptLoadDisabled, retryDisabled, retryInitialDelay, retryBackoffMaxDelay, placeholderImageUrl, ...divProps }: TikTokEmbedProps) => JSX.Element;
+export declare const TikTokEmbed: ({ url, width, height, linkText, embedPlaceholder, placeholderDisabled, processDelay, scriptLoadDisabled, retryDisabled, retryInitialDelay, retryBackoffMaxDelay, placeholderImageUrl, ...divProps }: TikTokEmbedProps) => JSX.Element;

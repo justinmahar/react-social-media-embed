@@ -19,6 +19,6 @@ const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
 const PlaceholderTextBody = (_a) => {
     var divProps = __rest(_a, []);
-    return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)(divProps.className), style: Object.assign({ height: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', rowGap: 16 }, divProps.style) }), divProps.children));
+    return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)(divProps.className), style: Object.assign({ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', rowGap: 16 }, divProps.style) }), divProps.children));
 };
 exports.PlaceholderTextBody = PlaceholderTextBody;
