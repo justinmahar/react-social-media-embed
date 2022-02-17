@@ -10,7 +10,6 @@ export const PlaceholderTextBody = ({ ...divProps }: PlaceholderTextBodyProps) =
       {...divProps}
       className={classNames(divProps.className)}
       style={{
-        height: 300,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

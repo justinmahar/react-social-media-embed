@@ -20,7 +20,11 @@ export const Spinner = ({ size = 20, ...divProps }: SpinnerProps) => {
           border-top: ${borderSize}px solid ${divProps.style?.color ?? '#000000'};
           border-radius: 50%;
           width: ${sideLength}px;
+          min-width: ${sideLength}px;
+          max-width: ${sideLength}px;
           height: ${sideLength}px;
+          min-height: ${sideLength}px;
+          max-height: ${sideLength}px;
           animation: ${className}-spin 1s linear infinite;
         }
 

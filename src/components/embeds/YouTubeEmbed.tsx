@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import YouTube, { Options, YouTubeProps } from 'react-youtube';
-import { YouTubePlaceholder } from '../placeholders/YouTubePlaceholder';
+import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -11,6 +11,7 @@ export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   youTubeProps: YouTubeProps;
   width?: string | number;
   height?: string | number;
+  linkText?: string;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
@@ -21,6 +22,7 @@ export const YouTubeEmbed = ({
   youTubeProps,
   width,
   height,
+  linkText = 'Watch on YouTube',
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
@@ -44,17 +46,23 @@ export const YouTubeEmbed = ({
   }
   opts = { ...opts, ...youTubeProps?.opts };
 
+  // === Placeholder ===
+  const placeholderStyle: React.CSSProperties = {
+    maxWidth: 640,
+    width: typeof width !== 'undefined' ? width : '100%',
+    height:
+      typeof height !== 'undefined'
+        ? height
+        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+        ? '100%'
+        : 360,
+    border: '1px solid #dee2e6',
+    borderRadius: 0,
+  };
   const placeholder = embedPlaceholder ?? (
-    <YouTubePlaceholder
-      url={url}
-      style={{
-        width: divProps.style?.width ? '100%' : width ?? 640,
-        height: divProps.style?.height ? '100%' : height ?? 360,
-        borderRadius: divProps.style?.borderRadius ?? 0,
-      }}
-      imageUrl={placeholderImageUrl}
-    />
+    <PlaceholderEmbed url={url} style={placeholderStyle} imageUrl={placeholderImageUrl} linkText={linkText} />
   );
+  // === END Placeholder ===
 
   return (
     <div

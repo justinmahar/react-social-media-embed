@@ -1,15 +1,9 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import { InstagramPlaceholder } from '../placeholders/InstagramPlaceholder';
+import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
-
-const defaultIgVersion = '14';
-const defaultLinkText = 'View this post on Instagram';
-const defaultProcessDelay = 100;
-const defaultRetryInitialDelay = 1000;
-const defaultRetryBackoffMaxDelay = 30000;
 
 let embedScriptLoaded = false;
 
@@ -17,8 +11,8 @@ export interface InstagramEmbedProps extends DivProps {
   url: string;
   width?: string | number;
   height?: string | number;
-  igVersion?: string;
   linkText?: string;
+  igVersion?: string;
   processDelay?: number;
   scriptLoadDisabled?: boolean;
   retryDisabled?: boolean;
@@ -31,13 +25,15 @@ export interface InstagramEmbedProps extends DivProps {
 
 export const InstagramEmbed = ({
   url,
-  igVersion = defaultIgVersion,
-  linkText = defaultLinkText,
-  processDelay = defaultProcessDelay,
+  igVersion = '14',
+  width,
+  height,
+  linkText = 'View post on Instagram',
+  processDelay = 100,
   scriptLoadDisabled = false,
   retryDisabled = false,
-  retryInitialDelay = defaultRetryInitialDelay,
-  retryBackoffMaxDelay = defaultRetryBackoffMaxDelay,
+  retryInitialDelay = 1000,
+  retryBackoffMaxDelay = 30000,
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
@@ -111,14 +107,32 @@ export const InstagramEmbed = ({
   const urlWithNoQuery = url.replace(/[?].*$/, '');
   const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
 
+  // === Placeholder ===
+
+  const placeholderStyle: React.CSSProperties = {
+    minWidth: 326,
+    maxWidth: 540,
+    width: typeof width !== 'undefined' ? width : '100%',
+    height:
+      typeof height !== 'undefined'
+        ? height
+        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+        ? '100%'
+        : 550,
+    border: '1px solid #dee2e6',
+    borderRadius: 3,
+    // width: 'calc(100% - 2px)',
+  };
   const placeholder = embedPlaceholder ?? (
-    <InstagramPlaceholder
+    <PlaceholderEmbed
       url={cleanUrlWithEndingSlash}
       id={uuidRef.current}
       linkText={linkText}
       imageUrl={placeholderImageUrl}
+      style={placeholderStyle}
     />
   );
+  // === END Placeholder ===
 
   return (
     <div

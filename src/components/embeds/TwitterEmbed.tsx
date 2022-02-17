@@ -3,7 +3,7 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { TwitterTweetEmbedProps } from 'react-twitter-embed/dist/components/TwitterTweetEmbed';
-import { TwitterPlaceholder } from '../placeholders/TwitterPlaceholder';
+import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -12,6 +12,7 @@ export interface TwitterEmbedProps extends DivPropsWithoutRef {
   twitterTweetEmbedProps?: TwitterTweetEmbedProps;
   width?: string | number;
   height?: string | number;
+  linkText?: string;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
@@ -22,6 +23,7 @@ export const TwitterEmbed = ({
   twitterTweetEmbedProps,
   width,
   height,
+  linkText = 'View post on Twitter',
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
@@ -30,18 +32,24 @@ export const TwitterEmbed = ({
   const uuidRef = React.useRef(generateUUID());
   const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
 
+  // === Placeholder ===
+  const placeholderStyle: React.CSSProperties = {
+    minWidth: 250,
+    maxWidth: 550,
+    width: typeof width !== 'undefined' ? width : '100%',
+    height:
+      typeof height !== 'undefined'
+        ? height
+        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+        ? '100%'
+        : 350,
+    border: 'solid 1px #c9d4d9',
+    borderRadius: 12,
+  };
   const placeholder = embedPlaceholder ?? (
-    <TwitterPlaceholder
-      url={url}
-      style={{
-        width: divProps.style?.width ? '100%' : width ?? '100%',
-        height: divProps.style?.height ? '100%' : height ?? 350,
-        minWidth: 250,
-        maxWidth: 550,
-      }}
-      imageUrl={placeholderImageUrl}
-    />
+    <PlaceholderEmbed url={url} style={placeholderStyle} imageUrl={placeholderImageUrl} linkText={linkText} />
   );
+  // === END Placeholder ===
 
   return (
     <div

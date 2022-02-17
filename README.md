@@ -47,7 +47,7 @@ Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTub
   - [TikTok](#tiktok)
   - [Twitter](#twitter)
   - [YouTube](#youtube)
-  - [Placeholders](#placeholders)
+  - [Placeholder](#placeholder)
 - [TypeScript](#typescript)
 - [Icon Attribution](#icon-attribution)
 - [Contributing](#contributing)
@@ -147,26 +147,17 @@ import { YouTubeEmbed } from 'react-social-media-embed';
 
 This component uses the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed content. You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
-### Placeholders
-
-Default placeholders have been included for each social media platform. If you do not specify a placeholder via `embedPlaceholder`, a default will be used.
+### Placeholder
 
 ```jsx
-import { FacebookPlaceholder } from 'react-social-media-embed';
-import { InstagramPlaceholder } from 'react-social-media-embed';
-import { LinkedInPlaceholder } from 'react-social-media-embed';
-import { TikTokPlaceholder } from 'react-social-media-embed';
-import { TwitterPlaceholder } from 'react-social-media-embed';
-import { YouTubePlaceholder } from 'react-social-media-embed';
+import { PlaceholderEmbed } from 'react-social-media-embed';
 ```
 
-Each placeholder takes a `url` to the post. Clicking the placeholder will navigate to the provided URL in a new tab.
+A placeholder is shown while loading. If you do not specify a placeholder via the `placeholder` prop, a default `PlaceholderEmbed` placeholder component will be used. Disable the placeholder with the `placeholderDisabled` prop.
 
-Optionally, provide `linkText` to customize the text, and `imageUrl` to show a placeholder image. 
+The default placeholder will size itself according to the width and/or height you specify for the embed. If none are specified, it will fall back to a default size appropriate for the given social media platform.
 
-If you provide an image URL, the placeholder will size the image to 100% width.
-
-Disable the placeholder with the `placeholderDisabled` prop.
+See the [PlaceholderEmbed docs](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--example) for more.
 
 ## TypeScript
 

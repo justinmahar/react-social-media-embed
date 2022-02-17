@@ -1,10 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import { EmbedStyle } from './EmbedStyle';
-
+import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
-import { TikTokPlaceholder } from '../placeholders/TikTokPlaceholder';
+import { EmbedStyle } from './EmbedStyle';
 
 // DOCS: https://developers.tiktok.com/doc/embed-videos
 
@@ -15,6 +14,7 @@ export interface TikTokEmbedProps extends DivProps {
   url: string;
   width?: string | number;
   height?: string | number;
+  linkText?: string;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   processDelay?: number;
@@ -29,6 +29,7 @@ export const TikTokEmbed = ({
   url,
   width,
   height,
+  linkText = 'View post on TikTok',
   embedPlaceholder,
   placeholderDisabled,
   processDelay = defaultProcessDelay,
@@ -91,19 +92,6 @@ export const TikTokEmbed = ({
   const urlWithNoQuery = url.replace(/[?].*$/, '');
   const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
 
-  const placeholder = embedPlaceholder ?? (
-    <TikTokPlaceholder
-      url={url}
-      style={{
-        width: divProps.style?.width ? '100%' : width ?? 325,
-        height: divProps.style?.height ? '100%' : height ?? 500,
-        minWidth: 325,
-        maxWidth: 480,
-      }}
-      imageUrl={placeholderImageUrl}
-    />
-  );
-
   React.useEffect(() => {
     if (typeof document !== 'undefined' && !scriptLoadDisabled) {
       const scriptId = `tiktok-embed-script`;
@@ -117,6 +105,25 @@ export const TikTokEmbed = ({
       document.head.appendChild(scriptElement);
     }
   }, [scriptLoadDisabled]);
+
+  // === Placeholder ===
+  const placeholderStyle: React.CSSProperties = {
+    minWidth: 325,
+    maxWidth: 480,
+    width: typeof width !== 'undefined' ? width : '100%',
+    height:
+      typeof height !== 'undefined'
+        ? height
+        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+        ? '100%'
+        : 550,
+    border: 'solid 1px rgba(22,24,35,0.12)',
+    borderRadius: 8,
+  };
+  const placeholder = embedPlaceholder ?? (
+    <PlaceholderEmbed url={url} style={placeholderStyle} imageUrl={placeholderImageUrl} linkText={linkText} />
+  );
+  // === END Placeholder ===
 
   return (
     <div

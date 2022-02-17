@@ -4,10 +4,4 @@ export * from './components/embeds/LinkedInEmbed';
 export * from './components/embeds/TikTokEmbed';
 export * from './components/embeds/TwitterEmbed';
 export * from './components/embeds/YouTubeEmbed';
-
-export * from './components/placeholders/FacebookPlaceholder';
-export * from './components/placeholders/InstagramPlaceholder';
-export * from './components/placeholders/LinkedInPlaceholder';
-export * from './components/placeholders/TikTokPlaceholder';
-export * from './components/placeholders/TwitterPlaceholder';
-export * from './components/placeholders/YouTubePlaceholder';
+export * from './components/placeholder/PlaceholderEmbed';

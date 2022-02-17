@@ -1,0 +1,146 @@
+import classNames from 'classnames';
+import React from 'react';
+import { DivProps } from 'react-html-props';
+import { EngagementIconsPlaceholder } from './parts/EngagementIconsPlaceholder';
+import { ProfilePlaceholder } from './parts/ProfilePlaceholder';
+import { Spinner } from './parts/Spinner';
+
+export interface PlaceholderEmbedProps extends DivProps {
+  url: string;
+  linkText?: string;
+  imageUrl?: string;
+}
+
+export const PlaceholderEmbed = ({ url, linkText = 'View post', imageUrl, ...divProps }: PlaceholderEmbedProps) => {
+  return (
+    <div
+      {...divProps}
+      className={classNames(divProps.className)}
+      style={{
+        overflow: 'hidden',
+        border: '1px solid #dee2e6',
+        backgroundColor: '#ffffff',
+        borderRadius: 0,
+        boxSizing: 'border-box',
+        position: 'relative',
+        ...divProps.style,
+      }}
+    >
+      <a href={url} style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+        {!imageUrl && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'start',
+              paddingLeft: 16,
+              paddingRight: 16,
+              paddingTop: 16,
+              paddingBottom: 16,
+              zIndex: 2,
+              backgroundColor: '#ffffff',
+            }}
+          >
+            <ProfilePlaceholder />
+          </div>
+        )}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: imageUrl ? 'start' : 'center',
+            height: '100%',
+            width: '100%',
+          }}
+        >
+          {!imageUrl && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
+                rowGap: 16,
+                zIndex: 3,
+                padding: 8,
+                backgroundColor: '#ffffff',
+              }}
+            >
+              <Spinner size={30} />
+              {!!linkText && (
+                <div
+                  style={{
+                    color: '#000000',
+                    fontFamily: 'Arial,sans-serif',
+                    fontSize: '14px',
+                    fontStyle: 'normal',
+                    fontWeight: 550,
+                    lineHeight: '18px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {linkText}
+                </div>
+              )}
+            </div>
+          )}
+          {imageUrl && (
+            <div style={{ width: '100%', paddingBottom: 40 }}>
+              <img src={imageUrl} style={{ width: '100%' }} />
+            </div>
+          )}
+        </div>
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: 40,
+            width: '100%',
+            backgroundColor: '#ffffff',
+            zIndex: 1,
+          }}
+        >
+          {!imageUrl && (
+            <EngagementIconsPlaceholder
+              style={{
+                marginLeft: 16,
+              }}
+            />
+          )}
+          {imageUrl && (
+            <div
+              style={{
+                display: 'flex',
+                height: '100%',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                columnGap: 16,
+              }}
+            >
+              <div
+                style={{
+                  color: '#0095f6',
+                  fontWeight: 600,
+                  fontFamily: 'Arial,sans-serif',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  whiteSpace: 'nowrap',
+                  marginLeft: 16,
+                }}
+              >
+                {linkText}
+              </div>
+              <Spinner style={{ marginRight: 16 }} />
+            </div>
+          )}
+        </div>
+      </a>
+    </div>
+  );
+};

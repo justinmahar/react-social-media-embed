@@ -23,5 +23,7 @@ const Template: ComponentStory<typeof YouTubeEmbed> = (args) => (
 export const UrlOnly = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 UrlOnly.args = {
-  url: 'https://www.youtube.com/watch?v=d-qqom30TZA',
+  url: 'https://www.youtube.com/watch?v=HpVOs5imUN0',
+  width: 200,
+  height: 100,
 };

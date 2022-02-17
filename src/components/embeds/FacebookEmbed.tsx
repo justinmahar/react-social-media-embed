@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import { FacebookPlaceholder } from '../placeholders/FacebookPlaceholder';
+import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -9,6 +9,7 @@ export interface FacebookEmbedProps extends DivProps {
   url: string;
   width?: string | number;
   height?: string | number;
+  linkText?: string;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   scriptLoadDisabled?: boolean;
@@ -21,6 +22,7 @@ export const FacebookEmbed = ({
   url,
   width,
   height,
+  linkText = 'View post on Facebook',
   embedPlaceholder,
   placeholderDisabled,
   scriptLoadDisabled,
@@ -61,17 +63,6 @@ export const FacebookEmbed = ({
     return () => clearInterval(timeout);
   }, [ready]);
 
-  const placeholder = embedPlaceholder ?? (
-    <FacebookPlaceholder
-      url={url}
-      style={{
-        width: divProps.style?.width ? '100%' : width ?? 550,
-        height: divProps.style?.height ? '100%' : height ?? 372,
-      }}
-      imageUrl={placeholderImageUrl}
-    />
-  );
-
   React.useEffect(() => {
     if (typeof document !== 'undefined' && typeof window !== 'undefined' && !scriptLoadDisabled) {
       if (!(window as any).FB?.XFBML?.parse) {
@@ -81,6 +72,24 @@ export const FacebookEmbed = ({
       }
     }
   }, [scriptLoadDisabled]);
+
+  // === Placeholder ===
+  const placeholderStyle: React.CSSProperties = {
+    maxWidth: 550,
+    width: typeof width !== 'undefined' ? width : '100%',
+    height:
+      typeof height !== 'undefined'
+        ? height
+        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+        ? '100%'
+        : 372,
+    border: '1px solid #dee2e6',
+    borderRadius: 3,
+  };
+  const placeholder = embedPlaceholder ?? (
+    <PlaceholderEmbed url={url} imageUrl={placeholderImageUrl} style={placeholderStyle} linkText={linkText} />
+  );
+  // === END Placeholder ===
 
   return (
     <div
@@ -95,7 +104,7 @@ export const FacebookEmbed = ({
     >
       <EmbedStyle />
       <div id={uuidRef.current} className={classNames(!ready && 'rsme-d-none')}>
-        <div className="fb-post" data-href={url}></div>
+        <div className="fb-post" data-href={url} style={{ width: width ?? 550, height: height ?? undefined }}></div>
       </div>
       {!ready && !placeholderDisabled && placeholder}
     </div>

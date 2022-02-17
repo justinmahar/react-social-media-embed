@@ -1,3 +1,4 @@
+// [lock-all/] 🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫
 {
   "compilerOptions": {
     /* Basic Options */
@@ -60,5 +61,5 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__*", "src/gatsby-theme-docz"]
+  "exclude": ["node_modules"]
 }
