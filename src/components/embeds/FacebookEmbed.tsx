@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import { EmbedPlaceholder } from '../..';
 import { FacebookPlaceholder } from '../placeholders/FacebookPlaceholder';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';

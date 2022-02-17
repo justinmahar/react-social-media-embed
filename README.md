@@ -156,8 +156,8 @@ import { FacebookPlaceholder } from 'react-social-media-embed';
 import { InstagramPlaceholder } from 'react-social-media-embed';
 import { LinkedInPlaceholder } from 'react-social-media-embed';
 import { TikTokPlaceholder } from 'react-social-media-embed';
-import { EmbedPlaceholder } from 'react-social-media-embed';
-import { EmbedPlaceholder } from 'react-social-media-embed';
+import { TwitterPlaceholder } from 'react-social-media-embed';
+import { YouTubePlaceholder } from 'react-social-media-embed';
 ```
 
 Each placeholder takes a `url` to the post. Clicking the placeholder will navigate to the provided URL in a new tab.

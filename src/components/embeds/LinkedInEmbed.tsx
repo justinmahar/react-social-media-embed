@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
 import { LinkedInPlaceholder } from '../placeholders/LinkedInPlaceholder';
-import { EmbedPlaceholder } from '../placeholders/old/EmbedPlaceholder';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
