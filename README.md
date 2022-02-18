@@ -230,19 +230,19 @@ A TikTok post uses the following form:
 
 Unfortunately, unlike Facebook and Instagram, there is no documented or obvious way to manually initialize the embed HTML. **[If you know how to do this, please open a GitHub issue with the info!](https://github.com/justinmahar/react-social-media-embed/issues/new)**
 
-So, in order to initialize the embed HTML, we must load the embed script from TikTok every time we render the TikTok embed. To do this, we use time-based query param cache-busting and replace the embed.js script tag in the `head` node. This forces the browser to load the script anew each time, which then performs the embed.
+So, in order to initialize the embed HTML, we must load the embed script from TikTok every time we render the TikTok embed. To do this, we use time-based query param cache busting and replace the embed.js script tag in the `head` node. This forces the browser to load the script anew each time, which then performs the embed.
 
 Again, if there's a way to manually initialize the embed HTML through the already-loaded script, please [open an issue](https://github.com/justinmahar/react-social-media-embed/issues/new) so this can be improved. For now, this gets the job done!
 
 ### Twitter
 
-We use the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed Twitter tweets. This package does all the heavy lifting.
+We use the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed Twitter tweets. This completely amazing package does all the heavy lifting. Please consider supporting the project.
 
 You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
 
 ### YouTube
 
-We use the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed YouTube videos. This package does all the heavy lifting.
+We use the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed YouTube videos. This incredibly awesome package does all the heavy lifting. Please consider supporting the project.
 
 You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
