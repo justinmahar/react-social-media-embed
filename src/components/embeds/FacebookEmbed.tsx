@@ -8,6 +8,7 @@ import { EmbedStyle } from './EmbedStyle';
 const defaultEmbedWidth = 550;
 const maxPlaceholderWidth = defaultEmbedWidth;
 const defaultPlaceholderHeight = 372;
+const borderRadius = 3;
 
 export interface FacebookEmbedProps extends DivProps {
   url: string;
@@ -20,8 +21,6 @@ export interface FacebookEmbedProps extends DivProps {
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
 }
-
-// https://developers.facebook.com/docs/plugins/embedded-posts/?prefill_href=https%3A%2F%2Fwww.facebook.com%2Fandrewismusic%2Fposts%2F451971596293956#code-generator
 
 export const FacebookEmbed = ({
   url,
@@ -94,7 +93,7 @@ export const FacebookEmbed = ({
       ? '100%'
       : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
-    borderRadius: 3,
+    borderRadius,
   };
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
@@ -115,6 +114,7 @@ export const FacebookEmbed = ({
         overflow: 'hidden',
         width: width ?? undefined,
         height: height ?? undefined,
+        borderRadius,
         ...divProps.style,
       }}
     >
@@ -123,7 +123,10 @@ export const FacebookEmbed = ({
         <div
           className="fb-post"
           data-href={url}
-          style={{ width: width ?? defaultEmbedWidth, height: height ?? undefined }}
+          style={{
+            width: isPercentageWidth ? '100%' : width ?? defaultEmbedWidth,
+            height: isPercentageHeight ? '100%' : height ?? undefined,
+          }}
         ></div>
       </div>
       {!ready && !placeholderDisabled && placeholder}

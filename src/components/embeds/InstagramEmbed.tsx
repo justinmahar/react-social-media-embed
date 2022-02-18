@@ -9,6 +9,7 @@ let embedScriptLoaded = false;
 
 const minPlaceholderWidth = 328;
 const defaultPlaceholderHeight = 372;
+const borderRadius = 3;
 
 export interface InstagramEmbedProps extends DivProps {
   url: string;
@@ -127,7 +128,7 @@ export const InstagramEmbed = ({
       ? '100%'
       : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
-    borderRadius: 3,
+    borderRadius,
   };
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
@@ -144,7 +145,13 @@ export const InstagramEmbed = ({
   return (
     <div
       className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
-      style={{ overflow: 'hidden', width: width ?? undefined, height: height ?? undefined, ...divProps.style }}
+      style={{
+        overflow: 'hidden',
+        width: width ?? undefined,
+        height: height ?? undefined,
+        borderRadius,
+        ...divProps.style,
+      }}
       key={`${uuidRef}-${retryTime}`}
     >
       <EmbedStyle />

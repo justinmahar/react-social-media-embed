@@ -10,6 +10,7 @@ import { EmbedStyle } from './EmbedStyle';
 const minPlaceholderWidth = 250;
 const maxPlaceholderWidth = 550;
 const defaultPlaceholderHeight = 350;
+const borderRadius = 12;
 
 export interface TwitterEmbedProps extends DivPropsWithoutRef {
   url: string;
@@ -38,19 +39,23 @@ export const TwitterEmbed = ({
   const uuidRef = React.useRef(generateUUID());
   const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
 
+  const isPercentageWidth = !!width?.toString().includes('%');
+  const isPercentageHeight = !!height?.toString().includes('%');
+
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
     minWidth: minPlaceholderWidth,
     maxWidth: maxPlaceholderWidth,
-    width: typeof width !== 'undefined' ? width : '100%',
-    height:
-      typeof height !== 'undefined'
-        ? height
-        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-        ? '100%'
-        : defaultPlaceholderHeight,
+    width: typeof width !== 'undefined' ? (isPercentageWidth ? '100%' : width) : '100%',
+    height: isPercentageHeight
+      ? '100%'
+      : typeof height !== 'undefined'
+      ? height
+      : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+      ? '100%'
+      : defaultPlaceholderHeight,
     border: 'solid 1px #c9d4d9',
-    borderRadius: 12,
+    borderRadius,
   };
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
@@ -71,6 +76,7 @@ export const TwitterEmbed = ({
         overflow: 'hidden',
         width: width ?? undefined,
         height: height ?? undefined,
+        borderRadius,
         ...divProps.style,
       }}
     >

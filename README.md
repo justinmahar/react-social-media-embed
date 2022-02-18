@@ -48,6 +48,13 @@ Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTub
   - [Twitter](#twitter)
   - [YouTube](#youtube)
   - [Placeholder](#placeholder)
+- [How It Works](#how-it-works)
+  - [Facebook](#facebook-1)
+  - [Instagram](#instagram-1)
+  - [LinkedIn](#linkedin-1)
+  - [TikTok](#tiktok-1)
+  - [Twitter](#twitter-1)
+  - [YouTube](#youtube-1)
 - [TypeScript](#typescript)
 - [Icon Attribution](#icon-attribution)
 - [Contributing](#contributing)
@@ -153,11 +160,91 @@ This component uses the [`react-youtube`](https://www.npmjs.com/package/react-yo
 import { PlaceholderEmbed } from 'react-social-media-embed';
 ```
 
-A placeholder is shown while loading. If you do not specify a placeholder via the `embedPlaceholder` prop, a default `PlaceholderEmbed` placeholder component will be used. You can disable the placeholder with the `placeholderDisabled` prop.
+A placeholder is shown while loading. If you do not specify a placeholder via the `embedPlaceholder` prop, a default `PlaceholderEmbed` placeholder component will be used. You can disable the placeholder with the `placeholderDisabled` prop. 
+
+The default placeholder [looks like this](http://localhost:6006/?path=/story/placeholder-placeholderembed--example).
 
 The default placeholder will size itself according to the width and/or height you specify for the embed. If none are specified, it will fall back to a default size appropriate for the given social media platform. You can pass custom props (such as `style`) to the default placeholder via `placeholderProps` to override any default behavior.
 
+If you'd like, you can specify the  `placeholderImageUrl` prop to any of the embeds to show a placeholder with the provided image. Here is [an example](http://localhost:6006/?path=/story/placeholder-placeholderembed--landscape-image-width-400) of an image placeholder.
+
 See the [PlaceholderEmbed docs](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--example) for more.
+
+## How It Works
+
+Each embed has a slightly different implementation. I've tried my best to standardize the embed experience for each from a developer standpoint so you don't have to think about how it performs the embed. 
+
+If you're curious how the embeds happen, read on!
+
+### Facebook
+
+We use the [Facebook JavaScript SDK](https://developers.facebook.com/docs/plugins/embedded-posts/) to embed content.
+
+This loads a script which initializes the Facebook embedder to `window.FB.XFBML`.
+
+A Facebook post uses the following form:
+
+```html
+<div class="fb-post" data-href="{your-post-url}"></div>
+```
+
+We then use the [`FB.XFBML.parse()`](https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/) function to manually initialize the embed HTML.
+
+### Instagram
+
+We use the [Instagram embed.js JavaScript library](https://developers.facebook.com/docs/plugins/embedded-posts/) to embed content. In the documentation, you can refer to the section titled "Embed JS" for details.
+
+This loads a script which initializes the Instagram embedder to `window.instgrm.Embeds`.
+
+An Instagram post uses the following form:
+
+```html
+<blockquote class="instagram-media"
+            data-instgrm-permalink="{your-post-url}"
+            data-instgrm-version="14">
+  <div>Placeholder</div>
+</blockquote>
+```
+
+We then use the [`instgrm.Embeds.process()`](https://developers.facebook.com/docs/instagram/oembed/) function to manually initialize the embed HTML.
+
+### LinkedIn
+
+LinkedIn does not have an embed JS library, unfortunately. So we use a simple `iframe` with the embed URL from LinkedIn's embed option, which is accessed via the menu next to any given post that has embedding allowed. If a post does not have embedding allowed, this option will not appear.
+
+LinkedIn provides you with an `iframe` with an `src` attribute and the calculated `width` and `height`. Use these attributes for your embed.
+
+### TikTok
+
+We use the [TikTok embed.js JavaScript library](https://developers.tiktok.com/doc/embed-videos) to embed content. 
+
+This loads a [script](https://www.tiktok.com/embed.js) which initializes the TikTok embedder to `window.tiktokEmbed`.
+
+A TikTok post uses the following form:
+
+```html
+<blockquote class="tiktok-embed" cite="{your-post-url}" data-video-id="{video-id}">
+  <div>Placeholder</div>
+</blockquote>
+```
+
+Unfortunately, unlike Facebook and Instagram, there is no documented or obvious way to manually initialize the embed HTML. **[If you know how to do this, please open a GitHub issue with the info!](https://github.com/justinmahar/react-social-media-embed/issues/new)**
+
+So, in order to initialize the embed HTML, we must load the embed script from TikTok every time we render the TikTok embed. To do this, we use time-based query param cache-busting and replace the embed.js script tag in the `head` node. This forces the browser to load the script anew each time, which then performs the embed.
+
+Again, if there's a way to manually initialize the embed HTML through the already-loaded script, please [open an issue](https://github.com/justinmahar/react-social-media-embed/issues/new) so this can be improved. For now, this gets the job done!
+
+### Twitter
+
+We use the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed Twitter tweets. This package does all the heavy lifting.
+
+You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
+
+### YouTube
+
+We use the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed YouTube videos. This package does all the heavy lifting.
+
+You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
 ## TypeScript
 

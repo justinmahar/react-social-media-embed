@@ -8,8 +8,10 @@ export default {
   component: FacebookEmbed,
 } as ComponentMeta<typeof FacebookEmbed>;
 
-const url = 'https://www.facebook.com/photo/?fbid=451970492960733&set=a.234241234733661';
-const videoUrl = 'https://fb.watch/b67iYbdzNm/';
+const textUrl = 'https://www.facebook.com/andrewismusic/posts/483451443145971';
+const photoUrl = 'https://www.facebook.com/andrewismusic/posts/451971596293956';
+const linkUrl = 'https://www.facebook.com/andrewismusic/posts/479747760183006';
+const videoUrl = 'https://fb.watch/bfP8U3LBa6/';
 const placeholderImageUrl = `https://placekitten.com/325/560`;
 
 const ToggledOnTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
@@ -26,74 +28,92 @@ const ToggledOffTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
 
 export const Example = ToggledOnTemplate.bind({});
 Example.args = {
-  url,
+  url: photoUrl,
   width: 325,
+};
+
+export const TextPostExample = ToggledOnTemplate.bind({});
+TextPostExample.args = {
+  url: textUrl,
+  width: 325,
+};
+
+export const VideoPostExample = ToggledOnTemplate.bind({});
+VideoPostExample.args = {
+  url: videoUrl,
+  width: 325,
+};
+
+export const LinkPostExampleWidth550 = ToggledOnTemplate.bind({});
+LinkPostExampleWidth550.args = {
+  url: linkUrl,
+  width: 550,
 };
 
 export const FluidWidth = ToggledOffTemplate.bind({});
 FluidWidth.args = {
-  url,
+  url: photoUrl,
   style: { maxWidth: 550 },
   width: '100%',
 };
 
 export const Width150 = ToggledOffTemplate.bind({});
 Width150.args = {
-  url,
+  url: photoUrl,
   width: 150,
 };
 
 export const Width325 = ToggledOffTemplate.bind({});
 Width325.args = {
-  url,
+  url: photoUrl,
   width: 325,
 };
 
 export const Width400 = ToggledOffTemplate.bind({});
 Width400.args = {
-  url,
+  url: photoUrl,
   width: 400,
 };
 
 export const Width600 = ToggledOffTemplate.bind({});
 Width600.args = {
-  url,
+  url: photoUrl,
   width: 600,
 };
 
 export const Width800 = ToggledOffTemplate.bind({});
 Width800.args = {
-  url,
+  url: photoUrl,
   width: 800,
 };
 
 export const Width50Percent = ToggledOffTemplate.bind({});
 Width50Percent.args = {
-  url,
+  url: photoUrl,
   width: '50%',
 };
 
 export const Width100Percent = ToggledOffTemplate.bind({});
 Width100Percent.args = {
-  url,
+  url: photoUrl,
   width: '100%',
 };
 
 export const UrlOnly = ToggledOffTemplate.bind({});
 UrlOnly.args = {
-  url,
+  url: photoUrl,
 };
 
 export const WithPlaceholderImage = ToggledOffTemplate.bind({});
 WithPlaceholderImage.args = {
-  url,
+  url: photoUrl,
   width: 325,
   placeholderImageUrl,
 };
 
 export const CustomPlaceholder = ToggledOffTemplate.bind({});
 CustomPlaceholder.args = {
-  url,
+  url: photoUrl,
   width: 325,
   embedPlaceholder: (
     <div
@@ -111,14 +131,14 @@ CustomPlaceholder.args = {
 
 export const CustomPlaceholderLinkText = ToggledOffTemplate.bind({});
 CustomPlaceholderLinkText.args = {
-  url,
+  url: photoUrl,
   width: 325,
   linkText: 'Custom link text',
 };
 
 export const PlaceholderDisabled = ToggledOffTemplate.bind({});
 PlaceholderDisabled.args = {
-  url,
+  url: photoUrl,
   width: 325,
   placeholderDisabled: true,
 };

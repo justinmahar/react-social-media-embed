@@ -8,10 +8,11 @@ import { EmbedStyle } from './EmbedStyle';
 
 const maxPlaceholderWidth = 640;
 const defaultPlaceholderHeight = 360;
+const borderRadius = 0;
 
 export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   url: string;
-  youTubeProps: YouTubeProps;
+  youTubeProps?: YouTubeProps;
   width?: string | number;
   height?: string | number;
   linkText?: string;
@@ -66,7 +67,7 @@ export const YouTubeEmbed = ({
       ? '100%'
       : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
-    borderRadius: 0,
+    borderRadius,
   };
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
@@ -87,6 +88,7 @@ export const YouTubeEmbed = ({
         overflow: 'hidden',
         width: width ?? undefined,
         height: height ?? undefined,
+        borderRadius,
         ...divProps.style,
       }}
     >

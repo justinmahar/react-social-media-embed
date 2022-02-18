@@ -5,11 +5,10 @@ import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/Placehol
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
-// DOCS: https://developers.tiktok.com/doc/embed-videos
-
 const minPlaceholderWidth = 325;
 const maxPlaceholderWidth = 480;
 const defaultPlaceholderHeight = 550;
+const borderRadius = 8;
 
 export interface TikTokEmbedProps extends DivProps {
   url: string;
@@ -121,7 +120,7 @@ export const TikTokEmbed = ({
         ? '100%'
         : defaultPlaceholderHeight,
     border: 'solid 1px rgba(22,24,35,0.12)',
-    borderRadius: 8,
+    borderRadius,
   };
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
@@ -142,11 +141,12 @@ export const TikTokEmbed = ({
         overflow: 'hidden',
         width: width ?? undefined,
         height: height ?? undefined,
+        borderRadius,
         ...divProps.style,
       }}
     >
       <EmbedStyle />
-      <div className={classNames('tiktok-embed-container', divProps.className)} key={`${uuidRef}-${retryTime}`}>
+      <div className="tiktok-embed-container" key={`${uuidRef}-${retryTime}`}>
         <blockquote className="tiktok-embed" cite={url} data-video-id={embedId}>
           {!placeholderDisabled ? (
             <div id={uuidRef.current} style={{ display: 'flex', justifyContent: 'center' }}>

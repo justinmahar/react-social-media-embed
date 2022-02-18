@@ -66,6 +66,18 @@ Width150AtUnderMin.args = {
   width: 150,
 };
 
+export const Width50Percent = ToggledOffTemplate.bind({});
+Width50Percent.args = {
+  url,
+  width: '50%',
+};
+
+export const Width100Percent = ToggledOffTemplate.bind({});
+Width100Percent.args = {
+  url,
+  width: '100%',
+};
+
 export const UrlOnly = ToggledOffTemplate.bind({});
 UrlOnly.args = {
   url,

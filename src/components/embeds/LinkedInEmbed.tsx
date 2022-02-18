@@ -8,6 +8,7 @@ import { EmbedStyle } from './EmbedStyle';
 const minPlaceholderWidth = 250;
 const maxPlaceholderWidth = 550;
 const defaultPlaceholderHeight = 550;
+const borderRadius = 8;
 
 export interface LinkedInEmbedProps extends DivProps {
   url: string;
@@ -48,7 +49,7 @@ export const LinkedInEmbed = ({
         ? '100%'
         : defaultPlaceholderHeight,
     border: 'solid 1px rgba(0, 0, 0, 0.15)',
-    borderRadius: 8,
+    borderRadius,
   };
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
@@ -69,6 +70,7 @@ export const LinkedInEmbed = ({
         overflow: 'hidden',
         width: width ?? undefined,
         height: height ?? undefined,
+        borderRadius,
         ...divProps.style,
       }}
     >
