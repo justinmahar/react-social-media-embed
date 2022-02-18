@@ -3,29 +3,125 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { LinkedInEmbed } from '../../components/embeds/LinkedInEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Embeds/LinkedInEmbed',
   component: LinkedInEmbed,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
 } as ComponentMeta<typeof LinkedInEmbed>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof LinkedInEmbed> = (args) => (
-  <EmbedToggler>
+const url = 'https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384';
+const postUrl =
+  'https://www.linkedin.com/posts/peterdiamandis_5-discoveries-the-james-webb-telescope-will-activity-6898694773406875648-z-D7';
+const placeholderImageUrl = `https://placekitten.com/504/325`;
+
+const ToggledOnTemplate: ComponentStory<typeof LinkedInEmbed> = (args) => (
+  <EmbedToggler defaultToggledOn>
     <LinkedInEmbed {...args} />
   </EmbedToggler>
 );
 
-export const UrlOnly = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
+const ToggledOffTemplate: ComponentStory<typeof LinkedInEmbed> = (args) => (
+  <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
+    <LinkedInEmbed {...args} />
+  </EmbedToggler>
+);
+
+export const Example = ToggledOnTemplate.bind({});
+Example.args = {
+  url,
+  postUrl,
+  width: 325,
+  height: 570,
+};
+
+export const Size250x570AtMinWidth = ToggledOffTemplate.bind({});
+Size250x570AtMinWidth.args = {
+  url,
+  postUrl,
+  width: 250,
+  height: 570,
+};
+
+export const Size400x570 = ToggledOffTemplate.bind({});
+Size400x570.args = {
+  url,
+  postUrl,
+  width: 400,
+  height: 570,
+};
+
+export const Size600x650 = ToggledOffTemplate.bind({});
+Size600x650.args = {
+  url,
+  postUrl,
+  width: 600,
+  height: 650,
+};
+
+export const Size150x570AtUnderMin = ToggledOffTemplate.bind({});
+Size150x570AtUnderMin.args = {
+  url,
+  postUrl,
+  width: 150,
+  height: 570,
+};
+
+export const Width100Percent = ToggledOffTemplate.bind({});
+Width100Percent.args = {
+  url,
+  postUrl,
+  width: '100%',
+  height: 570,
+};
+
+export const UrlOnly = ToggledOffTemplate.bind({});
 UrlOnly.args = {
-  url: 'https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473',
-  postUrl:
-    'https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb',
-  width: 504,
-  height: 592,
+  url,
+  postUrl,
+};
+
+export const WithPlaceholderImage = ToggledOffTemplate.bind({});
+WithPlaceholderImage.args = {
+  url,
+  postUrl,
+  width: 325,
+  height: 570,
+  placeholderImageUrl,
+};
+
+export const CustomPlaceholder = ToggledOffTemplate.bind({});
+CustomPlaceholder.args = {
+  url,
+  postUrl,
+  width: 325,
+  height: 570,
+  embedPlaceholder: (
+    <div
+      style={{
+        width: 325,
+        padding: '150px 0',
+        backgroundColor: 'lightsteelblue',
+        textAlign: 'center',
+      }}
+    >
+      Custom Placeholder!
+    </div>
+  ),
+};
+
+export const CustomPlaceholderLinkText = ToggledOffTemplate.bind({});
+CustomPlaceholderLinkText.args = {
+  url,
+  postUrl,
+  width: 325,
+  height: 570,
+  linkText: 'Custom link text',
+};
+
+export const PlaceholderDisabled = ToggledOffTemplate.bind({});
+PlaceholderDisabled.args = {
+  url,
+  postUrl,
+  width: 325,
+  height: 570,
+  placeholderDisabled: true,
 };

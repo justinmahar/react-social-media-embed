@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
+import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -18,6 +18,7 @@ export interface FacebookEmbedProps extends DivProps {
   placeholderDisabled?: boolean;
   scriptLoadDisabled?: boolean;
   placeholderImageUrl?: string;
+  placeholderProps?: PlaceholderEmbedProps;
 }
 
 // https://developers.facebook.com/docs/plugins/embedded-posts/?prefill_href=https%3A%2F%2Fwww.facebook.com%2Fandrewismusic%2Fposts%2F451971596293956#code-generator
@@ -31,6 +32,7 @@ export const FacebookEmbed = ({
   placeholderDisabled,
   scriptLoadDisabled,
   placeholderImageUrl,
+  placeholderProps,
   ...divProps
 }: FacebookEmbedProps) => {
   const [ready, setReady] = React.useState(false);
@@ -77,21 +79,31 @@ export const FacebookEmbed = ({
     }
   }, [scriptLoadDisabled]);
 
+  const isPercentageWidth = !!width?.toString().includes('%');
+  const isPercentageHeight = !!height?.toString().includes('%');
+
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
-    maxWidth: maxPlaceholderWidth,
-    width: typeof width !== 'undefined' ? width : '100%',
-    height:
-      typeof height !== 'undefined'
-        ? height
-        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-        ? '100%'
-        : defaultPlaceholderHeight,
+    maxWidth: isPercentageWidth ? undefined : maxPlaceholderWidth,
+    width: typeof width !== 'undefined' ? (isPercentageWidth ? '100%' : width) : '100%',
+    height: isPercentageHeight
+      ? '100%'
+      : typeof height !== 'undefined'
+      ? height
+      : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+      ? '100%'
+      : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
     borderRadius: 3,
   };
   const placeholder = embedPlaceholder ?? (
-    <PlaceholderEmbed url={url} imageUrl={placeholderImageUrl} style={placeholderStyle} linkText={linkText} />
+    <PlaceholderEmbed
+      url={url}
+      imageUrl={placeholderImageUrl}
+      linkText={linkText}
+      {...placeholderProps}
+      style={{ ...placeholderStyle, ...placeholderProps?.style }}
+    />
   );
   // === END Placeholder ===
 

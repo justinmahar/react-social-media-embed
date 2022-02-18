@@ -3,7 +3,7 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { TwitterTweetEmbedProps } from 'react-twitter-embed/dist/components/TwitterTweetEmbed';
-import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
+import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -20,6 +20,7 @@ export interface TwitterEmbedProps extends DivPropsWithoutRef {
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
+  placeholderProps?: PlaceholderEmbedProps;
 }
 
 export const TwitterEmbed = ({
@@ -31,6 +32,7 @@ export const TwitterEmbed = ({
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
+  placeholderProps,
   ...divProps
 }: TwitterEmbedProps) => {
   const uuidRef = React.useRef(generateUUID());
@@ -51,7 +53,13 @@ export const TwitterEmbed = ({
     borderRadius: 12,
   };
   const placeholder = embedPlaceholder ?? (
-    <PlaceholderEmbed url={url} style={placeholderStyle} imageUrl={placeholderImageUrl} linkText={linkText} />
+    <PlaceholderEmbed
+      url={url}
+      imageUrl={placeholderImageUrl}
+      linkText={linkText}
+      {...placeholderProps}
+      style={{ ...placeholderStyle, ...placeholderProps?.style }}
+    />
   );
   // === END Placeholder ===
 

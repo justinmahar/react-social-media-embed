@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import YouTube, { Options, YouTubeProps } from 'react-youtube';
-import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
+import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -18,6 +18,7 @@ export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
+  placeholderProps?: PlaceholderEmbedProps;
 }
 
 export const YouTubeEmbed = ({
@@ -29,6 +30,7 @@ export const YouTubeEmbed = ({
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
+  placeholderProps,
   ...divProps
 }: YouTubeEmbedProps) => {
   const uuidRef = React.useRef(generateUUID());
@@ -40,30 +42,40 @@ export const YouTubeEmbed = ({
     videoId = videoIdMatch[1];
   }
 
+  const isPercentageWidth = !!width?.toString().includes('%');
+  const isPercentageHeight = !!height?.toString().includes('%');
+
   let opts: Options = {};
   if (typeof width !== 'undefined') {
-    opts.width = `${width}`;
+    opts.width = isPercentageWidth ? '100%' : `${width}`;
   }
   if (typeof height !== 'undefined') {
-    opts.height = `${height}`;
+    opts.height = isPercentageHeight ? '100%' : `${height}`;
   }
   opts = { ...opts, ...youTubeProps?.opts };
 
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
-    maxWidth: maxPlaceholderWidth,
-    width: typeof width !== 'undefined' ? width : '100%',
-    height:
-      typeof height !== 'undefined'
-        ? height
-        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-        ? '100%'
-        : defaultPlaceholderHeight,
+    maxWidth: isPercentageWidth ? undefined : maxPlaceholderWidth,
+    width: typeof width !== 'undefined' ? (isPercentageWidth ? '100%' : width) : '100%',
+    height: isPercentageHeight
+      ? '100%'
+      : typeof height !== 'undefined'
+      ? height
+      : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+      ? '100%'
+      : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
     borderRadius: 0,
   };
   const placeholder = embedPlaceholder ?? (
-    <PlaceholderEmbed url={url} style={placeholderStyle} imageUrl={placeholderImageUrl} linkText={linkText} />
+    <PlaceholderEmbed
+      url={url}
+      imageUrl={placeholderImageUrl}
+      linkText={linkText}
+      {...placeholderProps}
+      style={{ ...placeholderStyle, ...placeholderProps?.style }}
+    />
   );
   // === END Placeholder ===
 

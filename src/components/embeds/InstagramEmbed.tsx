@@ -1,14 +1,13 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
+import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
 let embedScriptLoaded = false;
 
-const minPlaceholderWidth = 326;
-const maxPlaceholderWidth = 540;
+const minPlaceholderWidth = 328;
 const defaultPlaceholderHeight = 372;
 
 export interface InstagramEmbedProps extends DivProps {
@@ -25,6 +24,7 @@ export interface InstagramEmbedProps extends DivProps {
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
+  placeholderProps?: PlaceholderEmbedProps;
 }
 
 export const InstagramEmbed = ({
@@ -41,6 +41,7 @@ export const InstagramEmbed = ({
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
+  placeholderProps,
   ...divProps
 }: InstagramEmbedProps): JSX.Element => {
   const [initialized, setInitialized] = React.useState(false);
@@ -111,18 +112,20 @@ export const InstagramEmbed = ({
   const urlWithNoQuery = url.replace(/[?].*$/, '');
   const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
 
-  // === Placeholder ===
+  const isPercentageWidth = !!width?.toString().includes('%');
+  const isPercentageHeight = !!height?.toString().includes('%');
 
+  // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
-    minWidth: minPlaceholderWidth,
-    maxWidth: maxPlaceholderWidth,
-    width: typeof width !== 'undefined' ? width : '100%',
-    height:
-      typeof height !== 'undefined'
-        ? height
-        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-        ? '100%'
-        : defaultPlaceholderHeight,
+    minWidth: isPercentageWidth ? undefined : minPlaceholderWidth,
+    width: typeof width !== 'undefined' ? (isPercentageWidth ? '100%' : width) : '100%',
+    height: isPercentageHeight
+      ? '100%'
+      : typeof height !== 'undefined'
+      ? height
+      : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+      ? '100%'
+      : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
     borderRadius: 3,
   };
@@ -132,7 +135,8 @@ export const InstagramEmbed = ({
       id={uuidRef.current}
       linkText={linkText}
       imageUrl={placeholderImageUrl}
-      style={placeholderStyle}
+      {...placeholderProps}
+      style={{ ...placeholderStyle, ...placeholderProps?.style }}
     />
   );
   // === END Placeholder ===
@@ -140,7 +144,7 @@ export const InstagramEmbed = ({
   return (
     <div
       className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
-      style={{ overflow: 'hidden', ...divProps.style }}
+      style={{ overflow: 'hidden', width: width ?? undefined, height: height ?? undefined, ...divProps.style }}
       key={`${uuidRef}-${retryTime}`}
     >
       <EmbedStyle />
@@ -149,8 +153,7 @@ export const InstagramEmbed = ({
         data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
         data-instgrm-version={igVersion}
         style={{
-          width: width ?? 'calc(100% - 2px)',
-          height: height ?? undefined,
+          width: 'calc(100% - 2px)',
         }}
       >
         {!placeholderDisabled && placeholder}

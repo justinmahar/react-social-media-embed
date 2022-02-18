@@ -3,25 +3,105 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { TwitterEmbed } from '../../components/embeds/TwitterEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Embeds/TwitterEmbed',
   component: TwitterEmbed,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
 } as ComponentMeta<typeof TwitterEmbed>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof TwitterEmbed> = (args) => (
-  <EmbedToggler>
+const url = 'https://twitter.com/PixelAndBracket/status/1356633038717923333';
+const placeholderImageUrl = `https://placekitten.com/550/325`;
+
+const ToggledOnTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
+  <EmbedToggler defaultToggledOn>
     <TwitterEmbed {...args} />
   </EmbedToggler>
 );
 
-export const UrlOnly = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
+const ToggledOffTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
+  <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
+    <TwitterEmbed {...args} />
+  </EmbedToggler>
+);
+
+export const Example = ToggledOnTemplate.bind({});
+Example.args = {
+  url,
+  width: 325,
+};
+
+export const FluidWidth = ToggledOffTemplate.bind({});
+FluidWidth.args = {
+  url,
+  style: { maxWidth: 550 },
+  width: '100%',
+};
+
+export const Width250AtMin = ToggledOffTemplate.bind({});
+Width250AtMin.args = {
+  url,
+  width: 250,
+};
+
+export const Width400 = ToggledOffTemplate.bind({});
+Width400.args = {
+  url,
+  width: 400,
+};
+
+export const Width550AtMax = ToggledOffTemplate.bind({});
+Width550AtMax.args = {
+  url,
+  width: 550,
+};
+
+export const Width800AtOverMax = ToggledOffTemplate.bind({});
+Width800AtOverMax.args = {
+  url,
+  width: 800,
+};
+
+export const Width150AtUnderMin = ToggledOffTemplate.bind({});
+Width150AtUnderMin.args = {
+  url,
+  width: 150,
+};
+
+export const UrlOnly = ToggledOffTemplate.bind({});
 UrlOnly.args = {
-  url: 'https://twitter.com/PixelAndBracket/status/1356633038717923333',
+  url,
+};
+
+export const WithPlaceholderImage = ToggledOffTemplate.bind({});
+WithPlaceholderImage.args = {
+  url,
+  placeholderImageUrl,
+};
+
+export const CustomPlaceholder = ToggledOffTemplate.bind({});
+CustomPlaceholder.args = {
+  url,
+  embedPlaceholder: (
+    <div
+      style={{
+        width: 325,
+        padding: '150px 0',
+        backgroundColor: 'lightsteelblue',
+        textAlign: 'center',
+      }}
+    >
+      Custom Placeholder!
+    </div>
+  ),
+};
+
+export const CustomPlaceholderLinkText = ToggledOffTemplate.bind({});
+CustomPlaceholderLinkText.args = {
+  url,
+  linkText: 'Custom link text',
+};
+
+export const PlaceholderDisabled = ToggledOffTemplate.bind({});
+PlaceholderDisabled.args = {
+  url,
+  placeholderDisabled: true,
 };

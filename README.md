@@ -153,9 +153,9 @@ This component uses the [`react-youtube`](https://www.npmjs.com/package/react-yo
 import { PlaceholderEmbed } from 'react-social-media-embed';
 ```
 
-A placeholder is shown while loading. If you do not specify a placeholder via the `embedPlaceholder` prop, a default `PlaceholderEmbed` placeholder component will be used. Disable the placeholder with the `placeholderDisabled` prop.
+A placeholder is shown while loading. If you do not specify a placeholder via the `embedPlaceholder` prop, a default `PlaceholderEmbed` placeholder component will be used. You can disable the placeholder with the `placeholderDisabled` prop.
 
-The default placeholder will size itself according to the width and/or height you specify for the embed. If none are specified, it will fall back to a default size appropriate for the given social media platform.
+The default placeholder will size itself according to the width and/or height you specify for the embed. If none are specified, it will fall back to a default size appropriate for the given social media platform. You can pass custom props (such as `style`) to the default placeholder via `placeholderProps` to override any default behavior.
 
 See the [PlaceholderEmbed docs](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--example) for more.
 

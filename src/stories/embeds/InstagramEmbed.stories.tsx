@@ -3,26 +3,121 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InstagramEmbed } from '../../components/embeds/InstagramEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Embeds/InstagramEmbed',
   component: InstagramEmbed,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
 } as ComponentMeta<typeof InstagramEmbed>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof InstagramEmbed> = (args) => (
-  <EmbedToggler>
+const url = 'https://www.instagram.com/p/CUbHfhpswxt/';
+const placeholderImageUrl = `https://placekitten.com/540/400`;
+
+const ToggledOnTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
+  <EmbedToggler defaultToggledOn>
     <InstagramEmbed {...args} />
   </EmbedToggler>
 );
 
-export const UrlOnly = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
+const ToggledOffTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
+  <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
+    <InstagramEmbed {...args} />
+  </EmbedToggler>
+);
+
+export const Example = ToggledOnTemplate.bind({});
+Example.args = {
+  url,
+  width: 328,
+};
+
+export const FluidWidth = ToggledOffTemplate.bind({});
+FluidWidth.args = {
+  url,
+  style: { maxWidth: 550 },
+  width: '100%',
+};
+
+export const Width328AtMin = ToggledOffTemplate.bind({});
+Width328AtMin.args = {
+  url,
+  width: 328,
+};
+
+export const Width400 = ToggledOffTemplate.bind({});
+Width400.args = {
+  url,
+  width: 400,
+};
+
+export const Width600 = ToggledOffTemplate.bind({});
+Width600.args = {
+  url,
+  width: 600,
+};
+
+export const Width800 = ToggledOffTemplate.bind({});
+Width800.args = {
+  url,
+  width: 800,
+};
+
+export const Width150AtUnderMin = ToggledOffTemplate.bind({});
+Width150AtUnderMin.args = {
+  url,
+  width: 150,
+};
+
+export const Width50Percent = ToggledOffTemplate.bind({});
+Width50Percent.args = {
+  url,
+  width: '50%',
+};
+
+export const Width100Percent = ToggledOffTemplate.bind({});
+Width100Percent.args = {
+  url,
+  width: '100%',
+};
+
+export const UrlOnly = ToggledOffTemplate.bind({});
 UrlOnly.args = {
-  url: 'https://www.instagram.com/p/CUbHfhpswxt/',
-  width: 540,
+  url,
+};
+
+export const WithPlaceholderImage = ToggledOffTemplate.bind({});
+WithPlaceholderImage.args = {
+  url,
+  width: 400,
+  placeholderImageUrl,
+};
+
+export const CustomPlaceholder = ToggledOffTemplate.bind({});
+CustomPlaceholder.args = {
+  url,
+  width: 400,
+  embedPlaceholder: (
+    <div
+      style={{
+        width: 328,
+        padding: '150px 0',
+        backgroundColor: 'lightsteelblue',
+        textAlign: 'center',
+      }}
+    >
+      Custom Placeholder!
+    </div>
+  ),
+};
+
+export const CustomPlaceholderLinkText = ToggledOffTemplate.bind({});
+CustomPlaceholderLinkText.args = {
+  url,
+  width: 400,
+  linkText: 'Custom link text',
+};
+
+export const PlaceholderDisabled = ToggledOffTemplate.bind({});
+PlaceholderDisabled.args = {
+  url,
+  width: 400,
+  placeholderDisabled: true,
 };

@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { DivProps } from 'react-html-props';
-import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
+import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
-const minPlaceholderWidth = 300;
+const minPlaceholderWidth = 250;
 const maxPlaceholderWidth = 550;
 const defaultPlaceholderHeight = 550;
 
@@ -18,6 +18,7 @@ export interface LinkedInEmbedProps extends DivProps {
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
+  placeholderProps?: PlaceholderEmbedProps;
 }
 
 export const LinkedInEmbed = ({
@@ -29,6 +30,7 @@ export const LinkedInEmbed = ({
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
+  placeholderProps,
   ...divProps
 }: LinkedInEmbedProps) => {
   const uuidRef = React.useRef(generateUUID());
@@ -51,9 +53,10 @@ export const LinkedInEmbed = ({
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
       url={postUrl ?? url}
-      style={placeholderStyle}
       imageUrl={placeholderImageUrl}
       linkText={linkText}
+      {...placeholderProps}
+      style={{ ...placeholderStyle, ...placeholderProps?.style }}
     />
   );
   // === END Placeholder ===

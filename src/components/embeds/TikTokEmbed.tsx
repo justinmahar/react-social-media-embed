@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import { PlaceholderEmbed } from '../placeholder/PlaceholderEmbed';
+import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
@@ -24,6 +24,7 @@ export interface TikTokEmbedProps extends DivProps {
   retryInitialDelay?: number;
   retryBackoffMaxDelay?: number;
   placeholderImageUrl?: string;
+  placeholderProps?: PlaceholderEmbedProps;
 }
 
 export const TikTokEmbed = ({
@@ -39,6 +40,7 @@ export const TikTokEmbed = ({
   retryInitialDelay = 3000,
   retryBackoffMaxDelay = 30000,
   placeholderImageUrl,
+  placeholderProps,
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
   // Format: https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1
@@ -122,7 +124,13 @@ export const TikTokEmbed = ({
     borderRadius: 8,
   };
   const placeholder = embedPlaceholder ?? (
-    <PlaceholderEmbed url={url} style={placeholderStyle} imageUrl={placeholderImageUrl} linkText={linkText} />
+    <PlaceholderEmbed
+      url={url}
+      imageUrl={placeholderImageUrl}
+      linkText={linkText}
+      {...placeholderProps}
+      style={{ ...placeholderStyle, ...placeholderProps?.style }}
+    />
   );
   // === END Placeholder ===
 
@@ -130,7 +138,12 @@ export const TikTokEmbed = ({
     <div
       {...divProps}
       className={classNames('rsme-embed rsme-tiktok-embed', divProps.className)}
-      style={{ overflow: 'hidden', ...divProps.style }}
+      style={{
+        overflow: 'hidden',
+        width: width ?? undefined,
+        height: height ?? undefined,
+        ...divProps.style,
+      }}
     >
       <EmbedStyle />
       <div className={classNames('tiktok-embed-container', divProps.className)} key={`${uuidRef}-${retryTime}`}>

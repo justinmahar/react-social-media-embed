@@ -15,7 +15,7 @@ export default {
 } as ComponentMeta<typeof PlaceholderEmbed>;
 
 const Template: ComponentStory<typeof PlaceholderEmbed> = (args) => (
-  <EmbedToggler>
+  <EmbedToggler defaultToggledOn>
     <PlaceholderEmbed {...args} />
   </EmbedToggler>
 );

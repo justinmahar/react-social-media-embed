@@ -99,7 +99,7 @@ export const PlaceholderEmbed = ({ url, linkText = 'View post', imageUrl, ...div
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  marginBottom: 40,
+                  marginBottom: '40',
                 }}
               />
             ) : (
