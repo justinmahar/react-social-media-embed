@@ -42,6 +42,7 @@ const EmbedStyle_1 = require("./EmbedStyle");
 let embedScriptLoaded = false;
 const minPlaceholderWidth = 328;
 const defaultPlaceholderHeight = 372;
+const borderRadius = 3;
 const InstagramEmbed = (_a) => {
     var _b, _c;
     var { url, igVersion = '14', width, height, linkText = 'View post on Instagram', processDelay = 100, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = 1000, retryBackoffMaxDelay = 5000, embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["url", "igVersion", "width", "height", "linkText", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
@@ -124,11 +125,11 @@ const InstagramEmbed = (_a) => {
                     ? '100%'
                     : defaultPlaceholderHeight,
         border: '1px solid #dee2e6',
-        borderRadius: 3,
+        borderRadius,
     };
     const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: cleanUrlWithEndingSlash, id: uuidRef.current, linkText: linkText, imageUrl: placeholderImageUrl }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
     // === END Placeholder ===
-    return (React.createElement("div", { className: (0, classnames_1.default)('rsme-embed rsme-instagram-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style), key: `${uuidRef}-${retryTime}` },
+    return (React.createElement("div", { className: (0, classnames_1.default)('rsme-embed rsme-instagram-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined, borderRadius }, divProps.style), key: `${uuidRef}-${retryTime}` },
         React.createElement(EmbedStyle_1.EmbedStyle, null),
         React.createElement("blockquote", { className: "instagram-media", "data-instgrm-permalink": `${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`, "data-instgrm-version": igVersion, style: {
                 width: 'calc(100% - 2px)',

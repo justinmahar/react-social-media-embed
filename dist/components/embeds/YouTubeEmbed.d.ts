@@ -4,7 +4,7 @@ import { YouTubeProps } from 'react-youtube';
 import { PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 export interface YouTubeEmbedProps extends DivPropsWithoutRef {
     url: string;
-    youTubeProps: YouTubeProps;
+    youTubeProps?: YouTubeProps;
     width?: string | number;
     height?: string | number;
     linkText?: string;

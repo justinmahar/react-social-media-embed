@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlaceholderDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.Width150AtUnderMin = exports.Width800AtOverMax = exports.Width550AtMax = exports.Width400 = exports.Width250AtMin = exports.FluidWidth = exports.Example = void 0;
+exports.PlaceholderDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.Width100Percent = exports.Width50Percent = exports.Width150AtUnderMin = exports.Width800AtOverMax = exports.Width550AtMax = exports.Width400 = exports.Width250AtMin = exports.FluidWidth = exports.Example = void 0;
 const react_1 = __importDefault(require("react"));
 const TwitterEmbed_1 = require("../../components/embeds/TwitterEmbed");
 const EmbedToggler_1 = require("../EmbedToggler");
@@ -52,6 +52,16 @@ exports.Width150AtUnderMin = ToggledOffTemplate.bind({});
 exports.Width150AtUnderMin.args = {
     url,
     width: 150,
+};
+exports.Width50Percent = ToggledOffTemplate.bind({});
+exports.Width50Percent.args = {
+    url,
+    width: '50%',
+};
+exports.Width100Percent = ToggledOffTemplate.bind({});
+exports.Width100Percent.args = {
+    url,
+    width: '100%',
 };
 exports.UrlOnly = ToggledOffTemplate.bind({});
 exports.UrlOnly.args = {

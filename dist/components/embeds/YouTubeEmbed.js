@@ -42,6 +42,7 @@ const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const maxPlaceholderWidth = 640;
 const defaultPlaceholderHeight = 360;
+const borderRadius = 0;
 const YouTubeEmbed = (_a) => {
     var _b, _c, _d, _e;
     var { url, youTubeProps, width, height, linkText = 'Watch on YouTube', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["url", "youTubeProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
@@ -74,11 +75,11 @@ const YouTubeEmbed = (_a) => {
                     ? '100%'
                     : defaultPlaceholderHeight,
         border: '1px solid #dee2e6',
-        borderRadius: 0,
+        borderRadius,
     };
     const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: url, imageUrl: placeholderImageUrl, linkText: linkText }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
     // === END Placeholder ===
-    return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-youtube-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
+    return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-youtube-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined, borderRadius }, divProps.style) }),
         React.createElement(EmbedStyle_1.EmbedStyle, null),
         React.createElement("div", { className: (0, classnames_1.default)(!ready && 'rsme-d-none') },
             React.createElement(react_youtube_1.default, Object.assign({}, youTubeProps, { className: (_d = youTubeProps === null || youTubeProps === void 0 ? void 0 : youTubeProps.className) !== null && _d !== void 0 ? _d : 'youtube-iframe', videoId: (_e = youTubeProps === null || youTubeProps === void 0 ? void 0 : youTubeProps.videoId) !== null && _e !== void 0 ? _e : videoId, opts: opts, onReady: (e) => {
