@@ -11,6 +11,15 @@ const minPlaceholderWidth = 328;
 const defaultPlaceholderHeight = 372;
 const borderRadius = 3;
 
+// Embed Stages
+const CHECK_SCRIPT_STAGE = 'check-script';
+const LOAD_SCRIPT_STAGE = 'load-script';
+const CONFIRM_SCRIPT_LOADED_STAGE = 'confirm-script-loaded';
+const PROCESS_EMBED_STAGE = 'process-embed';
+const CONFIRM_EMBED_SUCCESS_STAGE = 'confirm-embed-success';
+const RETRYING_STAGE = 'retrying';
+const EMBED_SUCCESS_STAGE = 'embed-success';
+
 export interface InstagramEmbedProps extends DivProps {
   url: string;
   width?: string | number;
@@ -19,13 +28,15 @@ export interface InstagramEmbedProps extends DivProps {
   igVersion?: string;
   processDelay?: number;
   scriptLoadDisabled?: boolean;
-  retryDisabled?: boolean;
   retryInitialDelay?: number;
   retryBackoffMaxDelay?: number;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
+  retryTime2?: number;
+  retryDisabled?: boolean;
+  debug?: boolean;
 }
 
 export const InstagramEmbed = ({
@@ -36,21 +47,27 @@ export const InstagramEmbed = ({
   linkText = 'View post on Instagram',
   processDelay = 100,
   scriptLoadDisabled = false,
-  retryDisabled = false,
   retryInitialDelay = 1000,
   retryBackoffMaxDelay = 5000,
   embedPlaceholder,
   placeholderDisabled,
   placeholderImageUrl,
   placeholderProps,
+  retryTime2 = 3000,
+  retryDisabled = false,
+  debug,
   ...divProps
 }: InstagramEmbedProps): JSX.Element => {
   const [initialized, setInitialized] = React.useState(false);
-  const [processTime, setProcessTime] = React.useState(-1);
   const [retryDelay, setRetryDelay] = React.useState(retryInitialDelay);
   const [retrying, setRetrying] = React.useState(false);
   const [retryTime, setRetryTime] = React.useState(-1);
+
+  const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
+  const embedSuccess = React.useMemo(() => stage === EMBED_SUCCESS_STAGE, [stage]);
   const uuidRef = React.useRef(generateUUID());
+  const [processTime, setProcessTime] = React.useState(Date.now());
+
   React.useEffect(() => {
     const win = typeof window !== 'undefined' ? (window as any) : undefined;
     if (win && processTime >= 0) {

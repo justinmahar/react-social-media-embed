@@ -16,6 +16,7 @@ const LOAD_SCRIPT_STAGE = 'load-script';
 const CONFIRM_SCRIPT_LOADED_STAGE = 'confirm-script-loaded';
 const PROCESS_EMBED_STAGE = 'process-embed';
 const CONFIRM_EMBED_SUCCESS_STAGE = 'confirm-embed-success';
+const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 
 export interface FacebookEmbedProps extends DivProps {
@@ -28,6 +29,9 @@ export interface FacebookEmbedProps extends DivProps {
   scriptLoadDisabled?: boolean;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
+  retryTime?: number;
+  retryDisabled?: boolean;
+  debug?: boolean;
 }
 
 export const FacebookEmbed = ({
@@ -40,12 +44,22 @@ export const FacebookEmbed = ({
   scriptLoadDisabled,
   placeholderImageUrl,
   placeholderProps,
+  retryTime = 3000,
+  retryDisabled = false,
+  debug,
   ...divProps
 }: FacebookEmbedProps) => {
   const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
   const embedSuccess = React.useMemo(() => stage === EMBED_SUCCESS_STAGE, [stage]);
   const uuidRef = React.useRef(generateUUID());
+  const [processTime, setProcessTime] = React.useState(Date.now());
 
+  // Debug Output
+  React.useEffect(() => {
+    debug && console.log(`[${new Date().toISOString()}]: ${stage}`);
+  }, [debug, stage]);
+
+  // Check Script Stage
   React.useEffect(() => {
     if (stage === CHECK_SCRIPT_STAGE) {
       const win = typeof window !== 'undefined' ? (window as any) : undefined;
@@ -59,9 +73,9 @@ export const FacebookEmbed = ({
     }
   }, [scriptLoadDisabled, stage, url]);
 
+  // Load Script Stage
   React.useEffect(() => {
     if (stage === LOAD_SCRIPT_STAGE) {
-      const win = typeof window !== 'undefined' ? (window as any) : undefined;
       if (typeof document !== 'undefined') {
         const scriptElement = document.createElement('script');
         scriptElement.setAttribute('src', `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`);
@@ -71,6 +85,7 @@ export const FacebookEmbed = ({
     }
   }, [stage]);
 
+  // Confirm Script Loaded Stage
   React.useEffect(() => {
     let interval: any = undefined;
     if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
@@ -79,15 +94,15 @@ export const FacebookEmbed = ({
         if (win?.FB?.XFBML?.parse) {
           setStage(PROCESS_EMBED_STAGE);
         }
-      }, 10);
+      }, 1);
     }
     return () => clearInterval(interval);
   }, [stage]);
 
+  // Process Embed Stage
   React.useEffect(() => {
     if (stage === PROCESS_EMBED_STAGE) {
       const win = typeof window !== 'undefined' ? (window as any) : undefined;
-      // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
       const parse = win?.FB?.XFBML?.parse;
       if (parse) {
         parse();
@@ -98,10 +113,12 @@ export const FacebookEmbed = ({
     }
   }, [stage, url]);
 
+  // Confirm Embed Success Stage
   React.useEffect(() => {
-    let timeout: any = undefined;
+    let confirmInterval: any = undefined;
+    let retryTimeout: any = undefined;
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
-      timeout = setInterval(() => {
+      confirmInterval = setInterval(() => {
         if (typeof document !== 'undefined') {
           const fbPostContainerElement = document.getElementById(uuidRef.current);
           if (fbPostContainerElement) {
@@ -113,9 +130,26 @@ export const FacebookEmbed = ({
             }
           }
         }
-      }, 10);
+      }, 1);
+      if (!retryDisabled) {
+        retryTimeout = setTimeout(() => {
+          setStage(RETRYING_STAGE);
+        }, retryTime);
+      }
     }
-    return () => clearInterval(timeout);
+    return () => {
+      clearInterval(confirmInterval);
+      clearTimeout(retryTimeout);
+    };
+  }, [retryDisabled, retryTime, stage]);
+
+  // Retrying Stage
+  React.useEffect(() => {
+    if (stage === RETRYING_STAGE) {
+      // This forces the embed container to remount
+      setProcessTime(Date.now());
+      setStage(PROCESS_EMBED_STAGE);
+    }
   }, [stage]);
 
   const isPercentageWidth = !!width?.toString().includes('%');
@@ -161,6 +195,7 @@ export const FacebookEmbed = ({
       <EmbedStyle />
       <div id={uuidRef.current} className={classNames(!embedSuccess && 'rsme-d-none')}>
         <div
+          key={`${uuidRef.current}-${processTime}`}
           className="fb-post"
           data-href={url}
           style={{
