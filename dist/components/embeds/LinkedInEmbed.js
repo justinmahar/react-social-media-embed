@@ -39,12 +39,12 @@ const React = __importStar(require("react"));
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
-const minPlaceholderWidth = 300;
+const minPlaceholderWidth = 250;
 const maxPlaceholderWidth = 550;
 const defaultPlaceholderHeight = 550;
 const LinkedInEmbed = (_a) => {
     var _b, _c;
-    var { postUrl, url, width, height = 500, linkText = 'View post on LinkedIn', embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["postUrl", "url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
+    var { postUrl, url, width, height = 500, linkText = 'View post on LinkedIn', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["postUrl", "url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const [ready, setReady] = React.useState(false);
     // === Placeholder ===
@@ -60,7 +60,7 @@ const LinkedInEmbed = (_a) => {
         border: 'solid 1px rgba(0, 0, 0, 0.15)',
         borderRadius: 8,
     };
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, { url: postUrl !== null && postUrl !== void 0 ? postUrl : url, style: placeholderStyle, imageUrl: placeholderImageUrl, linkText: linkText }));
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: postUrl !== null && postUrl !== void 0 ? postUrl : url, imageUrl: placeholderImageUrl, linkText: linkText }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
     // === END Placeholder ===
     return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-linkedin-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         React.createElement(EmbedStyle_1.EmbedStyle, null),

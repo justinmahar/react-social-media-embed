@@ -45,7 +45,7 @@ const maxPlaceholderWidth = 550;
 const defaultPlaceholderHeight = 350;
 const TwitterEmbed = (_a) => {
     var _b, _c;
-    var { url, twitterTweetEmbedProps, width, height, linkText = 'View post on Twitter', embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "twitterTweetEmbedProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
+    var { url, twitterTweetEmbedProps, width, height, linkText = 'View post on Twitter', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["url", "twitterTweetEmbedProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
     // === Placeholder ===
@@ -61,7 +61,7 @@ const TwitterEmbed = (_a) => {
         border: 'solid 1px #c9d4d9',
         borderRadius: 12,
     };
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, { url: url, style: placeholderStyle, imageUrl: placeholderImageUrl, linkText: linkText }));
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: url, imageUrl: placeholderImageUrl, linkText: linkText }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
     // === END Placeholder ===
     return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-twitter-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         React.createElement(EmbedStyle_1.EmbedStyle, null),

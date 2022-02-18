@@ -19,8 +19,8 @@ const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
 require("./button.css");
 const EmbedToggler = (_a) => {
-    var divProps = __rest(_a, []);
-    const [show, setShow] = react_1.default.useState(true);
+    var { defaultToggledOn = false } = _a, divProps = __rest(_a, ["defaultToggledOn"]);
+    const [show, setShow] = react_1.default.useState(defaultToggledOn);
     return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)(divProps.className), style: Object.assign({}, divProps.style) }),
         react_1.default.createElement("div", { className: "button", onClick: () => setShow(!show), style: { marginBottom: '5px' } }, show ? 'Hide Embed' : 'Show Embed'),
         react_1.default.createElement("div", null, show && divProps.children)));

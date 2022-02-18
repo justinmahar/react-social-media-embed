@@ -11,7 +11,7 @@ exports.default = {
     title: 'Placeholder/PlaceholderEmbed',
     component: PlaceholderEmbed_1.PlaceholderEmbed,
 };
-const Template = (args) => (react_1.default.createElement(EmbedToggler_1.EmbedToggler, null,
+const Template = (args) => (react_1.default.createElement(EmbedToggler_1.EmbedToggler, { defaultToggledOn: true },
     react_1.default.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({}, args))));
 const url = 'https://www.youtube.com/watch?v=HpVOs5imUN0';
 const landscapeImageUrl = 'https://placekitten.com/550/325';

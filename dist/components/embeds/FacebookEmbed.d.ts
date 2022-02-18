@@ -1,5 +1,6 @@
 import React from 'react';
 import { DivProps } from 'react-html-props';
+import { PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 export interface FacebookEmbedProps extends DivProps {
     url: string;
     width?: string | number;
@@ -9,5 +10,6 @@ export interface FacebookEmbedProps extends DivProps {
     placeholderDisabled?: boolean;
     scriptLoadDisabled?: boolean;
     placeholderImageUrl?: string;
+    placeholderProps?: PlaceholderEmbedProps;
 }
-export declare const FacebookEmbed: ({ url, width, height, linkText, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, placeholderImageUrl, ...divProps }: FacebookEmbedProps) => JSX.Element;
+export declare const FacebookEmbed: ({ url, width, height, linkText, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, placeholderImageUrl, placeholderProps, ...divProps }: FacebookEmbedProps) => JSX.Element;

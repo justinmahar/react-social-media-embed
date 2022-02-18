@@ -44,7 +44,7 @@ const maxPlaceholderWidth = 640;
 const defaultPlaceholderHeight = 360;
 const YouTubeEmbed = (_a) => {
     var _b, _c, _d, _e;
-    var { url, youTubeProps, width, height, linkText = 'Watch on YouTube', embedPlaceholder, placeholderDisabled, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "youTubeProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl"]);
+    var { url, youTubeProps, width, height, linkText = 'Watch on YouTube', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["url", "youTubeProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const [ready, setReady] = React.useState(false);
     let videoId = '00000000';
@@ -52,27 +52,31 @@ const YouTubeEmbed = (_a) => {
     if (videoIdMatch) {
         videoId = videoIdMatch[1];
     }
+    const isPercentageWidth = !!(width === null || width === void 0 ? void 0 : width.toString().includes('%'));
+    const isPercentageHeight = !!(height === null || height === void 0 ? void 0 : height.toString().includes('%'));
     let opts = {};
     if (typeof width !== 'undefined') {
-        opts.width = `${width}`;
+        opts.width = isPercentageWidth ? '100%' : `${width}`;
     }
     if (typeof height !== 'undefined') {
-        opts.height = `${height}`;
+        opts.height = isPercentageHeight ? '100%' : `${height}`;
     }
     opts = Object.assign(Object.assign({}, opts), youTubeProps === null || youTubeProps === void 0 ? void 0 : youTubeProps.opts);
     // === Placeholder ===
     const placeholderStyle = {
-        maxWidth: maxPlaceholderWidth,
-        width: typeof width !== 'undefined' ? width : '100%',
-        height: typeof height !== 'undefined'
-            ? height
-            : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
-                ? '100%'
-                : defaultPlaceholderHeight,
+        maxWidth: isPercentageWidth ? undefined : maxPlaceholderWidth,
+        width: typeof width !== 'undefined' ? (isPercentageWidth ? '100%' : width) : '100%',
+        height: isPercentageHeight
+            ? '100%'
+            : typeof height !== 'undefined'
+                ? height
+                : typeof ((_b = divProps.style) === null || _b === void 0 ? void 0 : _b.height) !== 'undefined' || typeof ((_c = divProps.style) === null || _c === void 0 ? void 0 : _c.maxHeight) !== 'undefined'
+                    ? '100%'
+                    : defaultPlaceholderHeight,
         border: '1px solid #dee2e6',
         borderRadius: 0,
     };
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, { url: url, style: placeholderStyle, imageUrl: placeholderImageUrl, linkText: linkText }));
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: url, imageUrl: placeholderImageUrl, linkText: linkText }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
     // === END Placeholder ===
     return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-youtube-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         React.createElement(EmbedStyle_1.EmbedStyle, null),

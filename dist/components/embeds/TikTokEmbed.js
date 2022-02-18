@@ -26,7 +26,7 @@ const maxPlaceholderWidth = 480;
 const defaultPlaceholderHeight = 550;
 const TikTokEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on TikTok', embedPlaceholder, placeholderDisabled, processDelay = 100, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = 3000, retryBackoffMaxDelay = 30000, placeholderImageUrl } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "placeholderImageUrl"]);
+    var { url, width, height, linkText = 'View post on TikTok', embedPlaceholder, placeholderDisabled, processDelay = 100, scriptLoadDisabled = false, retryDisabled = false, retryInitialDelay = 3000, retryBackoffMaxDelay = 30000, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "processDelay", "scriptLoadDisabled", "retryDisabled", "retryInitialDelay", "retryBackoffMaxDelay", "placeholderImageUrl", "placeholderProps"]);
     // Format: https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1
     const embedId = url.replace(/[?].*$/, '').replace(/^.+\//, '');
     // console.log(embedId);
@@ -99,9 +99,9 @@ const TikTokEmbed = (_a) => {
         border: 'solid 1px rgba(22,24,35,0.12)',
         borderRadius: 8,
     };
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (react_1.default.createElement(PlaceholderEmbed_1.PlaceholderEmbed, { url: url, style: placeholderStyle, imageUrl: placeholderImageUrl, linkText: linkText }));
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (react_1.default.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: url, imageUrl: placeholderImageUrl, linkText: linkText }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
     // === END Placeholder ===
-    return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-tiktok-embed', divProps.className), style: Object.assign({ overflow: 'hidden' }, divProps.style) }),
+    return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-tiktok-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined }, divProps.style) }),
         react_1.default.createElement(EmbedStyle_1.EmbedStyle, null),
         react_1.default.createElement("div", { className: (0, classnames_1.default)('tiktok-embed-container', divProps.className), key: `${uuidRef}-${retryTime}` },
             react_1.default.createElement("blockquote", { className: "tiktok-embed", cite: url, "data-video-id": embedId }, !placeholderDisabled ? (react_1.default.createElement("div", { id: uuidRef.current, style: { display: 'flex', justifyContent: 'center' } }, placeholder)) : (react_1.default.createElement("div", { id: uuidRef.current, style: { display: 'none' } }, "\u00A0"))))));

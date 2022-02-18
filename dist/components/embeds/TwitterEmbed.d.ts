@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import { TwitterTweetEmbedProps } from 'react-twitter-embed/dist/components/TwitterTweetEmbed';
+import { PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 export interface TwitterEmbedProps extends DivPropsWithoutRef {
     url: string;
     twitterTweetEmbedProps?: TwitterTweetEmbedProps;
@@ -10,5 +11,6 @@ export interface TwitterEmbedProps extends DivPropsWithoutRef {
     embedPlaceholder?: React.ReactNode;
     placeholderDisabled?: boolean;
     placeholderImageUrl?: string;
+    placeholderProps?: PlaceholderEmbedProps;
 }
-export declare const TwitterEmbed: ({ url, twitterTweetEmbedProps, width, height, linkText, embedPlaceholder, placeholderDisabled, placeholderImageUrl, ...divProps }: TwitterEmbedProps) => JSX.Element;
+export declare const TwitterEmbed: ({ url, twitterTweetEmbedProps, width, height, linkText, embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps, ...divProps }: TwitterEmbedProps) => JSX.Element;

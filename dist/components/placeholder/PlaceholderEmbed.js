@@ -77,7 +77,7 @@ const PlaceholderEmbed = (_a) => {
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            marginBottom: 40,
+                            marginBottom: '40',
                         } })) : (react_1.default.createElement("div", { style: { width: '100%', marginBottom: 40 } },
                         react_1.default.createElement("img", { src: imageUrl, style: { width: '100%' } }))))),
             react_1.default.createElement("div", { style: {
