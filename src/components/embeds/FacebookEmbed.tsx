@@ -10,6 +10,14 @@ const maxPlaceholderWidth = defaultEmbedWidth;
 const defaultPlaceholderHeight = 372;
 const borderRadius = 3;
 
+// Embed Stages
+const CHECK_SCRIPT_STAGE = 'check-script';
+const LOAD_SCRIPT_STAGE = 'load-script';
+const CONFIRM_SCRIPT_LOADED_STAGE = 'confirm-script-loaded';
+const PROCESS_EMBED_STAGE = 'process-embed';
+const CONFIRM_EMBED_SUCCESS_STAGE = 'confirm-embed-success';
+const EMBED_SUCCESS_STAGE = 'embed-success';
+
 export interface FacebookEmbedProps extends DivProps {
   url: string;
   width?: string | number;
@@ -34,23 +42,65 @@ export const FacebookEmbed = ({
   placeholderProps,
   ...divProps
 }: FacebookEmbedProps) => {
-  const [ready, setReady] = React.useState(false);
-  const [processTime, setProcessTime] = React.useState(-1);
-  const [show, setShow] = React.useState(true);
+  const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
+  const embedSuccess = React.useMemo(() => stage === EMBED_SUCCESS_STAGE, [stage]);
   const uuidRef = React.useRef(generateUUID());
 
   React.useEffect(() => {
-    if (show && typeof window !== 'undefined') {
-      // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
-      (window as any).FB?.XFBML?.parse();
+    if (stage === CHECK_SCRIPT_STAGE) {
+      const win = typeof window !== 'undefined' ? (window as any) : undefined;
+      if (win?.FB?.XFBML?.parse) {
+        setStage(PROCESS_EMBED_STAGE);
+      } else if (!scriptLoadDisabled) {
+        setStage(LOAD_SCRIPT_STAGE);
+      } else {
+        console.error('Facebook embed script not found. Unable to process Facebook embed:', url);
+      }
     }
-    setProcessTime(Date.now());
-  }, [show]);
+  }, [scriptLoadDisabled, stage, url]);
 
-  // Check for successful embed, mark as ready
+  React.useEffect(() => {
+    if (stage === LOAD_SCRIPT_STAGE) {
+      const win = typeof window !== 'undefined' ? (window as any) : undefined;
+      if (typeof document !== 'undefined') {
+        const scriptElement = document.createElement('script');
+        scriptElement.setAttribute('src', `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`);
+        document.head.appendChild(scriptElement);
+        setStage(CONFIRM_SCRIPT_LOADED_STAGE);
+      }
+    }
+  }, [stage]);
+
+  React.useEffect(() => {
+    let interval: any = undefined;
+    if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
+      const win = typeof window !== 'undefined' ? (window as any) : undefined;
+      interval = setInterval(() => {
+        if (win?.FB?.XFBML?.parse) {
+          setStage(PROCESS_EMBED_STAGE);
+        }
+      }, 10);
+    }
+    return () => clearInterval(interval);
+  }, [stage]);
+
+  React.useEffect(() => {
+    if (stage === PROCESS_EMBED_STAGE) {
+      const win = typeof window !== 'undefined' ? (window as any) : undefined;
+      // https://developers.facebook.com/docs/reference/javascript/FB.XFBML.parse/
+      const parse = win?.FB?.XFBML?.parse;
+      if (parse) {
+        parse();
+        setStage(CONFIRM_EMBED_SUCCESS_STAGE);
+      } else {
+        console.error('Facebook embed script not found. Unable to process Facebook embed:', url);
+      }
+    }
+  }, [stage, url]);
+
   React.useEffect(() => {
     let timeout: any = undefined;
-    if (!ready) {
+    if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
       timeout = setInterval(() => {
         if (typeof document !== 'undefined') {
           const fbPostContainerElement = document.getElementById(uuidRef.current);
@@ -58,7 +108,7 @@ export const FacebookEmbed = ({
             const fbPostElem = fbPostContainerElement.getElementsByClassName('fb-post')[0];
             if (fbPostElem) {
               if (fbPostElem.children.length > 0) {
-                setReady(true);
+                setStage(EMBED_SUCCESS_STAGE);
               }
             }
           }
@@ -66,17 +116,7 @@ export const FacebookEmbed = ({
       }, 10);
     }
     return () => clearInterval(timeout);
-  }, [ready]);
-
-  React.useEffect(() => {
-    if (typeof document !== 'undefined' && typeof window !== 'undefined' && !scriptLoadDisabled) {
-      if (!(window as any).FB?.XFBML?.parse) {
-        const scriptElement = document.createElement('script');
-        scriptElement.setAttribute('src', `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`);
-        document.head.appendChild(scriptElement);
-      }
-    }
-  }, [scriptLoadDisabled]);
+  }, [stage]);
 
   const isPercentageWidth = !!width?.toString().includes('%');
   const isPercentageHeight = !!height?.toString().includes('%');
@@ -119,7 +159,7 @@ export const FacebookEmbed = ({
       }}
     >
       <EmbedStyle />
-      <div id={uuidRef.current} className={classNames(!ready && 'rsme-d-none')}>
+      <div id={uuidRef.current} className={classNames(!embedSuccess && 'rsme-d-none')}>
         <div
           className="fb-post"
           data-href={url}
@@ -129,7 +169,7 @@ export const FacebookEmbed = ({
           }}
         ></div>
       </div>
-      {!ready && !placeholderDisabled && placeholder}
+      {!embedSuccess && !placeholderDisabled && placeholder}
     </div>
   );
 };

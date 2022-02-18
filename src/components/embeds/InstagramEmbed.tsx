@@ -55,7 +55,8 @@ export const InstagramEmbed = ({
     const win = typeof window !== 'undefined' ? (window as any) : undefined;
     if (win && processTime >= 0) {
       // This call will use the IG embed script to process all elements with the `instagram-media` class name.
-      if (typeof win.instgrm !== 'undefined' && win.instgrm.Embeds) {
+      if (win.instgrm?.Embeds?.process) {
+        // See "Embed JS" section of: https://developers.facebook.com/docs/instagram/oembed/
         win.instgrm.Embeds.process();
       } else {
         console.error('Instagram embed script not found. Unable to process Instagram embed:', url);
