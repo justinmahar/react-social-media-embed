@@ -3,7 +3,6 @@ import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
 import YouTube, { Options, YouTubeProps } from 'react-youtube';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
-import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
 const maxPlaceholderWidth = 640;
@@ -12,29 +11,28 @@ const borderRadius = 0;
 
 export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   url: string;
-  youTubeProps?: YouTubeProps;
   width?: string | number;
   height?: string | number;
   linkText?: string;
-  embedPlaceholder?: React.ReactNode;
-  placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
+  embedPlaceholder?: React.ReactNode;
+  placeholderDisabled?: boolean;
+  youTubeProps?: YouTubeProps;
 }
 
 export const YouTubeEmbed = ({
   url,
-  youTubeProps,
   width,
   height,
   linkText = 'Watch on YouTube',
-  embedPlaceholder,
-  placeholderDisabled,
   placeholderImageUrl,
   placeholderProps,
+  embedPlaceholder,
+  placeholderDisabled,
+  youTubeProps,
   ...divProps
 }: YouTubeEmbedProps) => {
-  const uuidRef = React.useRef(generateUUID());
   const [ready, setReady] = React.useState(false);
 
   let videoId = '00000000';

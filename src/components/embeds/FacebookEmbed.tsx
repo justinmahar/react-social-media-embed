@@ -25,9 +25,9 @@ export interface FacebookEmbedProps extends DivProps {
   width?: string | number;
   height?: string | number;
   linkText?: string;
-  embedPlaceholder?: React.ReactNode;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
+  embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
   scriptLoadDisabled?: boolean;
   retryDelay?: number;
@@ -40,11 +40,11 @@ export const FacebookEmbed = ({
   width,
   height,
   linkText = 'View post on Facebook',
-  embedPlaceholder,
   placeholderImageUrl,
   placeholderProps,
-  placeholderDisabled,
-  scriptLoadDisabled,
+  embedPlaceholder,
+  placeholderDisabled = false,
+  scriptLoadDisabled = false,
   retryDelay = 5000,
   retryDisabled = false,
   debug,

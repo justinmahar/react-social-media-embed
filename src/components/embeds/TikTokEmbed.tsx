@@ -22,14 +22,13 @@ export interface TikTokEmbedProps extends DivProps {
   width?: string | number;
   height?: string | number;
   linkText?: string;
-  embedPlaceholder?: React.ReactNode;
-  placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
+  embedPlaceholder?: React.ReactNode;
+  placeholderDisabled?: boolean;
   scriptLoadDisabled?: boolean;
-  retryDisabled?: boolean;
   retryDelay?: number;
-  igVersion?: string;
+  retryDisabled?: boolean;
   debug?: boolean;
 }
 
@@ -38,14 +37,14 @@ export const TikTokEmbed = ({
   width,
   height,
   linkText = 'View post on TikTok',
-  embedPlaceholder,
-  placeholderDisabled,
   placeholderImageUrl,
   placeholderProps,
+  embedPlaceholder,
+  placeholderDisabled = false,
   scriptLoadDisabled = false,
   retryDelay = 5000,
   retryDisabled = false,
-  debug = true,
+  debug,
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
   const [stage, setStage] = React.useState(PROCESS_EMBED_STAGE);

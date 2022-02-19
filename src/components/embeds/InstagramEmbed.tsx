@@ -24,11 +24,11 @@ export interface InstagramEmbedProps extends DivProps {
   width?: string | number;
   height?: string | number;
   linkText?: string;
-  scriptLoadDisabled?: boolean;
-  embedPlaceholder?: React.ReactNode;
-  placeholderDisabled?: boolean;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
+  embedPlaceholder?: React.ReactNode;
+  placeholderDisabled?: boolean;
+  scriptLoadDisabled?: boolean;
   retryDelay?: number;
   retryDisabled?: boolean;
   igVersion?: string;
@@ -40,11 +40,11 @@ export const InstagramEmbed = ({
   width,
   height,
   linkText = 'View post on Instagram',
-  scriptLoadDisabled = false,
-  embedPlaceholder,
-  placeholderDisabled = false,
   placeholderImageUrl,
   placeholderProps,
+  embedPlaceholder,
+  placeholderDisabled = false,
+  scriptLoadDisabled = false,
   retryDelay = 5000,
   retryDisabled = false,
   igVersion = '14',
