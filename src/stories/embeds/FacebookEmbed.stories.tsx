@@ -14,9 +14,11 @@ const linkUrl = 'https://www.facebook.com/andrewismusic/posts/479747760183006';
 const videoUrl = 'https://fb.watch/bfP8U3LBa6/';
 const placeholderImageUrl = `https://placekitten.com/325/560`;
 
-const ToggledOnTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
-    <FacebookEmbed {...args} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <FacebookEmbed {...args} />
+    </div>
   </EmbedToggler>
 );
 
@@ -26,25 +28,25 @@ const ToggledOffTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
   </EmbedToggler>
 );
 
-export const Example = ToggledOnTemplate.bind({});
-Example.args = {
+export const MainExample = MainExampleTemplate.bind({});
+MainExample.args = {
   url: photoUrl,
   width: 325,
 };
 
-export const TextPostExample = ToggledOnTemplate.bind({});
+export const TextPostExample = ToggledOffTemplate.bind({});
 TextPostExample.args = {
   url: textUrl,
   width: 325,
 };
 
-export const VideoPostExample = ToggledOnTemplate.bind({});
+export const VideoPostExample = ToggledOffTemplate.bind({});
 VideoPostExample.args = {
   url: videoUrl,
   width: 325,
 };
 
-export const LinkPostExampleWidth550 = ToggledOnTemplate.bind({});
+export const LinkPostExampleWidth550 = ToggledOffTemplate.bind({});
 LinkPostExampleWidth550.args = {
   url: linkUrl,
   width: 550,

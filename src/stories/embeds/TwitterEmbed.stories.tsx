@@ -11,9 +11,11 @@ export default {
 const url = 'https://twitter.com/PixelAndBracket/status/1356633038717923333';
 const placeholderImageUrl = `https://placekitten.com/550/325`;
 
-const ToggledOnTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
-    <TwitterEmbed {...args} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <TwitterEmbed {...args} />
+    </div>
   </EmbedToggler>
 );
 
@@ -23,8 +25,8 @@ const ToggledOffTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
   </EmbedToggler>
 );
 
-export const Example = ToggledOnTemplate.bind({});
-Example.args = {
+export const MainExample = MainExampleTemplate.bind({});
+MainExample.args = {
   url,
   width: 325,
 };

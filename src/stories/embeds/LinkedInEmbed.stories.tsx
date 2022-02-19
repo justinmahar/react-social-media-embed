@@ -13,9 +13,11 @@ const postUrl =
   'https://www.linkedin.com/posts/peterdiamandis_5-discoveries-the-james-webb-telescope-will-activity-6898694773406875648-z-D7';
 const placeholderImageUrl = `https://placekitten.com/504/325`;
 
-const ToggledOnTemplate: ComponentStory<typeof LinkedInEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof LinkedInEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
-    <LinkedInEmbed {...args} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <LinkedInEmbed {...args} />
+    </div>
   </EmbedToggler>
 );
 
@@ -25,8 +27,8 @@ const ToggledOffTemplate: ComponentStory<typeof LinkedInEmbed> = (args) => (
   </EmbedToggler>
 );
 
-export const Example = ToggledOnTemplate.bind({});
-Example.args = {
+export const MainExample = MainExampleTemplate.bind({});
+MainExample.args = {
   url,
   postUrl,
   width: 325,

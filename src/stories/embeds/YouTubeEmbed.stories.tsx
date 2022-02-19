@@ -11,9 +11,11 @@ export default {
 const url = 'https://www.youtube.com/watch?v=HpVOs5imUN0';
 const placeholderImageUrl = `https://i.ytimg.com/vi/HpVOs5imUN0/maxresdefault.jpg?t=Date.now()`;
 
-const ToggledOnTemplate: ComponentStory<typeof YouTubeEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof YouTubeEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
-    <YouTubeEmbed {...args} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <YouTubeEmbed {...args} />
+    </div>
   </EmbedToggler>
 );
 
@@ -23,8 +25,8 @@ const ToggledOffTemplate: ComponentStory<typeof YouTubeEmbed> = (args) => (
   </EmbedToggler>
 );
 
-export const Example = ToggledOnTemplate.bind({});
-Example.args = {
+export const MainExample = MainExampleTemplate.bind({});
+MainExample.args = {
   url,
   placeholderImageUrl,
   width: 325,

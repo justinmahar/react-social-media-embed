@@ -8,12 +8,14 @@ export default {
   component: TikTokEmbed,
 } as ComponentMeta<typeof TikTokEmbed>;
 
-const url = 'https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1';
+const url = 'https://www.tiktok.com/@epicgardening/video/7055411162212633903';
 const placeholderImageUrl = `https://placekitten.com/325/560`;
 
-const ToggledOnTemplate: ComponentStory<typeof TikTokEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof TikTokEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
-    <TikTokEmbed {...args} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <TikTokEmbed {...args} />
+    </div>
   </EmbedToggler>
 );
 
@@ -23,8 +25,8 @@ const ToggledOffTemplate: ComponentStory<typeof TikTokEmbed> = (args) => (
   </EmbedToggler>
 );
 
-export const Example = ToggledOnTemplate.bind({});
-Example.args = {
+export const MainExample = MainExampleTemplate.bind({});
+MainExample.args = {
   url,
   width: 325,
 };

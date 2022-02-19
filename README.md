@@ -76,8 +76,14 @@ import { FacebookEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
-<FacebookEmbed url="https://fb.watch/b67iYbdzNm/" />
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <FacebookEmbed url="https://www.facebook.com/andrewismusic/posts/451971596293956" width={550} />
+</div>
 ```
+
+This will display the Facebook embed centered with a width of `550`.
+
+For more options, read the [full documentation for FacebookEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example).
 
 ### Instagram
 
@@ -86,8 +92,14 @@ import { InstagramEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
-<InstagramEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" />
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <InstagramEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" width={328} />
+</div>
 ```
+
+This will display the Instagram embed centered with a width of `328`.
+
+For more options, read the [full documentation for InstagramEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example).
 
 ### LinkedIn
 
@@ -96,10 +108,17 @@ import { LinkedInEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
-<LinkedInEmbed 
-  url="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473"
-/>
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <LinkedInEmbed 
+    url="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384"
+    postUrl="https://www.linkedin.com/posts/peterdiamandis_5-discoveries-the-james-webb-telescope-will-activity-6898694773406875648-z-D7"
+    width={325}
+    height={570} 
+  />
+</div>
 ```
+
+This will display the LinkedIn embed centered with a width of `325` and height of `570`.
 
 The `url` must be be retrieved from the "Embed this post" option for the desired post. Use the `src` attribute of the `iframe`:
 
@@ -111,14 +130,7 @@ It is recommended that you specify the `width` and `height` of the post. These h
 
 You can also specify a `postUrl` which will be used in the placeholder to link to the regular, non-embed version of the post.
 
-```jsx
-<LinkedInEmbed 
-  url="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473"
-  postUrl="https://www.linkedin.com/posts/garyvaynerchuk_join-our-discord-its-consistently-fun-activity-6892528765080002561-mFyb"
-  width={504}
-  height={592}
-/>
-```
+For more options, read the [full documentation for LinkedInEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example).
 
 ### TikTok
 
@@ -127,8 +139,14 @@ import { TikTokEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
-<TikTokEmbed url="https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1" />
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <TikTokEmbed url="https://www.tiktok.com/@epicgardening/video/7055411162212633903" width={325} />
+</div>
 ```
+
+This will display the TikTok embed centered with a width of `325`.
+
+For more options, read the [full documentation for TikTokEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example).
 
 ### Twitter
 
@@ -137,10 +155,16 @@ import { TwitterEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
-<TwitterEmbed url="https://twitter.com/PixelAndBracket/status/1356633038717923333" />
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <TwitterEmbed url="https://twitter.com/PixelAndBracket/status/1356633038717923333" width={325} />
+</div>
 ```
 
+This will display the Twitter embed centered with a width of `325`.
+
 This component uses the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed content. You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
+
+For more options, read the [full documentation for TwitterEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example).
 
 ### YouTube
 
@@ -149,10 +173,16 @@ import { YouTubeEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
-<YouTubeEmbed url="https://www.youtube.com/watch?v=d-qqom30TZA" />
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <YouTubeEmbed url="https://www.youtube.com/watch?v=HpVOs5imUN0" width={325} height={220} />
+</div>
 ```
 
+This will display the YouTube embed centered with a width of `325` and height of `220`.
+
 This component uses the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed content. You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
+
+For more options, read the [full documentation for YouTubeEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example).
 
 ### Placeholder
 
@@ -162,13 +192,11 @@ import { PlaceholderEmbed } from 'react-social-media-embed';
 
 A placeholder is shown while loading. If you do not specify a placeholder via the `embedPlaceholder` prop, a default `PlaceholderEmbed` placeholder component will be used. You can disable the placeholder with the `placeholderDisabled` prop. 
 
-The default placeholder [looks like this](http://localhost:6006/?path=/story/placeholder-placeholderembed--example).
-
 The default placeholder will size itself according to the width and/or height you specify for the embed. If none are specified, it will fall back to a default size appropriate for the given social media platform. You can pass custom props (such as `style`) to the default placeholder via `placeholderProps` to override any default behavior.
 
-If you'd like, you can specify the  `placeholderImageUrl` prop to any of the embeds to show a placeholder with the provided image. Here is [an example](http://localhost:6006/?path=/story/placeholder-placeholderembed--landscape-image-width-400) of an image placeholder.
+If you'd like, you can specify the  `placeholderImageUrl` prop to any of the embeds to show a placeholder with the provided image. 
 
-See the [PlaceholderEmbed docs](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--example) for more.
+See the [PlaceholderEmbed docs](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--main-example) for examples and more.
 
 ## How It Works
 

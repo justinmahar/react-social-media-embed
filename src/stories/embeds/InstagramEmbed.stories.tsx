@@ -11,9 +11,11 @@ export default {
 const url = 'https://www.instagram.com/p/CUbHfhpswxt/';
 const placeholderImageUrl = `https://placekitten.com/540/400`;
 
-const ToggledOnTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
-    <InstagramEmbed {...args} />
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <InstagramEmbed {...args} />
+    </div>
   </EmbedToggler>
 );
 
@@ -23,8 +25,8 @@ const ToggledOffTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
   </EmbedToggler>
 );
 
-export const Example = ToggledOnTemplate.bind({});
-Example.args = {
+export const MainExample = MainExampleTemplate.bind({});
+MainExample.args = {
   url,
   width: 328,
 };

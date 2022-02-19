@@ -24,8 +24,8 @@ const url = 'https://www.youtube.com/watch?v=HpVOs5imUN0';
 const landscapeImageUrl = 'https://placekitten.com/550/325';
 const portraitImageUrl = 'https://placekitten.com/325/550';
 
-export const Example = Template.bind({});
-Example.args = {
+export const MainExample = Template.bind({});
+MainExample.args = {
   url,
   linkText: 'View post on Splosher',
   style: {
