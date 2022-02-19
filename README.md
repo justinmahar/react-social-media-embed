@@ -71,7 +71,7 @@ npm i react-social-media-embed
 
 ### Facebook
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example)
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example)
 
 ```jsx
 import { FacebookEmbed } from 'react-social-media-embed';
@@ -89,7 +89,7 @@ For a live example and more options, read the [full documentation for FacebookEm
 
 ### Instagram
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example)
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example)
 
 ```jsx
 import { InstagramEmbed } from 'react-social-media-embed';
@@ -107,7 +107,7 @@ For a live example and more options, read the [full documentation for InstagramE
 
 ### LinkedIn
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example)
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example)
 
 ```jsx
 import { LinkedInEmbed } from 'react-social-media-embed';
@@ -140,7 +140,7 @@ For a live example and more options, read the [full documentation for LinkedInEm
 
 ### TikTok
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example)
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example)
 
 ```jsx
 import { TikTokEmbed } from 'react-social-media-embed';
@@ -158,7 +158,7 @@ For a live example and more options, read the [full documentation for TikTokEmbe
 
 ### Twitter
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example)
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example)
 
 ```jsx
 import { TwitterEmbed } from 'react-social-media-embed';
@@ -178,7 +178,7 @@ For a live example and more options, read the [full documentation for TwitterEmb
 
 ### YouTube
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example)
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example)
 
 ```jsx
 import { YouTubeEmbed } from 'react-social-media-embed';
