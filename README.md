@@ -198,6 +198,8 @@ For a live example and more options, read the [full documentation for YouTubeEmb
 
 ### Placeholder
 
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--main-example)
+
 ```jsx
 import { PlaceholderEmbed } from 'react-social-media-embed';
 ```
