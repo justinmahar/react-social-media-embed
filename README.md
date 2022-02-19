@@ -123,7 +123,7 @@ This will display the LinkedIn embed centered with a width of `325` and height o
 The `url` must be be retrieved from the "Embed this post" option for the desired post. Use the `src` attribute of the `iframe`:
 
 ```html
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6892528764350185473" height="592" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384" height="378" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 ```
 
 It is recommended that you specify the `width` and `height` of the post. These have been pre-calculated in the `iframe` embed code as well.
