@@ -83,7 +83,7 @@ import { FacebookEmbed } from 'react-social-media-embed';
 
 This will display the Facebook embed centered with a width of `550`.
 
-For more options, read the [full documentation for FacebookEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example).
+For a live example and more options, read the [full documentation for FacebookEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example).
 
 ### Instagram
 
@@ -99,7 +99,7 @@ import { InstagramEmbed } from 'react-social-media-embed';
 
 This will display the Instagram embed centered with a width of `328`.
 
-For more options, read the [full documentation for InstagramEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example).
+For a live example and more options, read the [full documentation for InstagramEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example).
 
 ### LinkedIn
 
@@ -130,7 +130,7 @@ It is recommended that you specify the `width` and `height` of the post. These h
 
 You can also specify a `postUrl` which will be used in the placeholder to link to the regular, non-embed version of the post.
 
-For more options, read the [full documentation for LinkedInEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example).
+For a live example and more options, read the [full documentation for LinkedInEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example).
 
 ### TikTok
 
@@ -146,7 +146,7 @@ import { TikTokEmbed } from 'react-social-media-embed';
 
 This will display the TikTok embed centered with a width of `325`.
 
-For more options, read the [full documentation for TikTokEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example).
+For a live example and more options, read the [full documentation for TikTokEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example).
 
 ### Twitter
 
@@ -164,7 +164,7 @@ This will display the Twitter embed centered with a width of `325`.
 
 This component uses the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed content. You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
 
-For more options, read the [full documentation for TwitterEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example).
+For a live example and more options, read the [full documentation for TwitterEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example).
 
 ### YouTube
 
@@ -182,7 +182,7 @@ This will display the YouTube embed centered with a width of `325` and height of
 
 This component uses the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed content. You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
-For more options, read the [full documentation for YouTubeEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example).
+For a live example and more options, read the [full documentation for YouTubeEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example).
 
 ### Placeholder
 
