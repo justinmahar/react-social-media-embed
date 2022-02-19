@@ -48,7 +48,7 @@ export const FacebookEmbed = ({
   scriptLoadDisabled = false,
   retryDelay = 5000,
   retryDisabled = false,
-  debug,
+  debug = false,
   ...divProps
 }: FacebookEmbedProps) => {
   const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);

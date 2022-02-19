@@ -48,7 +48,7 @@ export const InstagramEmbed = ({
   retryDelay = 5000,
   retryDisabled = false,
   igVersion = '14',
-  debug,
+  debug = false,
   ...divProps
 }: InstagramEmbedProps): JSX.Element => {
   const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
@@ -179,7 +179,6 @@ export const InstagramEmbed = ({
   const placeholder = embedPlaceholder ?? (
     <PlaceholderEmbed
       url={cleanUrlWithEndingSlash}
-      id={uuidRef.current}
       linkText={linkText}
       imageUrl={placeholderImageUrl}
       {...placeholderProps}
@@ -210,7 +209,9 @@ export const InstagramEmbed = ({
         }}
       >
         {!placeholderDisabled && placeholder}
-        <div className="instagram-media-pre-embed rsme-d-none">&nbsp;</div>
+        <div id={uuidRef.current} className="instagram-media-pre-embed rsme-d-none">
+          &nbsp;
+        </div>
       </blockquote>
     </div>
   );

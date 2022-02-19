@@ -44,7 +44,7 @@ export const TikTokEmbed = ({
   scriptLoadDisabled = false,
   retryDelay = 5000,
   retryDisabled = false,
-  debug,
+  debug = false,
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
   const [stage, setStage] = React.useState(PROCESS_EMBED_STAGE);
