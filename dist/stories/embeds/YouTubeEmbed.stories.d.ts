@@ -2,7 +2,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 declare const _default: ComponentMeta<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element>;
 export default _default;
-export declare const Example: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element>;
+export declare const MainExample: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element>;
 export declare const Size100x100: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element>;
 export declare const Size100x200: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element>;
 export declare const Size200x100: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element>;

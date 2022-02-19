@@ -2,7 +2,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 declare const _default: ComponentMeta<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: import("../../components/embeds/TwitterEmbed").TwitterEmbedProps) => JSX.Element>;
 export default _default;
-export declare const Example: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: import("../../components/embeds/TwitterEmbed").TwitterEmbedProps) => JSX.Element>;
+export declare const MainExample: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: import("../../components/embeds/TwitterEmbed").TwitterEmbedProps) => JSX.Element>;
 export declare const FluidWidth: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: import("../../components/embeds/TwitterEmbed").TwitterEmbedProps) => JSX.Element>;
 export declare const Width250AtMin: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: import("../../components/embeds/TwitterEmbed").TwitterEmbedProps) => JSX.Element>;
 export declare const Width400: ComponentStory<({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: import("../../components/embeds/TwitterEmbed").TwitterEmbedProps) => JSX.Element>;

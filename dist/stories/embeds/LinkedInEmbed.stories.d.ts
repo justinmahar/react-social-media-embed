@@ -2,7 +2,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 declare const _default: ComponentMeta<({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => JSX.Element>;
 export default _default;
-export declare const Example: ComponentStory<({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => JSX.Element>;
+export declare const MainExample: ComponentStory<({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => JSX.Element>;
 export declare const Size250x570AtMinWidth: ComponentStory<({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => JSX.Element>;
 export declare const Size400x570: ComponentStory<({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => JSX.Element>;
 export declare const Size600x650: ComponentStory<({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => JSX.Element>;

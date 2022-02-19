@@ -2,7 +2,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 declare const _default: ComponentMeta<({ url, linkText, imageUrl, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => JSX.Element>;
 export default _default;
-export declare const Example: ComponentStory<({ url, linkText, imageUrl, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => JSX.Element>;
+export declare const MainExample: ComponentStory<({ url, linkText, imageUrl, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => JSX.Element>;
 export declare const TextWidthHeight100x100: ComponentStory<({ url, linkText, imageUrl, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => JSX.Element>;
 export declare const TextWidthHeight200x200: ComponentStory<({ url, linkText, imageUrl, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => JSX.Element>;
 export declare const TextWidthHeight400x200: ComponentStory<({ url, linkText, imageUrl, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => JSX.Element>;
