@@ -2,6 +2,7 @@ import React from 'react';
 import { DivProps } from 'react-html-props';
 import { PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 export interface FacebookEmbedProps extends DivProps {
+    /** The URL to the post. */
     url: string;
     width?: string | number;
     height?: string | number;
