@@ -5,10 +5,17 @@ import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/Placehol
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
+const embedJsScriptSrc = 'https://www.tiktok.com/embed.js';
 const minPlaceholderWidth = 325;
 const maxPlaceholderWidth = 480;
 const defaultPlaceholderHeight = 550;
 const borderRadius = 8;
+
+// Embed Stages
+const PROCESS_EMBED_STAGE = 'process-embed';
+const CONFIRM_EMBED_SUCCESS_STAGE = 'confirm-embed-success';
+const RETRYING_STAGE = 'retrying';
+const EMBED_SUCCESS_STAGE = 'embed-success';
 
 export interface TikTokEmbedProps extends DivProps {
   url: string;
@@ -17,13 +24,13 @@ export interface TikTokEmbedProps extends DivProps {
   linkText?: string;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
-  processDelay?: number;
-  scriptLoadDisabled?: boolean;
-  retryDisabled?: boolean;
-  retryInitialDelay?: number;
-  retryBackoffMaxDelay?: number;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
+  scriptLoadDisabled?: boolean;
+  retryDisabled?: boolean;
+  retryDelay?: number;
+  igVersion?: string;
+  debug?: boolean;
 }
 
 export const TikTokEmbed = ({
@@ -33,80 +40,85 @@ export const TikTokEmbed = ({
   linkText = 'View post on TikTok',
   embedPlaceholder,
   placeholderDisabled,
-  processDelay = 100,
-  scriptLoadDisabled = false,
-  retryDisabled = false,
-  retryInitialDelay = 3000,
-  retryBackoffMaxDelay = 30000,
   placeholderImageUrl,
   placeholderProps,
+  scriptLoadDisabled = false,
+  retryDelay = 5000,
+  retryDisabled = false,
+  debug = true,
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
+  const [stage, setStage] = React.useState(PROCESS_EMBED_STAGE);
+  const uuidRef = React.useRef(generateUUID());
+  const [processTime, setProcessTime] = React.useState(Date.now());
+  const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
+
+  // Debug Output
+  React.useEffect(() => {
+    debug && console.log(`[${new Date().toISOString()}]: ${stage}`);
+  }, [debug, stage]);
+
+  // === === === === === === === === === === === === === === === === === === ===
+  // Embed Stages
+  // === === === === === === === === === === === === === === === === === === ===
+
+  // Process Embed Stage
+  React.useEffect(() => {
+    if (stage === PROCESS_EMBED_STAGE) {
+      if (typeof document !== 'undefined' && !scriptLoadDisabled) {
+        const scriptId = `tiktok-embed-script`;
+        const prevScript = document.getElementById(scriptId);
+        if (prevScript) {
+          prevScript.remove();
+        }
+        const scriptElement = document.createElement('script');
+        scriptElement.setAttribute('src', `${embedJsScriptSrc}?t=${Date.now()}`);
+        scriptElement.setAttribute('id', scriptId);
+        document.head.appendChild(scriptElement);
+        setStage(CONFIRM_EMBED_SUCCESS_STAGE);
+      }
+    }
+  }, [scriptLoadDisabled, stage]);
+
+  // Confirm Embed Success Stage
+  React.useEffect(() => {
+    let confirmInterval: any = undefined;
+    let retryTimeout: any = undefined;
+    if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
+      confirmInterval = setInterval(() => {
+        if (typeof document !== 'undefined') {
+          const preEmbedElement = document.getElementById(uuidRef.current);
+          if (!preEmbedElement) {
+            setStage(EMBED_SUCCESS_STAGE);
+          }
+        }
+      }, 1);
+      if (!retryDisabled) {
+        retryTimeout = setTimeout(() => {
+          setStage(RETRYING_STAGE);
+        }, retryDelay);
+      }
+    }
+    return () => {
+      clearInterval(confirmInterval);
+      clearTimeout(retryTimeout);
+    };
+  }, [retryDelay, retryDisabled, stage]);
+
+  // Retrying Stage
+  React.useEffect(() => {
+    if (stage === RETRYING_STAGE) {
+      // This forces the embed container to remount
+      setProcessTime(Date.now());
+      setStage(PROCESS_EMBED_STAGE);
+    }
+  }, [stage]);
+
+  // END Embed Stages
+  // === === === === === === === === === === === === === === === === === === ===
+
   // Format: https://www.tiktok.com/@epicgardening/video/7055411162212633903?is_copy_url=1&is_from_webapp=v1
   const embedId = url.replace(/[?].*$/, '').replace(/^.+\//, '');
-  // console.log(embedId);
-
-  const urlStripped = url.replace(/[?].*/, '');
-
-  const [initialized, setInitialized] = React.useState(false);
-  const [processTime, setProcessTime] = React.useState(-1);
-  const [retryDelay, setRetryDelay] = React.useState(retryInitialDelay);
-  const [retrying, setRetrying] = React.useState(false);
-  const [retryTime, setRetryTime] = React.useState(-1);
-  const uuidRef = React.useRef(generateUUID());
-
-  // Initialization
-  React.useEffect(() => {
-    const timeout: any = undefined;
-    if (!initialized) {
-      if (typeof processDelay !== 'undefined' && processDelay > 0) {
-        setTimeout(() => {
-          setProcessTime(Date.now());
-          setInitialized(true);
-        }, Math.max(0, processDelay));
-      } else if (processDelay === 0) {
-        setProcessTime(Date.now());
-        setInitialized(true);
-      }
-    }
-    return () => clearTimeout(timeout);
-  }, [initialized, processDelay]);
-
-  // Exponential backoff retry
-  React.useEffect(() => {
-    let timeout: any = undefined;
-    if (initialized && !retryDisabled && typeof document !== 'undefined') {
-      timeout = setTimeout(() => {
-        const preEmbedElement = document.getElementById(uuidRef.current);
-        if (!!preEmbedElement) {
-          console.warn('Pre-embed element found. Retrying...');
-          setProcessTime(Date.now());
-          setRetryDelay(Math.max(0, Math.min(retryDelay * 2, retryBackoffMaxDelay)));
-          setRetryTime(Date.now());
-          setRetrying(true);
-        }
-      }, Math.max(0, retryDelay));
-    }
-
-    return () => clearTimeout(timeout);
-  }, [initialized, retryBackoffMaxDelay, retryDelay, retryDisabled, retryTime]);
-
-  const urlWithNoQuery = url.replace(/[?].*$/, '');
-  const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
-
-  React.useEffect(() => {
-    if (typeof document !== 'undefined' && !scriptLoadDisabled) {
-      const scriptId = `tiktok-embed-script`;
-      const prevScript = document.getElementById(scriptId);
-      if (prevScript) {
-        prevScript.remove();
-      }
-      const scriptElement = document.createElement('script');
-      scriptElement.setAttribute('src', `https://www.tiktok.com/embed.js?t=${Date.now()}`);
-      scriptElement.setAttribute('id', scriptId);
-      document.head.appendChild(scriptElement);
-    }
-  }, [scriptLoadDisabled]);
 
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
@@ -146,8 +158,8 @@ export const TikTokEmbed = ({
       }}
     >
       <EmbedStyle />
-      <div className="tiktok-embed-container" key={`${uuidRef}-${retryTime}`}>
-        <blockquote className="tiktok-embed" cite={url} data-video-id={embedId}>
+      <div className="tiktok-embed-container">
+        <blockquote key={embedContainerKey} className="tiktok-embed" cite={url} data-video-id={embedId}>
           {!placeholderDisabled ? (
             <div id={uuidRef.current} style={{ display: 'flex', justifyContent: 'center' }}>
               {placeholder}

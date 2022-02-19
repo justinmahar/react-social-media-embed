@@ -5,6 +5,7 @@ import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/Placehol
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
+const embedJsScriptSrc = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
 const defaultEmbedWidth = 550;
 const maxPlaceholderWidth = defaultEmbedWidth;
 const defaultPlaceholderHeight = 372;
@@ -25,11 +26,11 @@ export interface FacebookEmbedProps extends DivProps {
   height?: string | number;
   linkText?: string;
   embedPlaceholder?: React.ReactNode;
-  placeholderDisabled?: boolean;
-  scriptLoadDisabled?: boolean;
   placeholderImageUrl?: string;
   placeholderProps?: PlaceholderEmbedProps;
-  retryTime?: number;
+  placeholderDisabled?: boolean;
+  scriptLoadDisabled?: boolean;
+  retryDelay?: number;
   retryDisabled?: boolean;
   debug?: boolean;
 }
@@ -40,11 +41,11 @@ export const FacebookEmbed = ({
   height,
   linkText = 'View post on Facebook',
   embedPlaceholder,
-  placeholderDisabled,
-  scriptLoadDisabled,
   placeholderImageUrl,
   placeholderProps,
-  retryTime = 3000,
+  placeholderDisabled,
+  scriptLoadDisabled,
+  retryDelay = 5000,
   retryDisabled = false,
   debug,
   ...divProps
@@ -53,11 +54,16 @@ export const FacebookEmbed = ({
   const embedSuccess = React.useMemo(() => stage === EMBED_SUCCESS_STAGE, [stage]);
   const uuidRef = React.useRef(generateUUID());
   const [processTime, setProcessTime] = React.useState(Date.now());
+  const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
 
   // Debug Output
   React.useEffect(() => {
     debug && console.log(`[${new Date().toISOString()}]: ${stage}`);
   }, [debug, stage]);
+
+  // === === === === === === === === === === === === === === === === === === ===
+  // Embed Stages
+  // === === === === === === === === === === === === === === === === === === ===
 
   // Check Script Stage
   React.useEffect(() => {
@@ -78,7 +84,7 @@ export const FacebookEmbed = ({
     if (stage === LOAD_SCRIPT_STAGE) {
       if (typeof document !== 'undefined') {
         const scriptElement = document.createElement('script');
-        scriptElement.setAttribute('src', `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2`);
+        scriptElement.setAttribute('src', embedJsScriptSrc);
         document.head.appendChild(scriptElement);
         setStage(CONFIRM_SCRIPT_LOADED_STAGE);
       }
@@ -134,14 +140,14 @@ export const FacebookEmbed = ({
       if (!retryDisabled) {
         retryTimeout = setTimeout(() => {
           setStage(RETRYING_STAGE);
-        }, retryTime);
+        }, retryDelay);
       }
     }
     return () => {
       clearInterval(confirmInterval);
       clearTimeout(retryTimeout);
     };
-  }, [retryDisabled, retryTime, stage]);
+  }, [retryDisabled, retryDelay, stage]);
 
   // Retrying Stage
   React.useEffect(() => {
@@ -151,6 +157,9 @@ export const FacebookEmbed = ({
       setStage(PROCESS_EMBED_STAGE);
     }
   }, [stage]);
+
+  // END Embed Stages
+  // === === === === === === === === === === === === === === === === === === ===
 
   const isPercentageWidth = !!width?.toString().includes('%');
   const isPercentageHeight = !!height?.toString().includes('%');
@@ -195,7 +204,7 @@ export const FacebookEmbed = ({
       <EmbedStyle />
       <div id={uuidRef.current} className={classNames(!embedSuccess && 'rsme-d-none')}>
         <div
-          key={`${uuidRef.current}-${processTime}`}
+          key={embedContainerKey}
           className="fb-post"
           data-href={url}
           style={{
