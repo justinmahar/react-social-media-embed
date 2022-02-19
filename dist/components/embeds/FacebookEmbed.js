@@ -35,7 +35,7 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 const FacebookEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on Facebook', embedPlaceholder, placeholderImageUrl, placeholderProps, placeholderDisabled, scriptLoadDisabled, retryDelay = 5000, retryDisabled = false, debug } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "embedPlaceholder", "placeholderImageUrl", "placeholderProps", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "debug"]);
+    var { url, width, height, linkText = 'View post on Facebook', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, debug } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "debug"]);
     const [stage, setStage] = react_1.default.useState(CHECK_SCRIPT_STAGE);
     const embedSuccess = react_1.default.useMemo(() => stage === EMBED_SUCCESS_STAGE, [stage]);
     const uuidRef = react_1.default.useRef((0, uuid_1.generateUUID)());

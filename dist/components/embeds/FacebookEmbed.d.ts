@@ -6,13 +6,13 @@ export interface FacebookEmbedProps extends DivProps {
     width?: string | number;
     height?: string | number;
     linkText?: string;
-    embedPlaceholder?: React.ReactNode;
     placeholderImageUrl?: string;
     placeholderProps?: PlaceholderEmbedProps;
+    embedPlaceholder?: React.ReactNode;
     placeholderDisabled?: boolean;
     scriptLoadDisabled?: boolean;
     retryDelay?: number;
     retryDisabled?: boolean;
     debug?: boolean;
 }
-export declare const FacebookEmbed: ({ url, width, height, linkText, embedPlaceholder, placeholderImageUrl, placeholderProps, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, debug, ...divProps }: FacebookEmbedProps) => JSX.Element;
+export declare const FacebookEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, debug, ...divProps }: FacebookEmbedProps) => JSX.Element;

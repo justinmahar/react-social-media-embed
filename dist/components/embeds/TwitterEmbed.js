@@ -38,7 +38,6 @@ const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_twitter_embed_1 = require("react-twitter-embed");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
-const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const minPlaceholderWidth = 250;
 const maxPlaceholderWidth = 550;
@@ -46,8 +45,7 @@ const defaultPlaceholderHeight = 350;
 const borderRadius = 12;
 const TwitterEmbed = (_a) => {
     var _b, _c;
-    var { url, twitterTweetEmbedProps, width, height, linkText = 'View post on Twitter', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["url", "twitterTweetEmbedProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
-    const uuidRef = React.useRef((0, uuid_1.generateUUID)());
+    var { url, width, height, linkText = 'View post on Twitter', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "twitterTweetEmbedProps"]);
     const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
     const isPercentageWidth = !!(width === null || width === void 0 ? void 0 : width.toString().includes('%'));
     const isPercentageHeight = !!(height === null || height === void 0 ? void 0 : height.toString().includes('%'));

@@ -38,15 +38,13 @@ const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const react_youtube_1 = __importDefault(require("react-youtube"));
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
-const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const maxPlaceholderWidth = 640;
 const defaultPlaceholderHeight = 360;
 const borderRadius = 0;
 const YouTubeEmbed = (_a) => {
     var _b, _c, _d, _e;
-    var { url, youTubeProps, width, height, linkText = 'Watch on YouTube', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["url", "youTubeProps", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
-    const uuidRef = React.useRef((0, uuid_1.generateUUID)());
+    var { url, width, height, linkText = 'Watch on YouTube', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "youTubeProps"]);
     const [ready, setReady] = React.useState(false);
     let videoId = '00000000';
     const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&])/);

@@ -37,7 +37,6 @@ exports.LinkedInEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
-const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const minPlaceholderWidth = 250;
 const maxPlaceholderWidth = 550;
@@ -45,8 +44,7 @@ const defaultPlaceholderHeight = 550;
 const borderRadius = 8;
 const LinkedInEmbed = (_a) => {
     var _b, _c;
-    var { postUrl, url, width, height = 500, linkText = 'View post on LinkedIn', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps } = _a, divProps = __rest(_a, ["postUrl", "url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps"]);
-    const uuidRef = React.useRef((0, uuid_1.generateUUID)());
+    var { url, postUrl, width, height = 500, linkText = 'View post on LinkedIn', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled = false } = _a, divProps = __rest(_a, ["url", "postUrl", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled"]);
     const [ready, setReady] = React.useState(false);
     // === Placeholder ===
     const placeholderStyle = {

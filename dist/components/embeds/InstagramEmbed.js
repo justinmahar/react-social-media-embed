@@ -53,7 +53,7 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 const InstagramEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on Instagram', scriptLoadDisabled = false, embedPlaceholder, placeholderDisabled = false, placeholderImageUrl, placeholderProps, retryDelay = 5000, retryDisabled = false, igVersion = '14', debug } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "scriptLoadDisabled", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps", "retryDelay", "retryDisabled", "igVersion", "debug"]);
+    var { url, width, height, linkText = 'View post on Instagram', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, igVersion = '14', debug } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "igVersion", "debug"]);
     const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const [processTime, setProcessTime] = React.useState(Date.now());

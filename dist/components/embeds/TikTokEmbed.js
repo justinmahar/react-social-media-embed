@@ -32,7 +32,7 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 const TikTokEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on TikTok', embedPlaceholder, placeholderDisabled, placeholderImageUrl, placeholderProps, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, debug = true } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "embedPlaceholder", "placeholderDisabled", "placeholderImageUrl", "placeholderProps", "scriptLoadDisabled", "retryDelay", "retryDisabled", "debug"]);
+    var { url, width, height, linkText = 'View post on TikTok', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, debug } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "debug"]);
     const [stage, setStage] = react_1.default.useState(PROCESS_EMBED_STAGE);
     const uuidRef = react_1.default.useRef((0, uuid_1.generateUUID)());
     const [processTime, setProcessTime] = react_1.default.useState(Date.now());
