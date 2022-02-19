@@ -21,6 +21,7 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 
 export interface FacebookEmbedProps extends DivProps {
+  /** The URL to the post. */
   url: string;
   width?: string | number;
   height?: string | number;
