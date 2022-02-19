@@ -191,6 +191,8 @@ import { TwitterEmbed } from 'react-social-media-embed';
 
 This will display the Twitter embed centered with a width of `325`.
 
+The URL must contain the tweet ID, in the format `https://twitter.com/username/status/1234567890123456789`. Short links are not supported.
+
 This component uses the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed content. You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
 
 For a live example and more options, read the [full documentation for TwitterEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example).
