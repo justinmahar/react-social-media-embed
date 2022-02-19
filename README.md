@@ -22,7 +22,7 @@ Read the **[official documentation](https://justinmahar.github.io/react-social-m
 
 ## Donate 
 
-This project is the result of dozens of hours of work. If you would like to join others in showing support for the development of this project, then please feel free to buy me a coffee.
+This project is the result of 100s of hours of work. If you would like to join others in showing support for the development of this project, then please feel free to buy me a coffee.
 
 <a href="https://www.buymeacoffee.com/thejustinmahar" target="_blank">
   <img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" alt="Buy Me A Coffee" height="41" width="174"/>
