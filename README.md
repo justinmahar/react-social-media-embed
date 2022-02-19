@@ -85,7 +85,7 @@ This will display the Facebook embed centered with a width of `550`.
 
 For a live example and more options, read the [full documentation for FacebookEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example).
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example)
+[👁️ FacebookEmbed Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example)
 
 ### Instagram
 
@@ -103,7 +103,7 @@ This will display the Instagram embed centered with a width of `328`.
 
 For a live example and more options, read the [full documentation for InstagramEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example).
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example)
+[👁️ InstagramEmbed Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example)
 
 ### LinkedIn
 
@@ -136,7 +136,7 @@ You can also specify a `postUrl` which will be used in the placeholder to link t
 
 For a live example and more options, read the [full documentation for LinkedInEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example).
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example)
+[👁️ LinkedInEmbed Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example)
 
 ### TikTok
 
@@ -154,7 +154,7 @@ This will display the TikTok embed centered with a width of `325`.
 
 For a live example and more options, read the [full documentation for TikTokEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example).
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example)
+[👁️ TikTokEmbed Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example)
 
 ### Twitter
 
@@ -174,7 +174,7 @@ This component uses the [`react-twitter-embed`](https://www.npmjs.com/package/re
 
 For a live example and more options, read the [full documentation for TwitterEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example).
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example)
+[👁️ TwitterEmbed Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example)
 
 ### YouTube
 
@@ -194,7 +194,7 @@ This component uses the [`react-youtube`](https://www.npmjs.com/package/react-yo
 
 For a live example and more options, read the [full documentation for YouTubeEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example).
 
-[👁️ Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example)
+[👁️ YouTubeEmbed Live Example](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example)
 
 ### Placeholder
 
