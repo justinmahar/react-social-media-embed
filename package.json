@@ -1,6 +1,6 @@
 {
   "name": "react-social-media-embed",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "coreVersion": "2.0.3",
   "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "Easily embed social media posts from Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube in React.",
