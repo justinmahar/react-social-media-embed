@@ -293,7 +293,13 @@ A TikTok post uses the following form:
 
 Unfortunately, unlike Facebook and Instagram, there is no documented or obvious way to manually initialize the embed HTML. **[If you know how to do this, please open a GitHub issue with the info!](https://github.com/justinmahar/react-social-media-embed/issues/new)**
 
-So, in order to initialize the embed HTML, we must load the embed script from TikTok every time we render the TikTok embed. To do this, we use time-based query param cache busting and replace the embed.js script tag in the `head` node. This forces the browser to load the script anew each time, which then performs the embed.
+So, in order to initialize the embed HTML, we must load the embed script from TikTok every time we render the TikTok embed. To do this, we use time-based query param cache busting and replace the embed.js script element in the `head` node. This forces the browser to load the script anew each time, which then performs the embed.
+
+For example, here's the script element with `t` as the current time:
+
+```html
+<script src="https://www.tiktok.com/embed.js?t=1645275849920" id="tiktok-embed-script"></script>
+```
 
 Again, if there's a way to manually initialize the embed HTML through the already-loaded script, please [open an issue](https://github.com/justinmahar/react-social-media-embed/issues/new) so this can be improved. For now, this gets the job done!
 
