@@ -53,7 +53,7 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 const InstagramEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on Instagram', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, igVersion = '14', debug } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "igVersion", "debug"]);
+    var { url, width, height, linkText = 'View post on Instagram', placeholderImageUrl, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, igVersion = '14', debug = false } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "igVersion", "debug"]);
     const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const [processTime, setProcessTime] = React.useState(Date.now());
@@ -173,7 +173,7 @@ const InstagramEmbed = (_a) => {
         border: '1px solid #dee2e6',
         borderRadius,
     };
-    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: cleanUrlWithEndingSlash, id: uuidRef.current, linkText: linkText, imageUrl: placeholderImageUrl }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
+    const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: cleanUrlWithEndingSlash, linkText: linkText, imageUrl: placeholderImageUrl }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
     // === END Placeholder ===
     return (React.createElement("div", { className: (0, classnames_1.default)('rsme-embed rsme-instagram-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined, borderRadius }, divProps.style) },
         React.createElement(EmbedStyle_1.EmbedStyle, null),
@@ -181,6 +181,6 @@ const InstagramEmbed = (_a) => {
                 width: 'calc(100% - 2px)',
             } },
             !placeholderDisabled && placeholder,
-            React.createElement("div", { className: "instagram-media-pre-embed rsme-d-none" }, "\u00A0"))));
+            React.createElement("div", { id: uuidRef.current, className: "instagram-media-pre-embed rsme-d-none" }, "\u00A0"))));
 };
 exports.InstagramEmbed = InstagramEmbed;
