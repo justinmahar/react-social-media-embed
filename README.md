@@ -31,7 +31,13 @@ Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTub
 ### Features include:
 
 - **🚀 Quick and easy**
-  - Embed content quickly and easily from the most popular social media platforms
+  - Embed content quickly and easily for the most popular social media platforms. Just provide a URL!
+- **💁 Live demos**
+  - Give the embeds a try and play with their props using live examples.
+- **⚙️ Customizable**
+  - Each embed supports all div props and provides additional options, such as a placeholder.
+- **💪 Resilient**
+  - If embedding fails, it automatically retries using a configurable retry delay.
 
 ## Table of Contents
 
