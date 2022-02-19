@@ -34,7 +34,7 @@ If you would like to join others in showing support for the development of this 
 
 Easily embed content from several popular social media platforms in React.
 
-All embeds only require a URL to the post.
+All embeds only require a URL to the post. No API token is needed.
 
 Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube.
 
@@ -170,6 +170,8 @@ import { TikTokEmbed } from 'react-social-media-embed';
 ```
 
 This will display the TikTok embed centered with a width of `325`.
+
+The URL must contain the video ID, in the format `https://www.tiktok.com/@username/video/1234567890123456789`. Short links are not supported.
 
 For a live example and more options, read the [full documentation for TikTokEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example).
 
