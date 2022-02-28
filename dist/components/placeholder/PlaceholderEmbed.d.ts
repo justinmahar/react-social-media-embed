@@ -4,5 +4,6 @@ export interface PlaceholderEmbedProps extends DivProps {
     url: string;
     linkText?: string;
     imageUrl?: string;
+    spinnerDisabled?: boolean;
 }
-export declare const PlaceholderEmbed: ({ url, linkText, imageUrl, ...divProps }: PlaceholderEmbedProps) => JSX.Element;
+export declare const PlaceholderEmbed: ({ url, linkText, imageUrl, spinnerDisabled, ...divProps }: PlaceholderEmbedProps) => JSX.Element;

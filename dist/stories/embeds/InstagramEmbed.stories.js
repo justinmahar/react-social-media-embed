@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlaceholderDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.Width100Percent = exports.Width50Percent = exports.Width150AtUnderMin = exports.Width800 = exports.Width600 = exports.Width400 = exports.Width328AtMin = exports.FluidWidth = exports.MainExample = void 0;
+exports.PlaceholderDisabled = exports.PlaceholderSpinnerDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.Width100Percent = exports.Width50Percent = exports.Width150AtUnderMin = exports.Width800 = exports.Width600 = exports.Width400 = exports.Width328AtMin = exports.FluidWidth = exports.MainExample = void 0;
 const react_1 = __importDefault(require("react"));
 const InstagramEmbed_1 = require("../../components/embeds/InstagramEmbed");
 const EmbedToggler_1 = require("../EmbedToggler");
@@ -90,6 +90,12 @@ exports.CustomPlaceholderLinkText.args = {
     url,
     width: 400,
     linkText: 'Custom link text',
+};
+exports.PlaceholderSpinnerDisabled = ToggledOffTemplate.bind({});
+exports.PlaceholderSpinnerDisabled.args = {
+    url,
+    width: 400,
+    placeholderSpinnerDisabled: true,
 };
 exports.PlaceholderDisabled = ToggledOffTemplate.bind({});
 exports.PlaceholderDisabled.args = {

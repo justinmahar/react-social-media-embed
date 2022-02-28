@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PortraitImageNoSizing = exports.PortraitImageHeight800 = exports.PortraitImageHeight400 = exports.PortraitImageHeight200 = exports.PortraitImageHeight100 = exports.PortraitImageWidth800 = exports.PortraitImageWidth400 = exports.PortraitImageWidth200 = exports.PortraitImageWidth100 = exports.PortraitImageWidthHeight400x600 = exports.PortraitImageWidthHeight600x400 = exports.PortraitImageWidthHeight200x400 = exports.PortraitImageWidthHeight400x200 = exports.PortraitImageWidthHeight200x200 = exports.PortraitImageWidthHeight100x100 = exports.LandscapeImageNoSizing = exports.LandscapeImageHeight800 = exports.LandscapeImageHeight400 = exports.LandscapeImageHeight200 = exports.LandscapeImageHeight100 = exports.LandscapeImageWidth800 = exports.LandscapeImageWidth400 = exports.LandscapeImageWidth200 = exports.LandscapeImageWidth100 = exports.LandscapeImageWidthHeight400x600 = exports.LandscapeImageWidthHeight600x400 = exports.LandscapeImageWidthHeight200x400 = exports.LandscapeImageWidthHeight400x200 = exports.LandscapeImageWidthHeight200x200 = exports.LandscapeImageWidthHeight100x100 = exports.TextNoSizing = exports.TextHeight800 = exports.TextHeight400 = exports.TextHeight200 = exports.TextHeight100 = exports.TextWidth800 = exports.TextWidth400 = exports.TextWidth200 = exports.TextWidth100 = exports.TextWidthHeight400x600 = exports.TextWidthHeight600x400 = exports.TextWidthHeight200x400 = exports.TextWidthHeight400x200 = exports.TextWidthHeight200x200 = exports.TextWidthHeight100x100 = exports.MainExample = void 0;
+exports.ImageWithSpinnerDisabled = exports.TextWithSpinnerDisabled = exports.PortraitImageNoSizing = exports.PortraitImageHeight800 = exports.PortraitImageHeight400 = exports.PortraitImageHeight200 = exports.PortraitImageHeight100 = exports.PortraitImageWidth800 = exports.PortraitImageWidth400 = exports.PortraitImageWidth200 = exports.PortraitImageWidth100 = exports.PortraitImageWidthHeight400x600 = exports.PortraitImageWidthHeight600x400 = exports.PortraitImageWidthHeight200x400 = exports.PortraitImageWidthHeight400x200 = exports.PortraitImageWidthHeight200x200 = exports.PortraitImageWidthHeight100x100 = exports.LandscapeImageNoSizing = exports.LandscapeImageHeight800 = exports.LandscapeImageHeight400 = exports.LandscapeImageHeight200 = exports.LandscapeImageHeight100 = exports.LandscapeImageWidth800 = exports.LandscapeImageWidth400 = exports.LandscapeImageWidth200 = exports.LandscapeImageWidth100 = exports.LandscapeImageWidthHeight400x600 = exports.LandscapeImageWidthHeight600x400 = exports.LandscapeImageWidthHeight200x400 = exports.LandscapeImageWidthHeight400x200 = exports.LandscapeImageWidthHeight200x200 = exports.LandscapeImageWidthHeight100x100 = exports.TextNoSizing = exports.TextHeight800 = exports.TextHeight400 = exports.TextHeight200 = exports.TextHeight100 = exports.TextWidth800 = exports.TextWidth400 = exports.TextWidth200 = exports.TextWidth100 = exports.TextWidthHeight400x600 = exports.TextWidthHeight600x400 = exports.TextWidthHeight200x400 = exports.TextWidthHeight400x200 = exports.TextWidthHeight200x200 = exports.TextWidthHeight100x100 = exports.MainExample = void 0;
 const react_1 = __importDefault(require("react"));
 const PlaceholderEmbed_1 = require("../../components/placeholder/PlaceholderEmbed");
 const EmbedToggler_1 = require("../EmbedToggler");
@@ -378,4 +378,22 @@ exports.PortraitImageNoSizing = Template.bind({});
 exports.PortraitImageNoSizing.args = {
     url,
     imageUrl: portraitImageUrl,
+};
+exports.TextWithSpinnerDisabled = Template.bind({});
+exports.TextWithSpinnerDisabled.args = {
+    url,
+    spinnerDisabled: true,
+    style: {
+        width: 400,
+        height: 300,
+    },
+};
+exports.ImageWithSpinnerDisabled = Template.bind({});
+exports.ImageWithSpinnerDisabled.args = {
+    url,
+    imageUrl: landscapeImageUrl,
+    spinnerDisabled: true,
+    style: {
+        width: 400,
+    },
 };

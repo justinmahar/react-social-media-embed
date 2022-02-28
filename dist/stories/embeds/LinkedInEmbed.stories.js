@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlaceholderDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.Width100Percent = exports.Size150x570AtUnderMin = exports.Size600x650 = exports.Size400x570 = exports.Size250x570AtMinWidth = exports.MainExample = void 0;
+exports.PlaceholderDisabled = exports.PlaceholderSpinnerDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.Width100Percent = exports.Size150x570AtUnderMin = exports.Size600x650 = exports.Size400x570 = exports.Size250x570AtMinWidth = exports.MainExample = void 0;
 const react_1 = __importDefault(require("react"));
 const LinkedInEmbed_1 = require("../../components/embeds/LinkedInEmbed");
 const EmbedToggler_1 = require("../EmbedToggler");
@@ -94,6 +94,14 @@ exports.CustomPlaceholderLinkText.args = {
     width: 325,
     height: 570,
     linkText: 'Custom link text',
+};
+exports.PlaceholderSpinnerDisabled = ToggledOffTemplate.bind({});
+exports.PlaceholderSpinnerDisabled.args = {
+    url,
+    postUrl,
+    width: 325,
+    height: 570,
+    placeholderSpinnerDisabled: true,
 };
 exports.PlaceholderDisabled = ToggledOffTemplate.bind({});
 exports.PlaceholderDisabled.args = {

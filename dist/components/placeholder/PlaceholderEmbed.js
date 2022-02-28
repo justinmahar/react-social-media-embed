@@ -22,7 +22,7 @@ const ProfilePlaceholder_1 = require("./parts/ProfilePlaceholder");
 const Spinner_1 = require("./parts/Spinner");
 const PlaceholderEmbed = (_a) => {
     var _b;
-    var { url, linkText = 'View post', imageUrl } = _a, divProps = __rest(_a, ["url", "linkText", "imageUrl"]);
+    var { url, linkText = 'View post', imageUrl, spinnerDisabled } = _a, divProps = __rest(_a, ["url", "linkText", "imageUrl", "spinnerDisabled"]);
     return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)(divProps.className), style: Object.assign({ overflow: 'hidden', border: '1px solid #dee2e6', backgroundColor: '#ffffff', borderRadius: 0, boxSizing: 'border-box', position: 'relative' }, divProps.style) }),
         react_1.default.createElement("a", { href: url, style: { textDecoration: 'none' }, target: "_blank", rel: "noopener noreferrer" },
             !imageUrl && (react_1.default.createElement("div", { style: {
@@ -59,7 +59,7 @@ const PlaceholderEmbed = (_a) => {
                         padding: 8,
                         backgroundColor: '#ffffff',
                     } },
-                    react_1.default.createElement(Spinner_1.Spinner, { size: 30 }),
+                    !spinnerDisabled && react_1.default.createElement(Spinner_1.Spinner, { size: 30 }),
                     !!linkText && (react_1.default.createElement("div", { style: {
                             color: '#000000',
                             fontFamily: 'Arial,sans-serif',
@@ -108,6 +108,6 @@ const PlaceholderEmbed = (_a) => {
                             whiteSpace: 'nowrap',
                             marginLeft: 16,
                         } }, linkText),
-                    react_1.default.createElement(Spinner_1.Spinner, { style: { marginRight: 16 } })))))));
+                    !spinnerDisabled && react_1.default.createElement(Spinner_1.Spinner, { style: { marginRight: 16 } })))))));
 };
 exports.PlaceholderEmbed = PlaceholderEmbed;
