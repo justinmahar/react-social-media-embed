@@ -15,6 +15,7 @@ export interface YouTubeEmbedProps extends DivPropsWithoutRef {
   height?: string | number;
   linkText?: string;
   placeholderImageUrl?: string;
+  placeholderSpinnerDisabled?: boolean;
   placeholderProps?: PlaceholderEmbedProps;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
@@ -27,6 +28,7 @@ export const YouTubeEmbed = ({
   height,
   linkText = 'Watch on YouTube',
   placeholderImageUrl,
+  placeholderSpinnerDisabled = false,
   placeholderProps,
   embedPlaceholder,
   placeholderDisabled,
@@ -72,6 +74,7 @@ export const YouTubeEmbed = ({
       url={url}
       imageUrl={placeholderImageUrl}
       linkText={linkText}
+      spinnerDisabled={placeholderSpinnerDisabled}
       {...placeholderProps}
       style={{ ...placeholderStyle, ...placeholderProps?.style }}
     />

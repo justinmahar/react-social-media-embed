@@ -430,3 +430,23 @@ PortraitImageNoSizing.args = {
   url,
   imageUrl: portraitImageUrl,
 };
+
+export const TextWithSpinnerDisabled = Template.bind({});
+TextWithSpinnerDisabled.args = {
+  url,
+  spinnerDisabled: true,
+  style: {
+    width: 400,
+    height: 300,
+  },
+};
+
+export const ImageWithSpinnerDisabled = Template.bind({});
+ImageWithSpinnerDisabled.args = {
+  url,
+  imageUrl: landscapeImageUrl,
+  spinnerDisabled: true,
+  style: {
+    width: 400,
+  },
+};

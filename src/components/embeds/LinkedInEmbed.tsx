@@ -16,6 +16,7 @@ export interface LinkedInEmbedProps extends DivProps {
   height?: string | number;
   linkText?: string;
   placeholderImageUrl?: string;
+  placeholderSpinnerDisabled?: boolean;
   placeholderProps?: PlaceholderEmbedProps;
   embedPlaceholder?: React.ReactNode;
   placeholderDisabled?: boolean;
@@ -28,6 +29,7 @@ export const LinkedInEmbed = ({
   height = 500,
   linkText = 'View post on LinkedIn',
   placeholderImageUrl,
+  placeholderSpinnerDisabled = false,
   placeholderProps,
   embedPlaceholder,
   placeholderDisabled = false,
@@ -54,6 +56,7 @@ export const LinkedInEmbed = ({
       url={postUrl ?? url}
       imageUrl={placeholderImageUrl}
       linkText={linkText}
+      spinnerDisabled={placeholderSpinnerDisabled}
       {...placeholderProps}
       style={{ ...placeholderStyle, ...placeholderProps?.style }}
     />

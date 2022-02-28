@@ -138,6 +138,13 @@ CustomPlaceholderLinkText.args = {
   linkText: 'Custom link text',
 };
 
+export const PlaceholderSpinnerDisabled = ToggledOffTemplate.bind({});
+PlaceholderSpinnerDisabled.args = {
+  url: photoUrl,
+  width: 325,
+  placeholderSpinnerDisabled: true,
+};
+
 export const PlaceholderDisabled = ToggledOffTemplate.bind({});
 PlaceholderDisabled.args = {
   url: photoUrl,

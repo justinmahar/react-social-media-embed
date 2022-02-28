@@ -119,6 +119,15 @@ CustomPlaceholderLinkText.args = {
   linkText: 'Custom link text',
 };
 
+export const PlaceholderSpinnerDisabled = ToggledOffTemplate.bind({});
+PlaceholderSpinnerDisabled.args = {
+  url,
+  postUrl,
+  width: 325,
+  height: 570,
+  placeholderSpinnerDisabled: true,
+};
+
 export const PlaceholderDisabled = ToggledOffTemplate.bind({});
 PlaceholderDisabled.args = {
   url,

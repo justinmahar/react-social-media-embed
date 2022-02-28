@@ -26,8 +26,12 @@ This project is the result of 100s of hours of work and I really hope it saves y
 
 If you would like to join others in showing support for the development of this project, then please feel free to buy me a coffee.
 
-<a href="https://www.buymeacoffee.com/thejustinmahar" target="_blank">
-  <img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" alt="Buy Me A Coffee" height="41" width="174"/>
+<a href="https://paypal.me/thejustinmahar/5">
+  <img src="https://justinmahar.github.io/react-kindling/support/coffee-1.png" alt="Buy me a coffee" height="35" />
+</a> <a href="https://paypal.me/thejustinmahar/15">
+  <img src="https://justinmahar.github.io/react-kindling/support/coffee-3.png" alt="Buy me 3 coffees" height="35" />
+</a> <a href="https://paypal.me/thejustinmahar/25">
+  <img src="https://justinmahar.github.io/react-kindling/support/coffee-5.png" alt="Buy me 5 coffees" height="35" />
 </a>
 
 ## Overview
@@ -229,7 +233,7 @@ A placeholder is shown while loading. If you do not specify a placeholder via th
 
 The default placeholder will size itself according to the width and/or height you specify for the embed. If none are specified, it will fall back to a default size appropriate for the given social media platform. You can pass custom props (such as `style`) to the default placeholder via `placeholderProps` to override any default behavior.
 
-If you'd like, you can specify the  `placeholderImageUrl` prop to any of the embeds to show a placeholder with the provided image. 
+If you'd like, you can specify the  `placeholderImageUrl` prop to any of the embeds to show a placeholder with the provided image, and `placeholderSpinnerDisabled` to remove the placeholder spinner.
 
 See the [PlaceholderEmbed docs](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--main-example) for examples and more.
 

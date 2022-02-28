@@ -9,9 +9,16 @@ export interface PlaceholderEmbedProps extends DivProps {
   url: string;
   linkText?: string;
   imageUrl?: string;
+  spinnerDisabled?: boolean;
 }
 
-export const PlaceholderEmbed = ({ url, linkText = 'View post', imageUrl, ...divProps }: PlaceholderEmbedProps) => {
+export const PlaceholderEmbed = ({
+  url,
+  linkText = 'View post',
+  imageUrl,
+  spinnerDisabled,
+  ...divProps
+}: PlaceholderEmbedProps) => {
   return (
     <div
       {...divProps}
@@ -71,7 +78,7 @@ export const PlaceholderEmbed = ({ url, linkText = 'View post', imageUrl, ...div
                 backgroundColor: '#ffffff',
               }}
             >
-              <Spinner size={30} />
+              {!spinnerDisabled && <Spinner size={30} />}
               {!!linkText && (
                 <div
                   style={{
@@ -149,7 +156,7 @@ export const PlaceholderEmbed = ({ url, linkText = 'View post', imageUrl, ...div
               >
                 {linkText}
               </div>
-              <Spinner style={{ marginRight: 16 }} />
+              {!spinnerDisabled && <Spinner style={{ marginRight: 16 }} />}
             </div>
           )}
         </div>
