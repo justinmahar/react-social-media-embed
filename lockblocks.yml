@@ -20,8 +20,6 @@ updateJson:
         as: coreVersion
       - key: scripts
         merge: true
-      - key: peerDependencies
-        merge: true
       - key: devDependencies
         merge: true
 updateYaml: []
