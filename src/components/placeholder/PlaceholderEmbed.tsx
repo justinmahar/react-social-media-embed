@@ -17,7 +17,7 @@ export const PlaceholderEmbed = ({
   url,
   linkText = 'View post',
   imageUrl,
-  spinner = <span className="rsme-spinning">🌀</span>,
+  spinner = <div className="rsme-spinning">🌀</div>,
   spinnerDisabled,
   ...divProps
 }: PlaceholderEmbedProps) => {
