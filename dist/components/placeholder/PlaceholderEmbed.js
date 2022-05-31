@@ -22,7 +22,7 @@ const EngagementIconsPlaceholder_1 = require("./parts/EngagementIconsPlaceholder
 const ProfilePlaceholder_1 = require("./parts/ProfilePlaceholder");
 const PlaceholderEmbed = (_a) => {
     var _b;
-    var { url, linkText = 'View post', imageUrl, spinner = react_1.default.createElement("span", { className: "rsme-spinning" }, "\uD83C\uDF00"), spinnerDisabled } = _a, divProps = __rest(_a, ["url", "linkText", "imageUrl", "spinner", "spinnerDisabled"]);
+    var { url, linkText = 'View post', imageUrl, spinner = react_1.default.createElement("div", { className: "rsme-spinning" }, "\uD83C\uDF00"), spinnerDisabled } = _a, divProps = __rest(_a, ["url", "linkText", "imageUrl", "spinner", "spinnerDisabled"]);
     return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)(divProps.className), style: Object.assign({ overflow: 'hidden', border: '1px solid #dee2e6', backgroundColor: '#ffffff', borderRadius: 0, boxSizing: 'border-box', position: 'relative' }, divProps.style) }),
         react_1.default.createElement(EmbedStyle_1.EmbedStyle, null),
         react_1.default.createElement("a", { href: url, style: { textDecoration: 'none' }, target: "_blank", rel: "noopener noreferrer" },
