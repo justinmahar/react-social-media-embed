@@ -8,10 +8,11 @@ export interface YouTubeEmbedProps extends DivPropsWithoutRef {
     height?: string | number;
     linkText?: string;
     placeholderImageUrl?: string;
+    placeholderSpinner?: React.ReactNode;
     placeholderSpinnerDisabled?: boolean;
     placeholderProps?: PlaceholderEmbedProps;
     embedPlaceholder?: React.ReactNode;
     placeholderDisabled?: boolean;
     youTubeProps?: YouTubeProps;
 }
-export declare const YouTubeEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: YouTubeEmbedProps) => JSX.Element;
+export declare const YouTubeEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: YouTubeEmbedProps) => JSX.Element;
