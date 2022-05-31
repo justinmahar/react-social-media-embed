@@ -8,6 +8,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { PlaceholderEmbed } from '../../components/placeholder/PlaceholderEmbed';
 import { EmbedToggler } from '../EmbedToggler';
+import ClipLoader from 'react-spinners/ClipLoader';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 export default {
   title: 'Placeholder/PlaceholderEmbed',
@@ -446,6 +448,26 @@ ImageWithSpinnerDisabled.args = {
   url,
   imageUrl: landscapeImageUrl,
   spinnerDisabled: true,
+  style: {
+    width: 400,
+  },
+};
+
+export const TextWithCustomSpinner = Template.bind({});
+TextWithCustomSpinner.args = {
+  url,
+  spinner: <ClipLoader color="black" size={15} />,
+  style: {
+    width: 400,
+    height: 300,
+  },
+};
+
+export const ImageWithCustomSpinner = Template.bind({});
+ImageWithCustomSpinner.args = {
+  url,
+  imageUrl: landscapeImageUrl,
+  spinner: <ScaleLoader color="black" height={10} width={2} />,
   style: {
     width: 400,
   },

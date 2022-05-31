@@ -25,6 +25,7 @@ export interface InstagramEmbedProps extends DivProps {
   height?: string | number;
   linkText?: string;
   placeholderImageUrl?: string;
+  placeholderSpinner?: React.ReactNode;
   placeholderSpinnerDisabled?: boolean;
   placeholderProps?: PlaceholderEmbedProps;
   embedPlaceholder?: React.ReactNode;
@@ -42,6 +43,7 @@ export const InstagramEmbed = ({
   height,
   linkText = 'View post on Instagram',
   placeholderImageUrl,
+  placeholderSpinner,
   placeholderSpinnerDisabled = false,
   placeholderProps,
   embedPlaceholder,
@@ -183,6 +185,7 @@ export const InstagramEmbed = ({
       url={cleanUrlWithEndingSlash}
       imageUrl={placeholderImageUrl}
       linkText={linkText}
+      spinner={placeholderSpinner}
       spinnerDisabled={placeholderSpinnerDisabled}
       {...placeholderProps}
       style={{ ...placeholderStyle, ...placeholderProps?.style }}

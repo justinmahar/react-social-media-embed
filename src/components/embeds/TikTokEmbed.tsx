@@ -23,6 +23,7 @@ export interface TikTokEmbedProps extends DivProps {
   height?: string | number;
   linkText?: string;
   placeholderImageUrl?: string;
+  placeholderSpinner?: React.ReactNode;
   placeholderSpinnerDisabled?: boolean;
   placeholderProps?: PlaceholderEmbedProps;
   embedPlaceholder?: React.ReactNode;
@@ -39,6 +40,7 @@ export const TikTokEmbed = ({
   height,
   linkText = 'View post on TikTok',
   placeholderImageUrl,
+  placeholderSpinner,
   placeholderSpinnerDisabled = false,
   placeholderProps,
   embedPlaceholder,
@@ -140,6 +142,7 @@ export const TikTokEmbed = ({
       url={url}
       imageUrl={placeholderImageUrl}
       linkText={linkText}
+      spinner={placeholderSpinner}
       spinnerDisabled={placeholderSpinnerDisabled}
       {...placeholderProps}
       style={{ ...placeholderStyle, ...placeholderProps?.style }}

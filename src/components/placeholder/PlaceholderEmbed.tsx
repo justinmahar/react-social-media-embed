@@ -1,14 +1,15 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
+import { EmbedStyle } from '../embeds/EmbedStyle';
 import { EngagementIconsPlaceholder } from './parts/EngagementIconsPlaceholder';
 import { ProfilePlaceholder } from './parts/ProfilePlaceholder';
-import { Spinner } from './parts/Spinner';
 
 export interface PlaceholderEmbedProps extends DivProps {
   url: string;
   linkText?: string;
   imageUrl?: string;
+  spinner?: React.ReactNode;
   spinnerDisabled?: boolean;
 }
 
@@ -16,6 +17,7 @@ export const PlaceholderEmbed = ({
   url,
   linkText = 'View post',
   imageUrl,
+  spinner = <span className="rsme-spinning">🌀</span>,
   spinnerDisabled,
   ...divProps
 }: PlaceholderEmbedProps) => {
@@ -33,6 +35,7 @@ export const PlaceholderEmbed = ({
         ...divProps.style,
       }}
     >
+      <EmbedStyle />
       <a href={url} style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
         {!imageUrl && (
           <div
@@ -78,7 +81,7 @@ export const PlaceholderEmbed = ({
                 backgroundColor: '#ffffff',
               }}
             >
-              {!spinnerDisabled && <Spinner size={30} />}
+              {!spinnerDisabled && spinner}
               {!!linkText && (
                 <div
                   style={{
@@ -156,7 +159,7 @@ export const PlaceholderEmbed = ({
               >
                 {linkText}
               </div>
-              {!spinnerDisabled && <Spinner style={{ marginRight: 16 }} />}
+              {!spinnerDisabled && <div style={{ marginRight: 16 }}>{spinner}</div>}
             </div>
           )}
         </div>

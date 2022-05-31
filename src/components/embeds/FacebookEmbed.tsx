@@ -27,6 +27,7 @@ export interface FacebookEmbedProps extends DivProps {
   height?: string | number;
   linkText?: string;
   placeholderImageUrl?: string;
+  placeholderSpinner?: React.ReactNode;
   placeholderSpinnerDisabled?: boolean;
   placeholderProps?: PlaceholderEmbedProps;
   embedPlaceholder?: React.ReactNode;
@@ -43,6 +44,7 @@ export const FacebookEmbed = ({
   height,
   linkText = 'View post on Facebook',
   placeholderImageUrl,
+  placeholderSpinner,
   placeholderSpinnerDisabled = false,
   placeholderProps,
   embedPlaceholder,
@@ -186,6 +188,7 @@ export const FacebookEmbed = ({
       url={url}
       imageUrl={placeholderImageUrl}
       linkText={linkText}
+      spinner={placeholderSpinner}
       spinnerDisabled={placeholderSpinnerDisabled}
       {...placeholderProps}
       style={{ ...placeholderStyle, ...placeholderProps?.style }}

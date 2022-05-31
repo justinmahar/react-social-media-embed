@@ -17,6 +17,7 @@ export interface TwitterEmbedProps extends DivPropsWithoutRef {
   height?: string | number;
   linkText?: string;
   placeholderImageUrl?: string;
+  placeholderSpinner?: React.ReactNode;
   placeholderSpinnerDisabled?: boolean;
   placeholderProps?: PlaceholderEmbedProps;
   embedPlaceholder?: React.ReactNode;
@@ -30,6 +31,7 @@ export const TwitterEmbed = ({
   height,
   linkText = 'View post on Twitter',
   placeholderImageUrl,
+  placeholderSpinner,
   placeholderSpinnerDisabled = false,
   placeholderProps,
   embedPlaceholder,
@@ -62,6 +64,7 @@ export const TwitterEmbed = ({
       url={url}
       imageUrl={placeholderImageUrl}
       linkText={linkText}
+      spinner={placeholderSpinner}
       spinnerDisabled={placeholderSpinnerDisabled}
       {...placeholderProps}
       style={{ ...placeholderStyle, ...placeholderProps?.style }}
