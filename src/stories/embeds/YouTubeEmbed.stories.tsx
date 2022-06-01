@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof YouTubeEmbed>;
 
 const url = 'https://www.youtube.com/watch?v=HpVOs5imUN0';
-const placeholderImageUrl = `https://i.ytimg.com/vi/HpVOs5imUN0/maxresdefault.jpg?t=Date.now()`;
+const placeholderImageUrl = `https://i.ytimg.com/vi/HpVOs5imUN0/maxresdefault.jpg?t=${Date.now()}`;
 
 const MainExampleTemplate: ComponentStory<typeof YouTubeEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
