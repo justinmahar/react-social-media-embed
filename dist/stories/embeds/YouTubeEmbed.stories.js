@@ -12,7 +12,7 @@ exports.default = {
     component: YouTubeEmbed_1.YouTubeEmbed,
 };
 const url = 'https://www.youtube.com/watch?v=HpVOs5imUN0';
-const placeholderImageUrl = `https://i.ytimg.com/vi/HpVOs5imUN0/maxresdefault.jpg?t=Date.now()`;
+const placeholderImageUrl = `https://i.ytimg.com/vi/HpVOs5imUN0/maxresdefault.jpg?t=${Date.now()}`;
 const MainExampleTemplate = (args) => (react_1.default.createElement(EmbedToggler_1.EmbedToggler, { defaultToggledOn: true },
     react_1.default.createElement("div", { style: { display: 'flex', justifyContent: 'center' } },
         react_1.default.createElement(YouTubeEmbed_1.YouTubeEmbed, Object.assign({}, args)))));
