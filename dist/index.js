@@ -17,3 +17,4 @@ __exportStar(require("./components/embeds/TikTokEmbed"), exports);
 __exportStar(require("./components/embeds/TwitterEmbed"), exports);
 __exportStar(require("./components/embeds/YouTubeEmbed"), exports);
 __exportStar(require("./components/placeholder/PlaceholderEmbed"), exports);
+__exportStar(require("./components/placeholder/parts/BorderSpinner"), exports);
