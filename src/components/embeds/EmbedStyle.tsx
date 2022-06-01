@@ -28,18 +28,6 @@ export const EmbedStyle = ({ ...styleProps }: EmbedStyleProps) => {
         .rsme-embed.rsme-facebook-embed .fb-post span {
           width: 100% !important;
         }
-
-        .rsme-spinning {
-          animation: rsme-spin 1s linear infinite;
-        }
-        @keyframes rsme-spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }  
       `}
     </style>
   );

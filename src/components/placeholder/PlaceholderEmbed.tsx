@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
 import { EmbedStyle } from '../embeds/EmbedStyle';
+import { BorderSpinner } from './parts/BorderSpinner';
 import { EngagementIconsPlaceholder } from './parts/EngagementIconsPlaceholder';
 import { ProfilePlaceholder } from './parts/ProfilePlaceholder';
 
@@ -17,7 +18,7 @@ export const PlaceholderEmbed = ({
   url,
   linkText = 'View post',
   imageUrl,
-  spinner = <div className="rsme-spinning">🌀</div>,
+  spinner = <BorderSpinner />,
   spinnerDisabled,
   ...divProps
 }: PlaceholderEmbedProps) => {

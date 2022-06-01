@@ -233,7 +233,9 @@ A placeholder is shown while loading. If you do not specify a placeholder via th
 
 The default placeholder will size itself according to the width and/or height you specify for the embed. If none are specified, it will fall back to a default size appropriate for the given social media platform. You can pass custom props (such as `style`) to the default placeholder via `placeholderProps` to override any default behavior.
 
-If you'd like, you can specify the  `placeholderImageUrl` prop to any of the embeds to show a placeholder with the provided image, `placeholderSpinner` to customize the placeholder spinner, and `placeholderSpinnerDisabled` to remove the placeholder spinner. By default, when unspecified, the placeholder spinner is a rotating 🌀 cyclone emoji.
+If you'd like, you can specify the  `placeholderImageUrl` prop to any of the embeds to show a placeholder with the provided image. 
+
+By default, the placeholder spinner is a `BorderSpinner` with a width/height of `10` and 25% transparent black border of `3px`. You can specify the `placeholderSpinner` prop to provide your own custom spinner, and the `placeholderSpinnerDisabled` prop to remove the placeholder spinner altogether.
 
 See the [PlaceholderEmbed docs](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--main-example) for examples and more.
 
