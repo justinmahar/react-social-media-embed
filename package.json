@@ -66,7 +66,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
-    "lockblocks": "^1.0.9",
+    "lockblocks": "^1.0.10",
     "prettier": "^2.5.1",
     "react-html-props": "^1.0.32",
     "react-markdown": "^8.0.3",
