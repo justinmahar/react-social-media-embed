@@ -6,6 +6,7 @@ export interface InstagramEmbedProps extends DivProps {
     width?: string | number;
     height?: string | number;
     linkText?: string;
+    captioned?: boolean;
     placeholderImageUrl?: string;
     placeholderSpinner?: React.ReactNode;
     placeholderSpinnerDisabled?: boolean;
@@ -18,4 +19,4 @@ export interface InstagramEmbedProps extends DivProps {
     igVersion?: string;
     debug?: boolean;
 }
-export declare const InstagramEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, igVersion, debug, ...divProps }: InstagramEmbedProps) => JSX.Element;
+export declare const InstagramEmbed: ({ url, width, height, linkText, captioned, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, igVersion, debug, ...divProps }: InstagramEmbedProps) => JSX.Element;
