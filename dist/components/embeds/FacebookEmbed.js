@@ -164,7 +164,7 @@ const FacebookEmbed = (_a) => {
     return (react_1.default.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-facebook-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined, borderRadius }, divProps.style) }),
         react_1.default.createElement(EmbedStyle_1.EmbedStyle, null),
         react_1.default.createElement("div", { id: uuidRef.current, className: (0, classnames_1.default)(!embedSuccess && 'rsme-d-none') },
-            react_1.default.createElement("div", { key: embedContainerKey, className: "fb-post", "data-href": url, style: {
+            react_1.default.createElement("div", { key: embedContainerKey, className: "fb-post", "data-href": url, "data-width": isPercentageWidth ? '100%' : width !== null && width !== void 0 ? width : defaultEmbedWidth, style: {
                     width: isPercentageWidth ? '100%' : width !== null && width !== void 0 ? width : defaultEmbedWidth,
                     height: isPercentageHeight ? '100%' : height !== null && height !== void 0 ? height : undefined,
                 } })),
