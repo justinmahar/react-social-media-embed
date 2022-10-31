@@ -214,6 +214,7 @@ export const FacebookEmbed = ({
           key={embedContainerKey}
           className="fb-post"
           data-href={url}
+          data-width={isPercentageWidth ? '100%' : width ?? defaultEmbedWidth}
           style={{
             width: isPercentageWidth ? '100%' : width ?? defaultEmbedWidth,
             height: isPercentageHeight ? '100%' : height ?? undefined,
