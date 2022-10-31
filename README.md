@@ -106,7 +106,7 @@ import { FacebookEmbed } from 'react-social-media-embed';
 
 This will display the Facebook embed centered with a width of `550`.
 
-#### How to you get a Facebook post URL?
+#### How do you get a Facebook post URL?
 
 For the post you'd like to embed, select `⋯` > `Embed` > `Advanced settings` > `Get Code`, then use the `cite` link in the generated `blockquote`. 
 
