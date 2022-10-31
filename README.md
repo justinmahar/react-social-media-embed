@@ -63,6 +63,7 @@ Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTub
 - [Installation](#installation)
 - [Usage](#usage)
   - [Facebook](#facebook)
+    - [How do you get a Facebook post URL?](#how-do-you-get-a-facebook-post-url)
   - [Instagram](#instagram)
   - [LinkedIn](#linkedin)
   - [TikTok](#tiktok)
@@ -108,7 +109,7 @@ This will display the Facebook embed centered with a width of `550`.
 
 #### How do you get a Facebook post URL?
 
-For the post you'd like to embed, select `⋯` > `Embed` > `Advanced settings` > `Get Code`, then use the `cite` link in the generated `blockquote`. 
+For the post you'd like to embed, select `⋯` › `Embed` › `Advanced settings` › `Get Code`, then use the `cite` link in the generated `blockquote`. 
 
 See [these instructions which include screenshots](https://github.com/justinmahar/react-social-media-embed/issues/14#issuecomment-1297458134) for more info.
 
