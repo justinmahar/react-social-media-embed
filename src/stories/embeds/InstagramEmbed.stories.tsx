@@ -29,6 +29,7 @@ export const MainExample = MainExampleTemplate.bind({});
 MainExample.args = {
   url,
   width: 328,
+  captioned: true,
 };
 
 export const FluidWidth = ToggledOffTemplate.bind({});
@@ -129,4 +130,11 @@ PlaceholderDisabled.args = {
   url,
   width: 400,
   placeholderDisabled: true,
+};
+
+export const Captioned = ToggledOffTemplate.bind({});
+Captioned.args = {
+  url,
+  width: 400,
+  captioned: true,
 };

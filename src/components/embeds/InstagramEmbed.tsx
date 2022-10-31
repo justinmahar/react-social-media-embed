@@ -24,6 +24,7 @@ export interface InstagramEmbedProps extends DivProps {
   width?: string | number;
   height?: string | number;
   linkText?: string;
+  captioned?: boolean;
   placeholderImageUrl?: string;
   placeholderSpinner?: React.ReactNode;
   placeholderSpinnerDisabled?: boolean;
@@ -42,6 +43,7 @@ export const InstagramEmbed = ({
   width,
   height,
   linkText = 'View post on Instagram',
+  captioned = false,
   placeholderImageUrl,
   placeholderSpinner,
   placeholderSpinnerDisabled = false,
@@ -193,6 +195,12 @@ export const InstagramEmbed = ({
   );
   // === END Placeholder ===
 
+  const additionalAttributes: Record<string, any> = {};
+
+  if (captioned) {
+    additionalAttributes['data-instgrm-captioned'] = true;
+  }
+
   return (
     <div
       className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
@@ -210,6 +218,7 @@ export const InstagramEmbed = ({
         className="instagram-media"
         data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
         data-instgrm-version={igVersion}
+        {...additionalAttributes}
         data-width={isPercentageWidth ? '100%' : width ?? undefined}
         style={{
           width: 'calc(100% - 2px)',
