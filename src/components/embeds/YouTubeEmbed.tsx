@@ -43,6 +43,11 @@ export const YouTubeEmbed = ({
   const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&])/);
   if (videoIdMatch) {
     videoId = videoIdMatch[1];
+  } else {
+    const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&])/);
+    if (shortLinkMatch) {
+      videoId = shortLinkMatch[1];
+    }
   }
 
   const isPercentageWidth = !!width?.toString().includes('%');

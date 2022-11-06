@@ -64,11 +64,19 @@ Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTub
 - [Usage](#usage)
   - [Facebook](#facebook)
     - [How do you get a Facebook post URL?](#how-do-you-get-a-facebook-post-url)
+    - [IFrame Support](#iframe-support)
   - [Instagram](#instagram)
+    - [How do you get an Instagram post URL?](#how-do-you-get-an-instagram-post-url)
+    - [IFrame Support](#iframe-support-1)
   - [LinkedIn](#linkedin)
+    - [How do you get a LinkedIn post URL?](#how-do-you-get-a-linkedin-post-url)
   - [TikTok](#tiktok)
+    - [How do you get a TikTok post URL?](#how-do-you-get-a-tiktok-post-url)
+    - [IFrame Support](#iframe-support-2)
   - [Twitter](#twitter)
+    - [How do you get a Twitter tweet URL?](#how-do-you-get-a-twitter-tweet-url)
   - [YouTube](#youtube)
+    - [How do you get a YouTube video URL?](#how-do-you-get-a-youtube-video-url)
   - [Placeholder](#placeholder)
 - [How It Works](#how-it-works)
   - [Facebook](#facebook-1)
@@ -107,13 +115,17 @@ import { FacebookEmbed } from 'react-social-media-embed';
 
 This will display the Facebook embed centered with a width of `550`.
 
+For a live example and more options, read the [full documentation for FacebookEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example).
+
 #### How do you get a Facebook post URL?
 
 For the post you'd like to embed, select `⋯` › `Embed` › `Advanced settings` › `Get Code`, then use the `cite` link in the generated `blockquote`. 
 
 See [these instructions which include screenshots](https://github.com/justinmahar/react-social-media-embed/issues/14#issuecomment-1297458134) for more info.
 
-For a live example and more options, read the [full documentation for FacebookEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-facebookembed--main-example).
+#### IFrame Support
+
+For `iframe` support, you can provide `window` and `document` via the `webAPIs` prop.
 
 ### Instagram
 
@@ -132,6 +144,17 @@ import { InstagramEmbed } from 'react-social-media-embed';
 This will display the Instagram embed centered with a width of `328`, and the caption will be shown.
 
 For a live example and more options, read the [full documentation for InstagramEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example).
+
+#### How do you get an Instagram post URL?
+
+A few options:
+- Open a post and select `…` > `Copy Link`
+- Open a post in a browser window and copy the URL from the address bar. The URL should be in the format: `https://www.instagram.com/p/abc123xyzAB/`
+- Open a post and select `…` > `Embed` > `Copy embed code`. Paste the embed code in a text editor, then locate the `data-instgrm-permalink` attribute and use that link.
+
+#### IFrame Support
+
+For `iframe` support, you can provide `window` and `document` via the `webAPIs` prop.
 
 ### LinkedIn
 
@@ -154,6 +177,10 @@ import { LinkedInEmbed } from 'react-social-media-embed';
 
 This will display the LinkedIn embed centered with a width of `325` and height of `570`.
 
+For a live example and more options, read the [full documentation for LinkedInEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example).
+
+#### How do you get a LinkedIn post URL?
+
 The `url` must be be retrieved from the "Embed this post" option for the desired post. Use the `src` attribute of the `iframe`:
 
 ```html
@@ -163,8 +190,6 @@ The `url` must be be retrieved from the "Embed this post" option for the desired
 It is recommended that you specify the `width` and `height` of the post. These have been pre-calculated in the `iframe` embed code as well.
 
 You can also specify a `postUrl` which will be used in the placeholder to link to the regular, non-embed version of the post.
-
-For a live example and more options, read the [full documentation for LinkedInEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-linkedinembed--main-example).
 
 ### TikTok
 
@@ -186,6 +211,14 @@ The URL must contain the video ID, in the format `https://www.tiktok.com/@userna
 
 For a live example and more options, read the [full documentation for TikTokEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example).
 
+#### How do you get a TikTok post URL?
+
+Open a post in your browser. The post URL will be shown. Click the `Copy Link` button.
+
+#### IFrame Support
+
+For `iframe` support, you can provide `window` and `document` via the `webAPIs` prop.
+
 ### Twitter
 
 [👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example)
@@ -202,11 +235,17 @@ import { TwitterEmbed } from 'react-social-media-embed';
 
 This will display the Twitter embed centered with a width of `325`.
 
-The URL must contain the tweet ID, in the format `https://twitter.com/username/status/1234567890123456789`. Short links are not supported.
-
 This component uses the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed content. You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
 
 For a live example and more options, read the [full documentation for TwitterEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example).
+
+#### How do you get a Twitter tweet URL?
+
+Open a Twitter tweet in a browser window. Copy the link to the tweet from the address bar.
+
+The URL must contain the tweet ID, in the format `https://twitter.com/username/status/1234567890123456789`. Short links are not supported.
+
+Alternate option: Select `…` > `Embed Tweet`, and use the `a href` attribute value from the provided embed code.
 
 ### YouTube
 
@@ -227,6 +266,12 @@ This will display the YouTube embed centered with a width of `325` and height of
 This component uses the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed content. You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
 For a live example and more options, read the [full documentation for YouTubeEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-youtubeembed--main-example).
+
+#### How do you get a YouTube video URL?
+
+Open the video in a browser window. Copy the URL from the address bar. You can also click `Share` > `Copy`.
+
+The URL must be in the format `https://www.youtube.com/watch?v=VIDEO_ID` or `https://youtu.be/VIDEO_ID` where `VIDEO_ID` is the video ID.
 
 ### Placeholder
 

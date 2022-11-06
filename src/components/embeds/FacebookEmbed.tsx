@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
+import { useWebAPIs, WebAPIs } from '../hooks/useWebAPIs';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
@@ -35,6 +36,7 @@ export interface FacebookEmbedProps extends DivProps {
   scriptLoadDisabled?: boolean;
   retryDelay?: number;
   retryDisabled?: boolean;
+  webAPIs?: WebAPIs;
   debug?: boolean;
 }
 
@@ -52,6 +54,7 @@ export const FacebookEmbed = ({
   scriptLoadDisabled = false,
   retryDelay = 5000,
   retryDisabled = false,
+  webAPIs = undefined,
   debug = false,
   ...divProps
 }: FacebookEmbedProps) => {
@@ -60,6 +63,7 @@ export const FacebookEmbed = ({
   const uuidRef = React.useRef(generateUUID());
   const [processTime, setProcessTime] = React.useState(Date.now());
   const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
+  const apis = useWebAPIs(webAPIs);
 
   // Debug Output
   React.useEffect(() => {
@@ -73,8 +77,7 @@ export const FacebookEmbed = ({
   // Check Script Stage
   React.useEffect(() => {
     if (stage === CHECK_SCRIPT_STAGE) {
-      const win = typeof window !== 'undefined' ? (window as any) : undefined;
-      if (win?.FB?.XFBML?.parse) {
+      if ((apis.window as any)?.FB?.XFBML?.parse) {
         setStage(PROCESS_EMBED_STAGE);
       } else if (!scriptLoadDisabled) {
         setStage(LOAD_SCRIPT_STAGE);
@@ -82,39 +85,37 @@ export const FacebookEmbed = ({
         console.error('Facebook embed script not found. Unable to process Facebook embed:', url);
       }
     }
-  }, [scriptLoadDisabled, stage, url]);
+  }, [scriptLoadDisabled, stage, url, apis.window]);
 
   // Load Script Stage
   React.useEffect(() => {
     if (stage === LOAD_SCRIPT_STAGE) {
-      if (typeof document !== 'undefined') {
-        const scriptElement = document.createElement('script');
+      if (apis.document) {
+        const scriptElement = apis.document.createElement('script');
         scriptElement.setAttribute('src', embedJsScriptSrc);
-        document.head.appendChild(scriptElement);
+        apis.document.head.appendChild(scriptElement);
         setStage(CONFIRM_SCRIPT_LOADED_STAGE);
       }
     }
-  }, [stage]);
+  }, [stage, apis.document]);
 
   // Confirm Script Loaded Stage
   React.useEffect(() => {
     let interval: any = undefined;
     if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
-      const win = typeof window !== 'undefined' ? (window as any) : undefined;
       interval = setInterval(() => {
-        if (win?.FB?.XFBML?.parse) {
+        if ((apis.window as any)?.FB?.XFBML?.parse) {
           setStage(PROCESS_EMBED_STAGE);
         }
       }, 1);
     }
     return () => clearInterval(interval);
-  }, [stage]);
+  }, [stage, apis.window]);
 
   // Process Embed Stage
   React.useEffect(() => {
     if (stage === PROCESS_EMBED_STAGE) {
-      const win = typeof window !== 'undefined' ? (window as any) : undefined;
-      const parse = win?.FB?.XFBML?.parse;
+      const parse = (apis.window as any)?.FB?.XFBML?.parse;
       if (parse) {
         parse();
         setStage(CONFIRM_EMBED_SUCCESS_STAGE);
@@ -122,7 +123,7 @@ export const FacebookEmbed = ({
         console.error('Facebook embed script not found. Unable to process Facebook embed:', url);
       }
     }
-  }, [stage, url]);
+  }, [stage, url, apis.window]);
 
   // Confirm Embed Success Stage
   React.useEffect(() => {
@@ -130,8 +131,8 @@ export const FacebookEmbed = ({
     let retryTimeout: any = undefined;
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
       confirmInterval = setInterval(() => {
-        if (typeof document !== 'undefined') {
-          const fbPostContainerElement = document.getElementById(uuidRef.current);
+        if (apis.document) {
+          const fbPostContainerElement = apis.document.getElementById(uuidRef.current);
           if (fbPostContainerElement) {
             const fbPostElem = fbPostContainerElement.getElementsByClassName('fb-post')[0];
             if (fbPostElem) {
@@ -152,7 +153,7 @@ export const FacebookEmbed = ({
       clearInterval(confirmInterval);
       clearTimeout(retryTimeout);
     };
-  }, [retryDisabled, retryDelay, stage]);
+  }, [retryDisabled, retryDelay, stage, apis.document]);
 
   // Retrying Stage
   React.useEffect(() => {

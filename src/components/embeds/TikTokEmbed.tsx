@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
+import { useWebAPIs, WebAPIs } from '../hooks/useWebAPIs';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
@@ -31,6 +32,7 @@ export interface TikTokEmbedProps extends DivProps {
   scriptLoadDisabled?: boolean;
   retryDelay?: number;
   retryDisabled?: boolean;
+  webAPIs?: WebAPIs;
   debug?: boolean;
 }
 
@@ -48,6 +50,7 @@ export const TikTokEmbed = ({
   scriptLoadDisabled = false,
   retryDelay = 5000,
   retryDisabled = false,
+  webAPIs = undefined,
   debug = false,
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
@@ -55,6 +58,7 @@ export const TikTokEmbed = ({
   const uuidRef = React.useRef(generateUUID());
   const [processTime, setProcessTime] = React.useState(Date.now());
   const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
+  const apis = useWebAPIs(webAPIs);
 
   // Debug Output
   React.useEffect(() => {
@@ -68,20 +72,20 @@ export const TikTokEmbed = ({
   // Process Embed Stage
   React.useEffect(() => {
     if (stage === PROCESS_EMBED_STAGE) {
-      if (typeof document !== 'undefined' && !scriptLoadDisabled) {
+      if (apis.document && !scriptLoadDisabled) {
         const scriptId = `tiktok-embed-script`;
-        const prevScript = document.getElementById(scriptId);
+        const prevScript = apis.document.getElementById(scriptId);
         if (prevScript) {
           prevScript.remove();
         }
-        const scriptElement = document.createElement('script');
+        const scriptElement = apis.document.createElement('script');
         scriptElement.setAttribute('src', `${embedJsScriptSrc}?t=${Date.now()}`);
         scriptElement.setAttribute('id', scriptId);
-        document.head.appendChild(scriptElement);
+        apis.document.head.appendChild(scriptElement);
         setStage(CONFIRM_EMBED_SUCCESS_STAGE);
       }
     }
-  }, [scriptLoadDisabled, stage]);
+  }, [scriptLoadDisabled, stage, apis.document]);
 
   // Confirm Embed Success Stage
   React.useEffect(() => {
@@ -89,8 +93,8 @@ export const TikTokEmbed = ({
     let retryTimeout: any = undefined;
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
       confirmInterval = setInterval(() => {
-        if (typeof document !== 'undefined') {
-          const preEmbedElement = document.getElementById(uuidRef.current);
+        if (apis.document) {
+          const preEmbedElement = apis.document.getElementById(uuidRef.current);
           if (!preEmbedElement) {
             setStage(EMBED_SUCCESS_STAGE);
           }
@@ -106,7 +110,7 @@ export const TikTokEmbed = ({
       clearInterval(confirmInterval);
       clearTimeout(retryTimeout);
     };
-  }, [retryDelay, retryDisabled, stage]);
+  }, [retryDelay, retryDisabled, stage, apis.document]);
 
   // Retrying Stage
   React.useEffect(() => {
