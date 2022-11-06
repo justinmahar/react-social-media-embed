@@ -51,6 +51,12 @@ const YouTubeEmbed = (_a) => {
     if (videoIdMatch) {
         videoId = videoIdMatch[1];
     }
+    else {
+        const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&])/);
+        if (shortLinkMatch) {
+            videoId = shortLinkMatch[1];
+        }
+    }
     const isPercentageWidth = !!(width === null || width === void 0 ? void 0 : width.toString().includes('%'));
     const isPercentageHeight = !!(height === null || height === void 0 ? void 0 : height.toString().includes('%'));
     let opts = {};

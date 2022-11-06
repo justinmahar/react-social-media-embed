@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TikTokEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
+const useWebAPIs_1 = require("../hooks/useWebAPIs");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
@@ -32,11 +33,12 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 const TikTokEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on TikTok', placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, debug = false } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "debug"]);
+    var { url, width, height, linkText = 'View post on TikTok', placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, webAPIs = undefined, debug = false } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "webAPIs", "debug"]);
     const [stage, setStage] = react_1.default.useState(PROCESS_EMBED_STAGE);
     const uuidRef = react_1.default.useRef((0, uuid_1.generateUUID)());
     const [processTime, setProcessTime] = react_1.default.useState(Date.now());
     const embedContainerKey = react_1.default.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
+    const apis = (0, useWebAPIs_1.useWebAPIs)(webAPIs);
     // Debug Output
     react_1.default.useEffect(() => {
         debug && console.log(`[${new Date().toISOString()}]: ${stage}`);
@@ -47,28 +49,28 @@ const TikTokEmbed = (_a) => {
     // Process Embed Stage
     react_1.default.useEffect(() => {
         if (stage === PROCESS_EMBED_STAGE) {
-            if (typeof document !== 'undefined' && !scriptLoadDisabled) {
+            if (apis.document && !scriptLoadDisabled) {
                 const scriptId = `tiktok-embed-script`;
-                const prevScript = document.getElementById(scriptId);
+                const prevScript = apis.document.getElementById(scriptId);
                 if (prevScript) {
                     prevScript.remove();
                 }
-                const scriptElement = document.createElement('script');
+                const scriptElement = apis.document.createElement('script');
                 scriptElement.setAttribute('src', `${embedJsScriptSrc}?t=${Date.now()}`);
                 scriptElement.setAttribute('id', scriptId);
-                document.head.appendChild(scriptElement);
+                apis.document.head.appendChild(scriptElement);
                 setStage(CONFIRM_EMBED_SUCCESS_STAGE);
             }
         }
-    }, [scriptLoadDisabled, stage]);
+    }, [scriptLoadDisabled, stage, apis.document]);
     // Confirm Embed Success Stage
     react_1.default.useEffect(() => {
         let confirmInterval = undefined;
         let retryTimeout = undefined;
         if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
             confirmInterval = setInterval(() => {
-                if (typeof document !== 'undefined') {
-                    const preEmbedElement = document.getElementById(uuidRef.current);
+                if (apis.document) {
+                    const preEmbedElement = apis.document.getElementById(uuidRef.current);
                     if (!preEmbedElement) {
                         setStage(EMBED_SUCCESS_STAGE);
                     }
@@ -84,7 +86,7 @@ const TikTokEmbed = (_a) => {
             clearInterval(confirmInterval);
             clearTimeout(retryTimeout);
         };
-    }, [retryDelay, retryDisabled, stage]);
+    }, [retryDelay, retryDisabled, stage, apis.document]);
     // Retrying Stage
     react_1.default.useEffect(() => {
         if (stage === RETRYING_STAGE) {
