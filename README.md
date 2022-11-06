@@ -207,13 +207,13 @@ import { TikTokEmbed } from 'react-social-media-embed';
 
 This will display the TikTok embed centered with a width of `325`.
 
-The URL must contain the video ID, in the format `https://www.tiktok.com/@username/video/1234567890123456789`. Short links are not supported.
-
 For a live example and more options, read the [full documentation for TikTokEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-tiktokembed--main-example).
 
 #### How do you get a TikTok post URL?
 
 Open a post in your browser. The post URL will be shown. Click the `Copy Link` button.
+
+The URL must contain the video ID, in the format `https://www.tiktok.com/@username/video/1234567890123456789`. Short links are not supported.
 
 #### IFrame Support
 
