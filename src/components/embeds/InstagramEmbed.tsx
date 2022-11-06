@@ -36,6 +36,8 @@ export interface InstagramEmbedProps extends DivProps {
   retryDisabled?: boolean;
   igVersion?: string;
   debug?: boolean;
+  window?: Window;
+  document?: Document;
 }
 
 export const InstagramEmbed = ({
@@ -55,13 +57,16 @@ export const InstagramEmbed = ({
   retryDisabled = false,
   igVersion = '14',
   debug = false,
+  window: win = undefined,
+  document: doc = undefined,
   ...divProps
 }: InstagramEmbedProps): JSX.Element => {
   const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
   const uuidRef = React.useRef(generateUUID());
   const [processTime, setProcessTime] = React.useState(Date.now());
   const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
-
+  win = win ?? window;
+  doc = doc ?? document;
   // Debug Output
   React.useEffect(() => {
     debug && console.log(`[${new Date().toISOString()}]: ${stage}`);
@@ -74,8 +79,7 @@ export const InstagramEmbed = ({
   // Check Script Stage
   React.useEffect(() => {
     if (stage === CHECK_SCRIPT_STAGE) {
-      const win = typeof window !== 'undefined' ? (window as any) : undefined;
-      if (win.instgrm?.Embeds?.process) {
+      if ((win as any).instgrm?.Embeds?.process) {
         setStage(PROCESS_EMBED_STAGE);
       } else if (!scriptLoadDisabled) {
         setStage(LOAD_SCRIPT_STAGE);
@@ -88,10 +92,10 @@ export const InstagramEmbed = ({
   // Load Script Stage
   React.useEffect(() => {
     if (stage === LOAD_SCRIPT_STAGE) {
-      if (typeof document !== 'undefined') {
-        const scriptElement = document.createElement('script');
+      if (typeof doc !== 'undefined') {
+        const scriptElement = doc.createElement('script');
         scriptElement.setAttribute('src', embedJsScriptSrc);
-        document.head.appendChild(scriptElement);
+        doc.head.appendChild(scriptElement);
         setStage(CONFIRM_SCRIPT_LOADED_STAGE);
       }
     }
@@ -101,9 +105,8 @@ export const InstagramEmbed = ({
   React.useEffect(() => {
     let interval: any = undefined;
     if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
-      const win = typeof window !== 'undefined' ? (window as any) : undefined;
       interval = setInterval(() => {
-        if (win.instgrm?.Embeds?.process) {
+        if ((win as any).instgrm?.Embeds?.process) {
           setStage(PROCESS_EMBED_STAGE);
         }
       }, 1);
@@ -114,8 +117,7 @@ export const InstagramEmbed = ({
   // Process Embed Stage
   React.useEffect(() => {
     if (stage === PROCESS_EMBED_STAGE) {
-      const win = typeof window !== 'undefined' ? (window as any) : undefined;
-      const process = win.instgrm?.Embeds?.process;
+      const process = (win as any).instgrm?.Embeds?.process;
       if (process) {
         process();
         setStage(CONFIRM_EMBED_SUCCESS_STAGE);
@@ -131,8 +133,8 @@ export const InstagramEmbed = ({
     let retryTimeout: any = undefined;
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
       confirmInterval = setInterval(() => {
-        if (typeof document !== 'undefined') {
-          const preEmbedElement = document.getElementById(uuidRef.current);
+        if (typeof doc !== 'undefined') {
+          const preEmbedElement = doc.getElementById(uuidRef.current);
           if (!preEmbedElement) {
             setStage(EMBED_SUCCESS_STAGE);
           }
