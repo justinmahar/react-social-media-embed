@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FacebookEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
-const useWebAPIs_1 = require("../hooks/useWebAPIs");
+const useFrame_1 = require("../hooks/useFrame");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
@@ -36,13 +36,13 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 const FacebookEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on Facebook', placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, webAPIs = undefined, debug = false } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "webAPIs", "debug"]);
+    var { url, width, height, linkText = 'View post on Facebook', placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, frame = undefined, debug = false } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "frame", "debug"]);
     const [stage, setStage] = react_1.default.useState(CHECK_SCRIPT_STAGE);
     const embedSuccess = react_1.default.useMemo(() => stage === EMBED_SUCCESS_STAGE, [stage]);
     const uuidRef = react_1.default.useRef((0, uuid_1.generateUUID)());
     const [processTime, setProcessTime] = react_1.default.useState(Date.now());
     const embedContainerKey = react_1.default.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
-    const apis = (0, useWebAPIs_1.useWebAPIs)(webAPIs);
+    const frm = (0, useFrame_1.useFrame)(frame);
     // Debug Output
     react_1.default.useEffect(() => {
         debug && console.log(`[${new Date().toISOString()}]: ${stage}`);
@@ -54,7 +54,7 @@ const FacebookEmbed = (_a) => {
     react_1.default.useEffect(() => {
         var _a, _b, _c;
         if (stage === CHECK_SCRIPT_STAGE) {
-            if ((_c = (_b = (_a = apis.window) === null || _a === void 0 ? void 0 : _a.FB) === null || _b === void 0 ? void 0 : _b.XFBML) === null || _c === void 0 ? void 0 : _c.parse) {
+            if ((_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.FB) === null || _b === void 0 ? void 0 : _b.XFBML) === null || _c === void 0 ? void 0 : _c.parse) {
                 setStage(PROCESS_EMBED_STAGE);
             }
             else if (!scriptLoadDisabled) {
@@ -64,36 +64,36 @@ const FacebookEmbed = (_a) => {
                 console.error('Facebook embed script not found. Unable to process Facebook embed:', url);
             }
         }
-    }, [scriptLoadDisabled, stage, url, apis.window]);
+    }, [scriptLoadDisabled, stage, url, frm.window]);
     // Load Script Stage
     react_1.default.useEffect(() => {
         if (stage === LOAD_SCRIPT_STAGE) {
-            if (apis.document) {
-                const scriptElement = apis.document.createElement('script');
+            if (frm.document) {
+                const scriptElement = frm.document.createElement('script');
                 scriptElement.setAttribute('src', embedJsScriptSrc);
-                apis.document.head.appendChild(scriptElement);
+                frm.document.head.appendChild(scriptElement);
                 setStage(CONFIRM_SCRIPT_LOADED_STAGE);
             }
         }
-    }, [stage, apis.document]);
+    }, [stage, frm.document]);
     // Confirm Script Loaded Stage
     react_1.default.useEffect(() => {
         let interval = undefined;
         if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
             interval = setInterval(() => {
                 var _a, _b, _c;
-                if ((_c = (_b = (_a = apis.window) === null || _a === void 0 ? void 0 : _a.FB) === null || _b === void 0 ? void 0 : _b.XFBML) === null || _c === void 0 ? void 0 : _c.parse) {
+                if ((_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.FB) === null || _b === void 0 ? void 0 : _b.XFBML) === null || _c === void 0 ? void 0 : _c.parse) {
                     setStage(PROCESS_EMBED_STAGE);
                 }
             }, 1);
         }
         return () => clearInterval(interval);
-    }, [stage, apis.window]);
+    }, [stage, frm.window]);
     // Process Embed Stage
     react_1.default.useEffect(() => {
         var _a, _b, _c;
         if (stage === PROCESS_EMBED_STAGE) {
-            const parse = (_c = (_b = (_a = apis.window) === null || _a === void 0 ? void 0 : _a.FB) === null || _b === void 0 ? void 0 : _b.XFBML) === null || _c === void 0 ? void 0 : _c.parse;
+            const parse = (_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.FB) === null || _b === void 0 ? void 0 : _b.XFBML) === null || _c === void 0 ? void 0 : _c.parse;
             if (parse) {
                 parse();
                 setStage(CONFIRM_EMBED_SUCCESS_STAGE);
@@ -102,15 +102,15 @@ const FacebookEmbed = (_a) => {
                 console.error('Facebook embed script not found. Unable to process Facebook embed:', url);
             }
         }
-    }, [stage, url, apis.window]);
+    }, [stage, url, frm.window]);
     // Confirm Embed Success Stage
     react_1.default.useEffect(() => {
         let confirmInterval = undefined;
         let retryTimeout = undefined;
         if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
             confirmInterval = setInterval(() => {
-                if (apis.document) {
-                    const fbPostContainerElement = apis.document.getElementById(uuidRef.current);
+                if (frm.document) {
+                    const fbPostContainerElement = frm.document.getElementById(uuidRef.current);
                     if (fbPostContainerElement) {
                         const fbPostElem = fbPostContainerElement.getElementsByClassName('fb-post')[0];
                         if (fbPostElem) {
@@ -131,7 +131,7 @@ const FacebookEmbed = (_a) => {
             clearInterval(confirmInterval);
             clearTimeout(retryTimeout);
         };
-    }, [retryDisabled, retryDelay, stage, apis.document]);
+    }, [retryDisabled, retryDelay, stage, frm.document]);
     // Retrying Stage
     react_1.default.useEffect(() => {
         if (stage === RETRYING_STAGE) {

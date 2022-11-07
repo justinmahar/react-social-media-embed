@@ -1,6 +1,6 @@
 import React from 'react';
 import { DivProps } from 'react-html-props';
-import { WebAPIs } from '../hooks/useWebAPIs';
+import { Frame } from '../hooks/useFrame';
 import { PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 export interface FacebookEmbedProps extends DivProps {
     /** The URL to the post. */
@@ -17,7 +17,7 @@ export interface FacebookEmbedProps extends DivProps {
     scriptLoadDisabled?: boolean;
     retryDelay?: number;
     retryDisabled?: boolean;
-    webAPIs?: WebAPIs;
+    frame?: Frame;
     debug?: boolean;
 }
-export declare const FacebookEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, webAPIs, debug, ...divProps }: FacebookEmbedProps) => JSX.Element;
+export declare const FacebookEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, frame, debug, ...divProps }: FacebookEmbedProps) => JSX.Element;

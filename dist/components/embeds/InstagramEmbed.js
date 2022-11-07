@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.InstagramEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
-const useWebAPIs_1 = require("../hooks/useWebAPIs");
+const useFrame_1 = require("../hooks/useFrame");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
@@ -54,12 +54,12 @@ const RETRYING_STAGE = 'retrying';
 const EMBED_SUCCESS_STAGE = 'embed-success';
 const InstagramEmbed = (_a) => {
     var _b, _c;
-    var { url, width, height, linkText = 'View post on Instagram', captioned = false, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, igVersion = '14', webAPIs = undefined, debug = false } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "captioned", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "igVersion", "webAPIs", "debug"]);
+    var { url, width, height, linkText = 'View post on Instagram', captioned = false, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false, scriptLoadDisabled = false, retryDelay = 5000, retryDisabled = false, igVersion = '14', frame = undefined, debug = false } = _a, divProps = __rest(_a, ["url", "width", "height", "linkText", "captioned", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled", "scriptLoadDisabled", "retryDelay", "retryDisabled", "igVersion", "frame", "debug"]);
     const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
     const uuidRef = React.useRef((0, uuid_1.generateUUID)());
     const [processTime, setProcessTime] = React.useState(Date.now());
     const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
-    const apis = (0, useWebAPIs_1.useWebAPIs)(webAPIs);
+    const frm = (0, useFrame_1.useFrame)(frame);
     // Debug Output
     React.useEffect(() => {
         debug && console.log(`[${new Date().toISOString()}]: ${stage}`);
@@ -71,7 +71,7 @@ const InstagramEmbed = (_a) => {
     React.useEffect(() => {
         var _a, _b, _c;
         if (stage === CHECK_SCRIPT_STAGE) {
-            if ((_c = (_b = (_a = apis.window) === null || _a === void 0 ? void 0 : _a.instgrm) === null || _b === void 0 ? void 0 : _b.Embeds) === null || _c === void 0 ? void 0 : _c.process) {
+            if ((_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.instgrm) === null || _b === void 0 ? void 0 : _b.Embeds) === null || _c === void 0 ? void 0 : _c.process) {
                 setStage(PROCESS_EMBED_STAGE);
             }
             else if (!scriptLoadDisabled) {
@@ -81,36 +81,36 @@ const InstagramEmbed = (_a) => {
                 console.error('Instagram embed script not found. Unable to process Instagram embed:', url);
             }
         }
-    }, [scriptLoadDisabled, stage, url, apis.window]);
+    }, [scriptLoadDisabled, stage, url, frm.window]);
     // Load Script Stage
     React.useEffect(() => {
         if (stage === LOAD_SCRIPT_STAGE) {
-            if (apis.document) {
-                const scriptElement = apis.document.createElement('script');
+            if (frm.document) {
+                const scriptElement = frm.document.createElement('script');
                 scriptElement.setAttribute('src', embedJsScriptSrc);
-                apis.document.head.appendChild(scriptElement);
+                frm.document.head.appendChild(scriptElement);
                 setStage(CONFIRM_SCRIPT_LOADED_STAGE);
             }
         }
-    }, [stage, apis.document]);
+    }, [stage, frm.document]);
     // Confirm Script Loaded Stage
     React.useEffect(() => {
         let interval = undefined;
         if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
             interval = setInterval(() => {
                 var _a, _b, _c;
-                if ((_c = (_b = (_a = apis.window) === null || _a === void 0 ? void 0 : _a.instgrm) === null || _b === void 0 ? void 0 : _b.Embeds) === null || _c === void 0 ? void 0 : _c.process) {
+                if ((_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.instgrm) === null || _b === void 0 ? void 0 : _b.Embeds) === null || _c === void 0 ? void 0 : _c.process) {
                     setStage(PROCESS_EMBED_STAGE);
                 }
             }, 1);
         }
         return () => clearInterval(interval);
-    }, [stage, apis.window]);
+    }, [stage, frm.window]);
     // Process Embed Stage
     React.useEffect(() => {
         var _a, _b, _c;
         if (stage === PROCESS_EMBED_STAGE) {
-            const process = (_c = (_b = (_a = apis.window) === null || _a === void 0 ? void 0 : _a.instgrm) === null || _b === void 0 ? void 0 : _b.Embeds) === null || _c === void 0 ? void 0 : _c.process;
+            const process = (_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.instgrm) === null || _b === void 0 ? void 0 : _b.Embeds) === null || _c === void 0 ? void 0 : _c.process;
             if (process) {
                 process();
                 setStage(CONFIRM_EMBED_SUCCESS_STAGE);
@@ -119,15 +119,15 @@ const InstagramEmbed = (_a) => {
                 console.error('Instagram embed script not found. Unable to process Instagram embed:', url);
             }
         }
-    }, [stage, apis.window, url]);
+    }, [stage, frm.window, url]);
     // Confirm Embed Success Stage
     React.useEffect(() => {
         let confirmInterval = undefined;
         let retryTimeout = undefined;
         if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
             confirmInterval = setInterval(() => {
-                if (apis.document) {
-                    const preEmbedElement = apis.document.getElementById(uuidRef.current);
+                if (frm.document) {
+                    const preEmbedElement = frm.document.getElementById(uuidRef.current);
                     if (!preEmbedElement) {
                         setStage(EMBED_SUCCESS_STAGE);
                     }
@@ -143,7 +143,7 @@ const InstagramEmbed = (_a) => {
             clearInterval(confirmInterval);
             clearTimeout(retryTimeout);
         };
-    }, [retryDelay, retryDisabled, stage, apis.document]);
+    }, [retryDelay, retryDisabled, stage, frm.document]);
     // Retrying Stage
     React.useEffect(() => {
         if (stage === RETRYING_STAGE) {
