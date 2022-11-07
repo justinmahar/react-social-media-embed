@@ -125,7 +125,7 @@ See [these instructions which include screenshots](https://github.com/justinmaha
 
 #### IFrame Support
 
-For `iframe` support, you can provide `window` and `document` via the `webAPIs` prop.
+For `iframe` support, you can provide `window` and `document` via the `frame` prop.
 
 ### Instagram
 
@@ -154,7 +154,7 @@ A few options:
 
 #### IFrame Support
 
-For `iframe` support, you can provide `window` and `document` via the `webAPIs` prop.
+For `iframe` support, you can provide `window` and `document` via the `frame` prop.
 
 ### LinkedIn
 
@@ -217,7 +217,7 @@ The URL must contain the video ID, in the format `https://www.tiktok.com/@userna
 
 #### IFrame Support
 
-For `iframe` support, you can provide `window` and `document` via the `webAPIs` prop.
+For `iframe` support, you can provide `window` and `document` via the `frame` prop.
 
 ### Twitter
 
