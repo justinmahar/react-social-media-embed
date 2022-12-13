@@ -65,17 +65,17 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-storybook": "^0.5.12",
     "lockblocks": "^1.0.10",
     "prettier": "^2.5.1",
     "react-html-props": "^1.0.32",
     "react-markdown": "^8.0.3",
     "react-spinners": "^0.12.0",
-    "typescript": "^4.5.5",
-    "eslint-plugin-storybook": "^0.5.12"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "classnames": "^2.3.2",
     "react-twitter-embed": "^4.0.4",
-    "react-youtube": "^7.14.0"
+    "react-youtube": "^10.1.0"
   }
 }
