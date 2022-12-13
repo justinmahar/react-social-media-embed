@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { DivPropsWithoutRef } from 'react-html-props';
-import YouTube, { Options, YouTubeProps } from 'react-youtube';
+import YouTube, { YouTubeProps } from 'react-youtube';
+import { Options } from 'youtube-player/dist/types';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { EmbedStyle } from './EmbedStyle';
 
