@@ -5,6 +5,7 @@ import { useFrame, Frame } from '../hooks/useFrame';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
+import { Subs } from 'react-sub-unsub';
 
 const embedJsScriptSrc = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
 const defaultEmbedWidth = 550;
@@ -101,15 +102,15 @@ export const FacebookEmbed = ({
 
   // Confirm Script Loaded Stage
   React.useEffect(() => {
-    let interval: any = undefined;
+    const subs = new Subs();
     if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
-      interval = setInterval(() => {
+      subs.setInterval(() => {
         if ((frm.window as any)?.FB?.XFBML?.parse) {
           setStage(PROCESS_EMBED_STAGE);
         }
       }, 1);
     }
-    return () => clearInterval(interval);
+    return subs.createCleanup();
   }, [stage, frm.window]);
 
   // Process Embed Stage
@@ -127,10 +128,9 @@ export const FacebookEmbed = ({
 
   // Confirm Embed Success Stage
   React.useEffect(() => {
-    let confirmInterval: any = undefined;
-    let retryTimeout: any = undefined;
+    const subs = new Subs();
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
-      confirmInterval = setInterval(() => {
+      subs.setInterval(() => {
         if (frm.document) {
           const fbPostContainerElement = frm.document.getElementById(uuidRef.current);
           if (fbPostContainerElement) {
@@ -144,15 +144,12 @@ export const FacebookEmbed = ({
         }
       }, 1);
       if (!retryDisabled) {
-        retryTimeout = setTimeout(() => {
+        subs.setTimeout(() => {
           setStage(RETRYING_STAGE);
         }, retryDelay);
       }
     }
-    return () => {
-      clearInterval(confirmInterval);
-      clearTimeout(retryTimeout);
-    };
+    return subs.createCleanup();
   }, [retryDisabled, retryDelay, stage, frm.document]);
 
   // Retrying Stage
