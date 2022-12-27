@@ -21,6 +21,7 @@ const useFrame_1 = require("../hooks/useFrame");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
+const react_sub_unsub_1 = require("react-sub-unsub");
 const embedJsScriptSrc = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
 const defaultEmbedWidth = 550;
 const maxPlaceholderWidth = defaultEmbedWidth;
@@ -78,16 +79,16 @@ const FacebookEmbed = (_a) => {
     }, [stage, frm.document]);
     // Confirm Script Loaded Stage
     react_1.default.useEffect(() => {
-        let interval = undefined;
+        const subs = new react_sub_unsub_1.Subs();
         if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
-            interval = setInterval(() => {
+            subs.setInterval(() => {
                 var _a, _b, _c;
                 if ((_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.FB) === null || _b === void 0 ? void 0 : _b.XFBML) === null || _c === void 0 ? void 0 : _c.parse) {
                     setStage(PROCESS_EMBED_STAGE);
                 }
             }, 1);
         }
-        return () => clearInterval(interval);
+        return subs.createCleanup();
     }, [stage, frm.window]);
     // Process Embed Stage
     react_1.default.useEffect(() => {
@@ -105,10 +106,9 @@ const FacebookEmbed = (_a) => {
     }, [stage, url, frm.window]);
     // Confirm Embed Success Stage
     react_1.default.useEffect(() => {
-        let confirmInterval = undefined;
-        let retryTimeout = undefined;
+        const subs = new react_sub_unsub_1.Subs();
         if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
-            confirmInterval = setInterval(() => {
+            subs.setInterval(() => {
                 if (frm.document) {
                     const fbPostContainerElement = frm.document.getElementById(uuidRef.current);
                     if (fbPostContainerElement) {
@@ -122,15 +122,12 @@ const FacebookEmbed = (_a) => {
                 }
             }, 1);
             if (!retryDisabled) {
-                retryTimeout = setTimeout(() => {
+                subs.setTimeout(() => {
                     setStage(RETRYING_STAGE);
                 }, retryDelay);
             }
         }
-        return () => {
-            clearInterval(confirmInterval);
-            clearTimeout(retryTimeout);
-        };
+        return subs.createCleanup();
     }, [retryDisabled, retryDelay, stage, frm.document]);
     // Retrying Stage
     react_1.default.useEffect(() => {

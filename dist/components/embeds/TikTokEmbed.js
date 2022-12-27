@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TikTokEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const react_1 = __importDefault(require("react"));
+const react_sub_unsub_1 = require("react-sub-unsub");
 const useFrame_1 = require("../hooks/useFrame");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
@@ -65,10 +66,9 @@ const TikTokEmbed = (_a) => {
     }, [scriptLoadDisabled, stage, frm.document]);
     // Confirm Embed Success Stage
     react_1.default.useEffect(() => {
-        let confirmInterval = undefined;
-        let retryTimeout = undefined;
+        const subs = new react_sub_unsub_1.Subs();
         if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
-            confirmInterval = setInterval(() => {
+            subs.setInterval(() => {
                 if (frm.document) {
                     const preEmbedElement = frm.document.getElementById(uuidRef.current);
                     if (!preEmbedElement) {
@@ -77,15 +77,12 @@ const TikTokEmbed = (_a) => {
                 }
             }, 1);
             if (!retryDisabled) {
-                retryTimeout = setTimeout(() => {
+                subs.setTimeout(() => {
                     setStage(RETRYING_STAGE);
                 }, retryDelay);
             }
         }
-        return () => {
-            clearInterval(confirmInterval);
-            clearTimeout(retryTimeout);
-        };
+        return subs.createCleanup();
     }, [retryDelay, retryDisabled, stage, frm.document]);
     // Retrying Stage
     react_1.default.useEffect(() => {

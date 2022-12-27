@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.InstagramEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
+const react_sub_unsub_1 = require("react-sub-unsub");
 const useFrame_1 = require("../hooks/useFrame");
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
@@ -95,16 +96,16 @@ const InstagramEmbed = (_a) => {
     }, [stage, frm.document]);
     // Confirm Script Loaded Stage
     React.useEffect(() => {
-        let interval = undefined;
+        const subs = new react_sub_unsub_1.Subs();
         if (stage === CONFIRM_SCRIPT_LOADED_STAGE) {
-            interval = setInterval(() => {
+            subs.setInterval(() => {
                 var _a, _b, _c;
                 if ((_c = (_b = (_a = frm.window) === null || _a === void 0 ? void 0 : _a.instgrm) === null || _b === void 0 ? void 0 : _b.Embeds) === null || _c === void 0 ? void 0 : _c.process) {
                     setStage(PROCESS_EMBED_STAGE);
                 }
             }, 1);
         }
-        return () => clearInterval(interval);
+        return subs.createCleanup();
     }, [stage, frm.window]);
     // Process Embed Stage
     React.useEffect(() => {
@@ -122,10 +123,9 @@ const InstagramEmbed = (_a) => {
     }, [stage, frm.window, url]);
     // Confirm Embed Success Stage
     React.useEffect(() => {
-        let confirmInterval = undefined;
-        let retryTimeout = undefined;
+        const subs = new react_sub_unsub_1.Subs();
         if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
-            confirmInterval = setInterval(() => {
+            subs.setInterval(() => {
                 if (frm.document) {
                     const preEmbedElement = frm.document.getElementById(uuidRef.current);
                     if (!preEmbedElement) {
@@ -134,15 +134,12 @@ const InstagramEmbed = (_a) => {
                 }
             }, 1);
             if (!retryDisabled) {
-                retryTimeout = setTimeout(() => {
+                subs.setTimeout(() => {
                     setStage(RETRYING_STAGE);
                 }, retryDelay);
             }
         }
-        return () => {
-            clearInterval(confirmInterval);
-            clearTimeout(retryTimeout);
-        };
+        return subs.createCleanup();
     }, [retryDelay, retryDisabled, stage, frm.document]);
     // Retrying Stage
     React.useEffect(() => {
