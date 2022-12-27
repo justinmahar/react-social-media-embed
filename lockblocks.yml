@@ -5,7 +5,8 @@ replaceFiles:
   - lockblocks.yml
   - src/stories/core
   - public/support
-fillFiles: []
+fillFiles:
+  - .github/FUNDING.yml
 deleteFiles: []
 excludePaths:
   - .git
@@ -14,6 +15,7 @@ excludePaths:
   - node_modules
   - public
   - storybook-static
+  - README.template.md
 updateJson:
   - path: package.json
     updateFields:
