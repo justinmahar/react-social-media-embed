@@ -14,6 +14,9 @@
   <a href="https://github.com/justinmahar/react-social-media-embed/actions?query=workflow%3ADeploy" target="_blank" rel="noopener noreferrer">
     <img src="https://github.com/justinmahar/react-social-media-embed/workflows/Deploy/badge.svg" alt="Deploy Status" />
   </a>
+  <a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/>
+  </a>
 </p>
 
 ## Documentation
@@ -22,16 +25,18 @@ Read the **[official documentation](https://justinmahar.github.io/react-social-m
 
 ## Donate 
 
-This project is the result of 100s of hours of work and I really hope it saves you hours of your own precious time.
+If this project helped out or made your day a little brighter and you'd like to return the favor, why not buy me a coffee or become a sponsor? It'll make my day and help keep the project chugging along.
 
-If you would like to join others in showing support for the development of this project, then please feel free to buy me a coffee.
+Plus, I'll do a little dance in your honor. Maybe not a very good one, but a dance nonetheless.
 
-<a href="https://paypal.me/thejustinmahar/5">
-  <img src="https://justinmahar.github.io/react-kindling/support/coffee-1.png" alt="Buy me a coffee" height="35" />
+<a href="https://github.com/sponsors/justinmahar">
+  <img src="https://justinmahar.github.io/react-social-media-embed/support/sponsor.png" alt="Sponsor via GitHub" height="35" />
+</a> <a href="https://paypal.me/thejustinmahar/5">
+  <img src="https://justinmahar.github.io/react-social-media-embed/support/coffee-1.png" alt="Buy me a coffee" height="35" />
 </a> <a href="https://paypal.me/thejustinmahar/15">
-  <img src="https://justinmahar.github.io/react-kindling/support/coffee-3.png" alt="Buy me 3 coffees" height="35" />
+  <img src="https://justinmahar.github.io/react-social-media-embed/support/coffee-3.png" alt="Buy me 3 coffees" height="35" />
 </a> <a href="https://paypal.me/thejustinmahar/25">
-  <img src="https://justinmahar.github.io/react-kindling/support/coffee-5.png" alt="Buy me 5 coffees" height="35" />
+  <img src="https://justinmahar.github.io/react-social-media-embed/support/coffee-5.png" alt="Buy me 5 coffees" height="35" />
 </a>
 
 ## Overview
