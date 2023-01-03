@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 declare const _default: ComponentMeta<({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element>;
 export default _default;
