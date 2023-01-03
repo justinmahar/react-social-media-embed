@@ -42,7 +42,7 @@ export const YouTubeEmbed = ({
 
   const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&?])/)?.[1];
   const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&?])/)?.[1];
-  const emmbedLinkMatch = url.match(/https:\/\/www.youtube\.com\/embed\/(.+?)(?:$|[&?])/)?.[1];
+  const emmbedLinkMatch = url.match(/https:\/\/www.youtube(-nocookie)?\.com\/embed\/(.+?)(?:$|[&?])/)?.[2];
   const videoId = videoIdMatch ?? shortLinkMatch ?? emmbedLinkMatch ?? '00000000';
   const start = +(url.match(/(.+?)(?:$|[&?])start=(\d+)/)?.[2] ?? 0);
 
@@ -51,7 +51,7 @@ export const YouTubeEmbed = ({
 
   let opts: Options = {};
   if (!!start) {
-    opts.playerVars = {start};
+    opts.playerVars = { start };
   }
   if (typeof width !== 'undefined') {
     opts.width = isPercentageWidth ? '100%' : `${width}`;
@@ -60,7 +60,7 @@ export const YouTubeEmbed = ({
     opts.height = isPercentageHeight ? '100%' : `${height}`;
   }
   opts = { ...opts, ...youTubeProps?.opts };
-  
+
   // === Placeholder ===
   const placeholderStyle: React.CSSProperties = {
     maxWidth: isPercentageWidth ? undefined : maxPlaceholderWidth,
