@@ -39,17 +39,11 @@ export const YouTubeEmbed = ({
 }: YouTubeEmbedProps) => {
   const [ready, setReady] = React.useState(false);
 
-  let videoId = '00000000';
-  const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&])/);
-  if (videoIdMatch) {
-    videoId = videoIdMatch[1];
-  } else {
-    const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&])/);
-    if (shortLinkMatch) {
-      videoId = shortLinkMatch[1];
-    }
-  }
-
+  const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&])/)?.[1];
+  const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&])/)?.[1];
+  const emmbedLinkMatch = url.match(/https:\/\/www.youtube\.com\/embed\/(.+?)(?:$|[&])/)?.[1];
+  const videoId = videoIdMatch ?? shortLinkMatch ?? emmbedLinkMatch ?? '00000000';
+  console.log("videoId", videoId)
   const isPercentageWidth = !!width?.toString().includes('%');
   const isPercentageHeight = !!height?.toString().includes('%');
 
