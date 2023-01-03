@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { DivProps } from 'react-html-props';
+import { Subs } from 'react-sub-unsub';
 import { useFrame, Frame } from '../hooks/useFrame';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
 import { generateUUID } from '../uuid';
@@ -89,10 +90,9 @@ export const TikTokEmbed = ({
 
   // Confirm Embed Success Stage
   React.useEffect(() => {
-    let confirmInterval: any = undefined;
-    let retryTimeout: any = undefined;
+    const subs = new Subs();
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
-      confirmInterval = setInterval(() => {
+      subs.setInterval(() => {
         if (frm.document) {
           const preEmbedElement = frm.document.getElementById(uuidRef.current);
           if (!preEmbedElement) {
@@ -101,15 +101,12 @@ export const TikTokEmbed = ({
         }
       }, 1);
       if (!retryDisabled) {
-        retryTimeout = setTimeout(() => {
+        subs.setTimeout(() => {
           setStage(RETRYING_STAGE);
         }, retryDelay);
       }
     }
-    return () => {
-      clearInterval(confirmInterval);
-      clearTimeout(retryTimeout);
-    };
+    return subs.createCleanup();
   }, [retryDelay, retryDisabled, stage, frm.document]);
 
   // Retrying Stage

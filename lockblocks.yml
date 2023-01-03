@@ -4,7 +4,9 @@ replaceFiles:
   - CODE_OF_CONDUCT.md
   - lockblocks.yml
   - src/stories/core
-fillFiles: []
+  - public/support
+fillFiles:
+  - .github/FUNDING.yml
 deleteFiles: []
 excludePaths:
   - .git
@@ -13,18 +15,35 @@ excludePaths:
   - node_modules
   - public
   - storybook-static
+  - README.template.md
 updateJson:
   - path: package.json
     updateFields:
       - key: version
         as: coreVersion
-      - key: scripts
-        merge: true
       - key: devDependencies
         merge: true
+      - key: peerDependencies
+        merge: true
+      - key: scripts.build
+        replace: true
+      - key: scripts.start
+        replace: true
+      - key: scripts.storybook
+        replace: true
+      - key: scripts.build-storybook
+        replace: true
+      - key: scripts.preship
+        replace: true
+      - key: scripts.ship
+        replace: true
+      - key: scripts.postship
+        replace: true
+      - key: scripts.update
+        replace: true
     deleteFields:
       - devDependencies.html-webpack-plugin
-      - devDependencies.@storybook/builder-webpack5
-      - devDependencies.@storybook/manager-webpack5
-      - devDependencies.webpack
+      - scripts.watch
+      - scripts.lint
+      - scripts.upgrade-storybook
 updateYaml: []

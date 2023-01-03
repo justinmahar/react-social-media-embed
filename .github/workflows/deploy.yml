@@ -1,33 +1,26 @@
 # [lock-all/] 🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫🚫
 # This workflow will do a clean install of node dependencies, build the source code, run tests, build Storybook, and deploy
 # the static Storybook site to GitHub Pages. For more info see: https://github.com/JamesIves/github-pages-deploy-action
-# IMPORTANT: You must have an ACCESS_TOKEN secret for the repo. Two steps:
-# 1) Create a personal access token with repo access: https://github.com/settings/tokens
-# 2) Create the ACCESS_TOKEN secret for your repo: https://github.com/my-username/my-repo-name/settings/secrets
 name: Deploy
 on:
   push:
     branches: [master]
   pull_request:
     branches: [master]
+permissions:
+  contents: write
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
-        with:
-          # If you're using actions/checkout@v2 you must set persist-credentials to false
-          # in most cases for the deployment to work correctly.
-          persist-credentials: false
       - name: Install and Build 🔧
         run: |
-          npm install
+          npm ci
           npm run test
           npm run build-storybook
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: storybook-static # The folder the action should deploy.
+          folder: storybook-static # The folder the action should deploy.
