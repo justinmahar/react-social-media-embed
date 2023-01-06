@@ -382,6 +382,22 @@ We use the [`react-youtube`](https://www.npmjs.com/package/react-youtube) packag
 
 You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
+If you have problems with pixelated thumbnails try this solution to trigger thumbnail refetching
+```jsx
+const [embedHeight, setEmbedHeight] = React.useState(YOUTUBE_DEFAULT_HEIGHT);
+
+<YoutubeEmbed
+  height={embedHeight}
+  youTubeProps={{
+    onReady: async (r) =>
+      (await r.target.getIframe()).addEventListener(
+        "load",
+        () => setEmbedHeight((height) => height + 1)
+      ),
+  }}
+/>
+```
+
 [lock:typescript]::🚫---------------------------------------
 
 ## TypeScript
