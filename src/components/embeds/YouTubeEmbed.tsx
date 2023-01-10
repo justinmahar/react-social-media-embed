@@ -40,21 +40,19 @@ export const YouTubeEmbed = ({
 }: YouTubeEmbedProps) => {
   const [ready, setReady] = React.useState(false);
 
-  let videoId = '00000000';
-  const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&])/);
-  if (videoIdMatch) {
-    videoId = videoIdMatch[1];
-  } else {
-    const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&])/);
-    if (shortLinkMatch) {
-      videoId = shortLinkMatch[1];
-    }
-  }
+  const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&?])/)?.[1];
+  const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&?])/)?.[1];
+  const emmbedLinkMatch = url.match(/https:\/\/www.youtube(-nocookie)?\.com\/embed\/(.+?)(?:$|[&?])/)?.[2];
+  const videoId = videoIdMatch ?? shortLinkMatch ?? emmbedLinkMatch ?? '00000000';
+  const start = +(url.match(/(.+?)(?:$|[&?])start=(\d+)/)?.[2] ?? 0);
 
   const isPercentageWidth = !!width?.toString().includes('%');
   const isPercentageHeight = !!height?.toString().includes('%');
 
   let opts: Options = {};
+  if (!!start) {
+    opts.playerVars = { start };
+  }
   if (typeof width !== 'undefined') {
     opts.width = isPercentageWidth ? '100%' : `${width}`;
   }
