@@ -42,8 +42,8 @@ export const YouTubeEmbed = ({
 
   const videoIdMatch = url.match(/[?&]v=(.+?)(?:$|[&?])/)?.[1];
   const shortLinkMatch = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&?])/)?.[1];
-  const emmbedLinkMatch = url.match(/https:\/\/www.youtube(-nocookie)?\.com\/embed\/(.+?)(?:$|[&?])/)?.[2];
-  const videoId = videoIdMatch ?? shortLinkMatch ?? emmbedLinkMatch ?? '00000000';
+  const embedLinkMatch = url.match(/https:\/\/www.youtube(-nocookie)?\.com\/embed\/(.+?)(?:$|[&?])/)?.[2];
+  const videoId = videoIdMatch ?? shortLinkMatch ?? embedLinkMatch ?? '00000000';
   const start = +(url.match(/(.+?)(?:$|[&?])start=(\d+)/)?.[2] ?? 0);
 
   const isPercentageWidth = !!width?.toString().includes('%');
