@@ -48,8 +48,8 @@ const YouTubeEmbed = (_a) => {
     const [ready, setReady] = React.useState(false);
     const videoIdMatch = (_b = url.match(/[?&]v=(.+?)(?:$|[&?])/)) === null || _b === void 0 ? void 0 : _b[1];
     const shortLinkMatch = (_c = url.match(/https:\/\/youtu\.be\/(.+?)(?:$|[&?])/)) === null || _c === void 0 ? void 0 : _c[1];
-    const emmbedLinkMatch = (_d = url.match(/https:\/\/www.youtube(-nocookie)?\.com\/embed\/(.+?)(?:$|[&?])/)) === null || _d === void 0 ? void 0 : _d[2];
-    const videoId = (_f = (_e = videoIdMatch !== null && videoIdMatch !== void 0 ? videoIdMatch : shortLinkMatch) !== null && _e !== void 0 ? _e : emmbedLinkMatch) !== null && _f !== void 0 ? _f : '00000000';
+    const embedLinkMatch = (_d = url.match(/https:\/\/www.youtube(-nocookie)?\.com\/embed\/(.+?)(?:$|[&?])/)) === null || _d === void 0 ? void 0 : _d[2];
+    const videoId = (_f = (_e = videoIdMatch !== null && videoIdMatch !== void 0 ? videoIdMatch : shortLinkMatch) !== null && _e !== void 0 ? _e : embedLinkMatch) !== null && _f !== void 0 ? _f : '00000000';
     const start = +((_h = (_g = url.match(/(.+?)(?:$|[&?])start=(\d+)/)) === null || _g === void 0 ? void 0 : _g[2]) !== null && _h !== void 0 ? _h : 0);
     const isPercentageWidth = !!(width === null || width === void 0 ? void 0 : width.toString().includes('%'));
     const isPercentageHeight = !!(height === null || height === void 0 ? void 0 : height.toString().includes('%'));
