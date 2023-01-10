@@ -94,6 +94,7 @@ Your support helps keep the project going and will earn you some serious virtual
   - [TikTok](#tiktok-1)
   - [Twitter](#twitter-1)
   - [YouTube](#youtube-1)
+    - [Thumbnail Refetching](#thumbnail-refetching)
 - [TypeScript](#typescript)
 - [Icon Attribution](#icon-attribution)
 - [Contributing](#contributing)
@@ -382,18 +383,19 @@ We use the [`react-youtube`](https://www.npmjs.com/package/react-youtube) packag
 
 You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
 
-If you have problems with pixelated thumbnails try this solution to trigger thumbnail refetching
+#### Thumbnail Refetching
+
+If you have problems with pixelated thumbnails, try this solution to trigger thumbnail refetching:
+
 ```jsx
+const YOUTUBE_DEFAULT_HEIGHT = 390;
 const [embedHeight, setEmbedHeight] = React.useState(YOUTUBE_DEFAULT_HEIGHT);
 
-<YoutubeEmbed
+<YouTubeEmbed
   height={embedHeight}
   youTubeProps={{
     onReady: async (r) =>
-      (await r.target.getIframe()).addEventListener(
-        "load",
-        () => setEmbedHeight((height) => height + 1)
-      ),
+      (await r.target.getIframe()).addEventListener('load', () => setEmbedHeight((height) => height + 1)),
   }}
 />
 ```
