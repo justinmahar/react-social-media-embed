@@ -5,18 +5,10 @@
   Easily embed social media posts from Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube in React.
 </h3>
 <p align="center">
-  <a href="https://badge.fury.io/js/react-social-media-embed" target="_blank" rel="noopener noreferrer">
-    <img src="https://badge.fury.io/js/react-social-media-embed.svg" alt="npm Version" />
-  </a>
-  <a href="https://github.com/justinmahar/react-social-media-embed/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/GitHub-Source-success" alt="View project on GitHub" />
-  </a>
-  <a href="https://github.com/justinmahar/react-social-media-embed/actions?query=workflow%3ADeploy" target="_blank" rel="noopener noreferrer">
-    <img src="https://github.com/justinmahar/react-social-media-embed/workflows/Deploy/badge.svg" alt="Deploy Status" />
-  </a>
-  <a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/>
-  </a>
+  <a href="https://badge.fury.io/js/react-social-media-embed" target="_blank" rel="noopener noreferrer"><img src="https://badge.fury.io/js/react-social-media-embed.svg" alt="npm Version" /></a>&nbsp;
+  <a href="https://github.com/justinmahar/react-social-media-embed/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/GitHub-Source-success" alt="View project on GitHub" /></a>&nbsp;
+  <a href="https://github.com/justinmahar/react-social-media-embed/actions?query=workflow%3ADeploy" target="_blank" rel="noopener noreferrer"><img src="https://github.com/justinmahar/react-social-media-embed/workflows/Deploy/badge.svg" alt="Deploy Status" /></a>&nbsp;
+  <a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/></a>
 </p>
 
 ## Documentation
