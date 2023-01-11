@@ -2,9 +2,10 @@ renameFiles: []
 replaceFiles:
   - .node-version
   - CODE_OF_CONDUCT.md
+  - LICENSE.md
   - lockblocks.yml
-  - src/stories/core
   - public/support
+  - src/stories/core
 fillFiles:
   - .github/FUNDING.yml
 deleteFiles: []
@@ -14,8 +15,8 @@ excludePaths:
   - dist
   - node_modules
   - public
-  - storybook-static
   - README.template.md
+  - storybook-static
 updateJson:
   - path: package.json
     updateFields:
