@@ -15,4 +15,4 @@ export interface Frame {
  * @param frame The Frame to use, if any.
  * @returns A Frame object containing references to `window` and `document`.
  */
-export declare const useFrame: (frame?: Frame | undefined) => Frame;
+export declare const useFrame: (frame?: Frame) => Frame;
