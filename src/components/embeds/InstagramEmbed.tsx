@@ -201,6 +201,7 @@ export const InstagramEmbed = ({
 
   return (
     <div
+      {...divProps}
       className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
       style={{
         overflow: 'hidden',
