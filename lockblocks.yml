@@ -5,6 +5,7 @@ replaceFiles:
   - LICENSE.md
   - lockblocks.yml
   - public/support
+  - public/NOTE.md
   - src/stories/core
 fillFiles:
   - .github/FUNDING.yml
