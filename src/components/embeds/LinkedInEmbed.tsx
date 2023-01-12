@@ -87,7 +87,7 @@ export const LinkedInEmbed = ({
         frameBorder="0"
         onLoad={() => setReady(true)}
       ></iframe>
-      {!placeholderDisabled && placeholder}
+      {!ready && !placeholderDisabled && placeholder}
     </div>
   );
 };

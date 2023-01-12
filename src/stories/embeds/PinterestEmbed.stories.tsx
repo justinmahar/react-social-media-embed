@@ -28,7 +28,8 @@ const ToggledOffTemplate: ComponentStory<typeof PinterestEmbed> = (args) => (
 export const MainExample = MainExampleTemplate.bind({});
 MainExample.args = {
   url,
-  width: 325,
+  width: 345,
+  height: 467,
 };
 
 export const FluidWidth = ToggledOffTemplate.bind({});

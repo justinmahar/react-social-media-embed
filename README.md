@@ -2,7 +2,7 @@
   📰 React Social Media Embed
 </h2>
 <h3 align="center">
-  Easily embed social media posts from Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube in React.
+  Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, Twitter, and YouTube in React.
 </h3>
 <p align="center">
   <a href="https://badge.fury.io/js/react-social-media-embed" target="_blank" rel="noopener noreferrer"><img src="https://badge.fury.io/js/react-social-media-embed.svg" alt="npm Version" /></a>&nbsp;
@@ -21,7 +21,7 @@ Easily embed content from several popular social media platforms in React.
 
 All embeds only require a URL to the post. No API token is needed.
 
-Currently supporting: Facebook, Instagram, LinkedIn, TikTok, Twitter, and YouTube.
+Currently supporting: Facebook, Instagram, LinkedIn, Pinterest, TikTok, Twitter, and YouTube.
 
 ### Features include:
 
@@ -71,6 +71,8 @@ Your support helps keep the project going and will earn you some serious virtual
     - [IFrame Support](#iframe-support-1)
   - [LinkedIn](#linkedin)
     - [How do you get a LinkedIn post URL?](#how-do-you-get-a-linkedin-post-url)
+  - [Pinterest](#pinterest)
+    - [How do you get a Pinterest pin URL?](#how-do-you-get-a-pinterest-pin-url)
   - [TikTok](#tiktok)
     - [How do you get a TikTok post URL?](#how-do-you-get-a-tiktok-post-url)
     - [IFrame Support](#iframe-support-2)
@@ -83,6 +85,7 @@ Your support helps keep the project going and will earn you some serious virtual
   - [Facebook](#facebook-1)
   - [Instagram](#instagram-1)
   - [LinkedIn](#linkedin-1)
+  - [Pinterest](#pinterest-1)
   - [TikTok](#tiktok-1)
   - [Twitter](#twitter-1)
   - [YouTube](#youtube-1)
@@ -192,6 +195,42 @@ The `url` must be be retrieved from the "Embed this post" option for the desired
 It is recommended that you specify the `width` and `height` of the post. These have been pre-calculated in the `iframe` embed code as well.
 
 You can also specify a `postUrl` which will be used in the placeholder to link to the regular, non-embed version of the post.
+
+### Pinterest
+
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-pinterestembed--main-example)
+
+```jsx
+import { PinterestEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <PinterestEmbed 
+    url="https://www.pinterest.co.uk/pin/875105771321194304/"
+    width={345}
+    height={467}
+  />
+</div>
+```
+
+This will display the Pinterest embed centered with a width of `345`. You can specify a `height` if you'd like to adjust how much of the pin is vertically shown. See below for determining the correct `width` and `height` to use.
+
+For a live example and more options, read the [full documentation for PinterestEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-pinterestembed--main-example).
+
+#### How do you get a Pinterest pin URL?
+
+Visit a Pinterest post in your browser. Copy the URL from the address bar.
+
+The URL must contain the pin ID, in the format `pin/1234567890123456789`. Short links are not supported.
+
+It is recommended that you specify the `width` and `height` of the post. These have been pre-calculated in the `iframe` embed code provided by Pinterest for the post.
+
+Select the ellipsis `...` by the post and select "Get Pin embed code". Then use the `height` and `width` shown for the post you'd like to embed.
+
+```html
+<iframe src="https://assets.pinterest.com/ext/embed.html?id=875105771321194304" height="467" width="345" frameborder="0" scrolling="no" ></iframe>
+```
 
 ### TikTok
 
@@ -336,6 +375,12 @@ We then use the [`instgrm.Embeds.process()`](https://developers.facebook.com/doc
 LinkedIn does not have an embed JS library, unfortunately. So we use a simple `iframe` with the embed URL from LinkedIn's embed option, which is accessed via the menu next to any given post that has embedding allowed. If a post does not have embedding allowed, this option will not appear.
 
 LinkedIn provides you with an `iframe` with an `src` attribute and the calculated `width` and `height`. Use these attributes for your embed.
+
+### Pinterest
+
+We use a simple `iframe` with the URL of the Pinterest pin you'd like to embed.
+
+Pinterest provides you with embed code containing an `iframe` with the calculated `width` and `height`. The embed code is accessed via the menu next to any given pin that has embedding allowed. Use these `width` and `height` attributes for your embed.
 
 ### TikTok
 

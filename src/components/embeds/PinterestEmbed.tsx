@@ -65,7 +65,9 @@ export const PinterestEmbed = ({
     />
   );
 
-  const postId = url.replace(/\D/g, '');
+  // Example URL: https://www.pinterest.com/pin/875105771321194304/sent/?invite_code=e86262c989ee4f559a08a4494c300ba3&sfo=1
+  const postIdMatch = url.match(/pin\/([\w\d_-]+)/)?.[1];
+  const postId = postIdMatch ?? '000000000000000000';
 
   return (
     <div
@@ -89,7 +91,7 @@ export const PinterestEmbed = ({
         scrolling="no"
         onLoad={() => setReady(true)}
       ></iframe>
-      {!placeholderDisabled && placeholder}
+      {!ready && !placeholderDisabled && placeholder}
     </div>
   );
 };
