@@ -37,7 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LinkedInEmbed = void 0;
+exports.PinterestEmbed = void 0;
 const classnames_1 = __importDefault(require("classnames"));
 const React = __importStar(require("react"));
 const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
@@ -46,9 +46,9 @@ const minPlaceholderWidth = 250;
 const maxPlaceholderWidth = 550;
 const defaultPlaceholderHeight = 550;
 const borderRadius = 8;
-const LinkedInEmbed = (_a) => {
-    var _b, _c;
-    var { url, postUrl, width, height = 500, linkText = 'View post on LinkedIn', placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false } = _a, divProps = __rest(_a, ["url", "postUrl", "width", "height", "linkText", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled"]);
+const PinterestEmbed = (_a) => {
+    var _b, _c, _d;
+    var { url, postUrl, width, height = 500, linkText = 'View post on Pinterest', placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled = false, placeholderProps, embedPlaceholder, placeholderDisabled = false } = _a, divProps = __rest(_a, ["url", "postUrl", "width", "height", "linkText", "placeholderImageUrl", "placeholderSpinner", "placeholderSpinnerDisabled", "placeholderProps", "embedPlaceholder", "placeholderDisabled"]);
     const [ready, setReady] = React.useState(false);
     // === Placeholder ===
     const placeholderStyle = {
@@ -64,10 +64,12 @@ const LinkedInEmbed = (_a) => {
         borderRadius,
     };
     const placeholder = embedPlaceholder !== null && embedPlaceholder !== void 0 ? embedPlaceholder : (React.createElement(PlaceholderEmbed_1.PlaceholderEmbed, Object.assign({ url: postUrl !== null && postUrl !== void 0 ? postUrl : url, imageUrl: placeholderImageUrl, linkText: linkText, spinner: placeholderSpinner, spinnerDisabled: placeholderSpinnerDisabled }, placeholderProps, { style: Object.assign(Object.assign({}, placeholderStyle), placeholderProps === null || placeholderProps === void 0 ? void 0 : placeholderProps.style) })));
-    // === END Placeholder ===
-    return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-linkedin-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined, borderRadius }, divProps.style) }),
+    // Example URL: https://www.pinterest.com/pin/875105771321194304/sent/?invite_code=e86262c989ee4f559a08a4494c300ba3&sfo=1
+    const postIdMatch = (_d = url.match(/pin\/([\w\d_-]+)/)) === null || _d === void 0 ? void 0 : _d[1];
+    const postId = postIdMatch !== null && postIdMatch !== void 0 ? postIdMatch : '000000000000000000';
+    return (React.createElement("div", Object.assign({}, divProps, { className: (0, classnames_1.default)('rsme-embed rsme-pinterest-embed', divProps.className), style: Object.assign({ overflow: 'hidden', width: width !== null && width !== void 0 ? width : undefined, height: height !== null && height !== void 0 ? height : undefined, borderRadius }, divProps.style) }),
         React.createElement(EmbedStyle_1.EmbedStyle, null),
-        React.createElement("iframe", { className: (0, classnames_1.default)('linkedin-post', !ready && 'rsme-d-none'), src: url, width: "100%", height: !ready ? 0 : height, frameBorder: "0", onLoad: () => setReady(true) }),
+        React.createElement("iframe", { className: (0, classnames_1.default)('pinterest-post', !ready && 'rsme-d-none'), src: `https://assets.pinterest.com/ext/embed.html?id=${postId}`, width: "100%", height: !ready ? 0 : height, frameBorder: "0", scrolling: "no", onLoad: () => setReady(true) }),
         !ready && !placeholderDisabled && placeholder));
 };
-exports.LinkedInEmbed = LinkedInEmbed;
+exports.PinterestEmbed = PinterestEmbed;

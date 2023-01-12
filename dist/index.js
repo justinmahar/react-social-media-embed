@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./components/embeds/FacebookEmbed"), exports);
 __exportStar(require("./components/embeds/InstagramEmbed"), exports);
 __exportStar(require("./components/embeds/LinkedInEmbed"), exports);
+__exportStar(require("./components/embeds/PinterestEmbed"), exports);
 __exportStar(require("./components/embeds/TikTokEmbed"), exports);
 __exportStar(require("./components/embeds/TwitterEmbed"), exports);
 __exportStar(require("./components/embeds/YouTubeEmbed"), exports);
