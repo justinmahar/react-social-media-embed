@@ -142,11 +142,11 @@ import { InstagramEmbed } from 'react-social-media-embed';
 
 ```jsx
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <InstagramEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" width={328} captioned />
+  <InstagramEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" width={328} />
 </div>
 ```
 
-This will display the Instagram embed centered with a width of `328`, and the caption will be shown.
+This will display the Instagram embed centered with a width of `328`.
 
 For a live example and more options, read the [full documentation for InstagramEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example).
 

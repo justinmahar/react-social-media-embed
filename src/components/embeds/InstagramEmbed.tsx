@@ -26,6 +26,7 @@ export interface InstagramEmbedProps extends DivProps {
   width?: string | number;
   height?: string | number;
   linkText?: string;
+  /** Deprecated -- This has no effect. Captions are always visible due to https://github.com/justinmahar/react-social-media-embed/issues/26 */
   captioned?: boolean;
   placeholderImageUrl?: string;
   placeholderSpinner?: React.ReactNode;
@@ -46,7 +47,6 @@ export const InstagramEmbed = ({
   width,
   height,
   linkText = 'View post on Instagram',
-  captioned = false,
   placeholderImageUrl,
   placeholderSpinner,
   placeholderSpinnerDisabled = false,
@@ -193,16 +193,10 @@ export const InstagramEmbed = ({
   );
   // === END Placeholder ===
 
-  const additionalAttributes: Record<string, any> = {};
-
-  if (captioned) {
-    additionalAttributes['data-instgrm-captioned'] = true;
-  }
-
   return (
     <div
       {...divProps}
-      className={classNames('rsme-embed rsme-instagram-embed', divProps.className)}
+      className={classNames('rsme-embed rsme-instagram-embed', uuidRef.current, divProps.className)}
       style={{
         overflow: 'hidden',
         width: width ?? undefined,
@@ -217,7 +211,7 @@ export const InstagramEmbed = ({
         className="instagram-media"
         data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
         data-instgrm-version={igVersion}
-        {...additionalAttributes}
+        data-instgrm-captioned
         data-width={isPercentageWidth ? '100%' : width ?? undefined}
         style={{
           width: 'calc(100% - 2px)',
