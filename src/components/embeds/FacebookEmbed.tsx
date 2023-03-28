@@ -7,7 +7,7 @@ import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 import { Subs } from 'react-sub-unsub';
 
-const embedJsScriptSrc = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+const embedJsScriptSrc = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0';
 const defaultEmbedWidth = 550;
 const maxPlaceholderWidth = defaultEmbedWidth;
 const defaultPlaceholderHeight = 372;
