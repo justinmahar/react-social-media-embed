@@ -22,7 +22,7 @@ const PlaceholderEmbed_1 = require("../placeholder/PlaceholderEmbed");
 const uuid_1 = require("../uuid");
 const EmbedStyle_1 = require("./EmbedStyle");
 const react_sub_unsub_1 = require("react-sub-unsub");
-const embedJsScriptSrc = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+const embedJsScriptSrc = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0';
 const defaultEmbedWidth = 550;
 const maxPlaceholderWidth = defaultEmbedWidth;
 const defaultPlaceholderHeight = 372;
