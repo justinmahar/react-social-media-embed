@@ -1,17 +1,17 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryFn } from '@storybook/react';
 import { TwitterEmbed } from '../../components/embeds/TwitterEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
 export default {
   title: 'Embeds/TwitterEmbed',
   component: TwitterEmbed,
-} as ComponentMeta<typeof TwitterEmbed>;
+} satisfies Meta<typeof TwitterEmbed>;
 
 const url = 'https://twitter.com/PixelAndBracket/status/1356633038717923333';
 const placeholderImageUrl = `https://placekitten.com/550/325`;
 
-const MainExampleTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
+const MainExampleTemplate: StoryFn<typeof TwitterEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <TwitterEmbed {...args} />
@@ -19,7 +19,7 @@ const MainExampleTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
   </EmbedToggler>
 );
 
-const ToggledOffTemplate: ComponentStory<typeof TwitterEmbed> = (args) => (
+const ToggledOffTemplate: StoryFn<typeof TwitterEmbed> = (args) => (
   <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
     <TwitterEmbed {...args} />
   </EmbedToggler>

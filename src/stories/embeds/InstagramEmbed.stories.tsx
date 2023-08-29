@@ -1,17 +1,17 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryFn } from '@storybook/react';
 import { InstagramEmbed } from '../../components/embeds/InstagramEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
 export default {
   title: 'Embeds/InstagramEmbed',
   component: InstagramEmbed,
-} as ComponentMeta<typeof InstagramEmbed>;
+} satisfies Meta<typeof InstagramEmbed>;
 
 const url = 'https://www.instagram.com/p/CUbHfhpswxt/';
 const placeholderImageUrl = `https://placekitten.com/540/400`;
 
-const MainExampleTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
+const MainExampleTemplate: StoryFn<typeof InstagramEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <InstagramEmbed {...args} />
@@ -19,7 +19,7 @@ const MainExampleTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
   </EmbedToggler>
 );
 
-const ToggledOffTemplate: ComponentStory<typeof InstagramEmbed> = (args) => (
+const ToggledOffTemplate: StoryFn<typeof InstagramEmbed> = (args) => (
   <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
     <InstagramEmbed {...args} />
   </EmbedToggler>

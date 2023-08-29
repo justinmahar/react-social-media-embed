@@ -1,17 +1,17 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryFn } from '@storybook/react';
 import { YouTubeEmbed } from '../../components/embeds/YouTubeEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
 export default {
   title: 'Embeds/YouTubeEmbed',
   component: YouTubeEmbed,
-} as ComponentMeta<typeof YouTubeEmbed>;
+} satisfies Meta<typeof YouTubeEmbed>;
 
 const url = 'https://www.youtube.com/watch?v=HpVOs5imUN0';
 const placeholderImageUrl = `https://i.ytimg.com/vi/HpVOs5imUN0/maxresdefault.jpg?t=${Date.now()}`;
 
-const MainExampleTemplate: ComponentStory<typeof YouTubeEmbed> = (args) => (
+const MainExampleTemplate: StoryFn<typeof YouTubeEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <YouTubeEmbed {...args} />
@@ -19,7 +19,7 @@ const MainExampleTemplate: ComponentStory<typeof YouTubeEmbed> = (args) => (
   </EmbedToggler>
 );
 
-const ToggledOffTemplate: ComponentStory<typeof YouTubeEmbed> = (args) => (
+const ToggledOffTemplate: StoryFn<typeof YouTubeEmbed> = (args) => (
   <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
     <YouTubeEmbed {...args} />
   </EmbedToggler>
