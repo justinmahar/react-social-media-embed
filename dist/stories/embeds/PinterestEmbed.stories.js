@@ -11,7 +11,7 @@ exports.default = {
     title: 'Embeds/PinterestEmbed',
     component: PinterestEmbed_1.PinterestEmbed,
 };
-const url = 'https://www.pinterest.co.uk/pin/875105771321194304/';
+const url = 'https://www.pinterest.com/pin/121949102401595647/';
 const placeholderImageUrl = `https://placekitten.com/550/325`;
 const MainExampleTemplate = (args) => (react_1.default.createElement(EmbedToggler_1.EmbedToggler, { defaultToggledOn: true },
     react_1.default.createElement("div", { style: { display: 'flex', justifyContent: 'center' } },
@@ -22,7 +22,7 @@ exports.MainExample = MainExampleTemplate.bind({});
 exports.MainExample.args = {
     url,
     width: 345,
-    height: 467,
+    height: 574,
 };
 exports.FluidWidth = ToggledOffTemplate.bind({});
 exports.FluidWidth.args = {
