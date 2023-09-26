@@ -8,7 +8,7 @@ export default {
   component: PinterestEmbed,
 } as ComponentMeta<typeof PinterestEmbed>;
 
-const url = 'https://www.pinterest.co.uk/pin/875105771321194304/';
+const url = 'https://www.pinterest.com/pin/121949102401595647/';
 const placeholderImageUrl = `https://placekitten.com/550/325`;
 
 const MainExampleTemplate: ComponentStory<typeof PinterestEmbed> = (args) => (
@@ -29,7 +29,7 @@ export const MainExample = MainExampleTemplate.bind({});
 MainExample.args = {
   url,
   width: 345,
-  height: 467,
+  height: 574,
 };
 
 export const FluidWidth = ToggledOffTemplate.bind({});
