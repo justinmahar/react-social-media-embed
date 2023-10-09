@@ -3,7 +3,6 @@ import React from 'react';
 import { DivProps } from 'react-html-props';
 import { useFrame, Frame } from '../hooks/useFrame';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
-import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 import { Subs } from 'react-sub-unsub';
 
@@ -61,9 +60,9 @@ export const FacebookEmbed = ({
 }: FacebookEmbedProps) => {
   const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
   const embedSuccess = React.useMemo(() => stage === EMBED_SUCCESS_STAGE, [stage]);
-  const uuidRef = React.useRef(generateUUID());
+  const id = React.useId();
   const [processTime, setProcessTime] = React.useState(Date.now());
-  const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
+  const embedContainerKey = React.useMemo(() => `${id}-${processTime}`, [processTime, id]);
   const frm = useFrame(frame);
 
   // Debug Output
@@ -132,7 +131,7 @@ export const FacebookEmbed = ({
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
       subs.setInterval(() => {
         if (frm.document) {
-          const fbPostContainerElement = frm.document.getElementById(uuidRef.current);
+          const fbPostContainerElement = frm.document.getElementById(id);
           if (fbPostContainerElement) {
             const fbPostElem = fbPostContainerElement.getElementsByClassName('fb-post')[0];
             if (fbPostElem) {
@@ -150,7 +149,7 @@ export const FacebookEmbed = ({
       }
     }
     return subs.createCleanup();
-  }, [retryDisabled, retryDelay, stage, frm.document]);
+  }, [retryDisabled, retryDelay, stage, frm.document, id]);
 
   // Retrying Stage
   React.useEffect(() => {
@@ -207,7 +206,7 @@ export const FacebookEmbed = ({
       }}
     >
       <EmbedStyle />
-      <div id={uuidRef.current} className={classNames(!embedSuccess && 'rsme-d-none')}>
+      <div id={id} className={classNames(!embedSuccess && 'rsme-d-none')}>
         <div
           key={embedContainerKey}
           className="fb-post"
