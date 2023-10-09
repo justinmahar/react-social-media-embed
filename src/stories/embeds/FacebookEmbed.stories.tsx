@@ -1,12 +1,12 @@
 import React from 'react';
-import type { Meta, StoryFn } from '@storybook/react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { FacebookEmbed } from '../../components/embeds/FacebookEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
 export default {
   title: 'Embeds/FacebookEmbed',
   component: FacebookEmbed,
-} satisfies Meta<typeof FacebookEmbed>;
+} as ComponentMeta<typeof FacebookEmbed>;
 
 const textUrl = 'https://www.facebook.com/andrewismusic/posts/483451443145971';
 const photoUrl = 'https://www.facebook.com/andrewismusic/posts/451971596293956';
@@ -14,7 +14,7 @@ const linkUrl = 'https://www.facebook.com/andrewismusic/posts/479747760183006';
 const videoUrl = 'https://fb.watch/bfP8U3LBa6/';
 const placeholderImageUrl = `https://placekitten.com/325/560`;
 
-const MainExampleTemplate: StoryFn<typeof FacebookEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <FacebookEmbed {...args} />
@@ -22,7 +22,7 @@ const MainExampleTemplate: StoryFn<typeof FacebookEmbed> = (args) => (
   </EmbedToggler>
 );
 
-const ToggledOffTemplate: StoryFn<typeof FacebookEmbed> = (args) => (
+const ToggledOffTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
   <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
     <FacebookEmbed {...args} />
   </EmbedToggler>

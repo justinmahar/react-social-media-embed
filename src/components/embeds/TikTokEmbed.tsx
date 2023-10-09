@@ -4,6 +4,7 @@ import { DivProps } from 'react-html-props';
 import { Subs } from 'react-sub-unsub';
 import { useFrame, Frame } from '../hooks/useFrame';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
+import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
 const embedJsScriptSrc = 'https://www.tiktok.com/embed.js';
@@ -55,9 +56,9 @@ export const TikTokEmbed = ({
   ...divProps
 }: TikTokEmbedProps): JSX.Element => {
   const [stage, setStage] = React.useState(PROCESS_EMBED_STAGE);
-  const id = React.useId();
+  const uuidRef = React.useRef(generateUUID());
   const [processTime, setProcessTime] = React.useState(Date.now());
-  const embedContainerKey = React.useMemo(() => `${id}-${processTime}`, [processTime, id]);
+  const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
   const frm = useFrame(frame);
 
   // Debug Output
@@ -93,7 +94,7 @@ export const TikTokEmbed = ({
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
       subs.setInterval(() => {
         if (frm.document) {
-          const preEmbedElement = frm.document.getElementById(id);
+          const preEmbedElement = frm.document.getElementById(uuidRef.current);
           if (!preEmbedElement) {
             setStage(EMBED_SUCCESS_STAGE);
           }
@@ -106,7 +107,7 @@ export const TikTokEmbed = ({
       }
     }
     return subs.createCleanup();
-  }, [retryDelay, retryDisabled, stage, frm.document, id]);
+  }, [retryDelay, retryDisabled, stage, frm.document]);
 
   // Retrying Stage
   React.useEffect(() => {
@@ -166,11 +167,11 @@ export const TikTokEmbed = ({
       <div className="tiktok-embed-container">
         <blockquote key={embedContainerKey} className="tiktok-embed" cite={url} data-video-id={embedId}>
           {!placeholderDisabled ? (
-            <div id={id} style={{ display: 'flex', justifyContent: 'center' }}>
+            <div id={uuidRef.current} style={{ display: 'flex', justifyContent: 'center' }}>
               {placeholder}
             </div>
           ) : (
-            <div id={id} style={{ display: 'none' }}>
+            <div id={uuidRef.current} style={{ display: 'none' }}>
               &nbsp;
             </div>
           )}

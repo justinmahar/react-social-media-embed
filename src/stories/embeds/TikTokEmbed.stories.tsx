@@ -1,17 +1,17 @@
 import React from 'react';
-import type { Meta, StoryFn } from '@storybook/react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { TikTokEmbed } from '../../components/embeds/TikTokEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
 export default {
   title: 'Embeds/TikTokEmbed',
   component: TikTokEmbed,
-} satisfies Meta<typeof TikTokEmbed>;
+} as ComponentMeta<typeof TikTokEmbed>;
 
 const url = 'https://www.tiktok.com/@epicgardening/video/7055411162212633903';
 const placeholderImageUrl = `https://placekitten.com/325/560`;
 
-const MainExampleTemplate: StoryFn<typeof TikTokEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof TikTokEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <TikTokEmbed {...args} />
@@ -19,7 +19,7 @@ const MainExampleTemplate: StoryFn<typeof TikTokEmbed> = (args) => (
   </EmbedToggler>
 );
 
-const ToggledOffTemplate: StoryFn<typeof TikTokEmbed> = (args) => (
+const ToggledOffTemplate: ComponentStory<typeof TikTokEmbed> = (args) => (
   <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
     <TikTokEmbed {...args} />
   </EmbedToggler>

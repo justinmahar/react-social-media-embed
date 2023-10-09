@@ -1,19 +1,19 @@
 import React from 'react';
-import type { Meta, StoryFn } from '@storybook/react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { LinkedInEmbed } from '../../components/embeds/LinkedInEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
 export default {
   title: 'Embeds/LinkedInEmbed',
   component: LinkedInEmbed,
-} satisfies Meta<typeof LinkedInEmbed>;
+} as ComponentMeta<typeof LinkedInEmbed>;
 
 const url = 'https://www.linkedin.com/embed/feed/update/urn:li:share:6898694772484112384';
 const postUrl =
   'https://www.linkedin.com/posts/peterdiamandis_5-discoveries-the-james-webb-telescope-will-activity-6898694773406875648-z-D7';
 const placeholderImageUrl = `https://placekitten.com/504/325`;
 
-const MainExampleTemplate: StoryFn<typeof LinkedInEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof LinkedInEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <LinkedInEmbed {...args} />
@@ -21,7 +21,7 @@ const MainExampleTemplate: StoryFn<typeof LinkedInEmbed> = (args) => (
   </EmbedToggler>
 );
 
-const ToggledOffTemplate: StoryFn<typeof LinkedInEmbed> = (args) => (
+const ToggledOffTemplate: ComponentStory<typeof LinkedInEmbed> = (args) => (
   <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
     <LinkedInEmbed {...args} />
   </EmbedToggler>
