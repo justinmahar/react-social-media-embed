@@ -1,6 +1,5 @@
-import { Meta } from '@storybook/addon-docs';
-import ReactMarkdown from 'react-markdown';
-import License from '../../../LICENSE.md';
+import { Markdown, Meta } from '@storybook/addon-docs';
+import License from '../../../LICENSE.md?raw';
 
 <Meta title="License" />
 
@@ -11,4 +10,4 @@ import License from '../../../LICENSE.md';
   }`}
 </style>
 
-<License />
+<Markdown>{License}</Markdown>
