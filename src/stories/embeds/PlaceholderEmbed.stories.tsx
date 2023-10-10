@@ -4,7 +4,7 @@
  * More on args: https://storybook.js.org/docs/react/writing-stories/args
  * More on argTypes: https://storybook.js.org/docs/react/api/argtypes
  */
-import type { Meta, StoryFn } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { PlaceholderEmbed } from '../../components/placeholder/PlaceholderEmbed';
 import { EmbedToggler } from '../EmbedToggler';
@@ -14,9 +14,9 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 export default {
   title: 'Placeholder/PlaceholderEmbed',
   component: PlaceholderEmbed,
-} satisfies Meta<typeof PlaceholderEmbed>;
+} as ComponentMeta<typeof PlaceholderEmbed>;
 
-const Template: StoryFn<typeof PlaceholderEmbed> = (args) => (
+const Template: ComponentStory<typeof PlaceholderEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <PlaceholderEmbed {...args} />
   </EmbedToggler>

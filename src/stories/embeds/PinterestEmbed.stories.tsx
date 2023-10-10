@@ -1,17 +1,17 @@
 import React from 'react';
-import type { Meta, StoryFn } from '@storybook/react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { PinterestEmbed } from '../../components/embeds/PinterestEmbed';
 import { EmbedToggler } from '../EmbedToggler';
 
 export default {
   title: 'Embeds/PinterestEmbed',
   component: PinterestEmbed,
-} satisfies Meta<typeof PinterestEmbed>;
+} as ComponentMeta<typeof PinterestEmbed>;
 
-const url = 'https://www.pinterest.co.uk/pin/875105771321194304/';
+const url = 'https://www.pinterest.com/pin/121949102401595647/';
 const placeholderImageUrl = `https://placekitten.com/550/325`;
 
-const MainExampleTemplate: StoryFn<typeof PinterestEmbed> = (args) => (
+const MainExampleTemplate: ComponentStory<typeof PinterestEmbed> = (args) => (
   <EmbedToggler defaultToggledOn>
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <PinterestEmbed {...args} />
@@ -19,7 +19,7 @@ const MainExampleTemplate: StoryFn<typeof PinterestEmbed> = (args) => (
   </EmbedToggler>
 );
 
-const ToggledOffTemplate: StoryFn<typeof PinterestEmbed> = (args) => (
+const ToggledOffTemplate: ComponentStory<typeof PinterestEmbed> = (args) => (
   <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
     <PinterestEmbed {...args} />
   </EmbedToggler>
@@ -29,7 +29,7 @@ export const MainExample = MainExampleTemplate.bind({});
 MainExample.args = {
   url,
   width: 345,
-  height: 467,
+  height: 574,
 };
 
 export const FluidWidth = ToggledOffTemplate.bind({});
