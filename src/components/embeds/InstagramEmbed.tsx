@@ -47,6 +47,7 @@ export const InstagramEmbed = ({
   width,
   height,
   linkText = 'View post on Instagram',
+  captioned = false,
   placeholderImageUrl,
   placeholderSpinner,
   placeholderSpinnerDisabled = false,
@@ -211,7 +212,7 @@ export const InstagramEmbed = ({
         className="instagram-media"
         data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
         data-instgrm-version={igVersion}
-        data-instgrm-captioned
+        data-instgrm-captioned = {captioned ? captioned : undefined}
         data-width={isPercentageWidth ? '100%' : width ?? undefined}
         style={{
           width: 'calc(100% - 2px)',
