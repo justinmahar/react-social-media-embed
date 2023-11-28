@@ -1,7 +1,7 @@
-/// <reference types="react" />
+import React from 'react';
 declare const _default: {
     title: string;
-    component: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => JSX.Element;
+    component: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, youTubeProps, ...divProps }: import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps) => React.JSX.Element;
 };
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/YouTubeEmbed").YouTubeEmbedProps>;

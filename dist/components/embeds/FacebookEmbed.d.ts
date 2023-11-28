@@ -20,4 +20,4 @@ export interface FacebookEmbedProps extends DivProps {
     frame?: Frame;
     debug?: boolean;
 }
-export declare const FacebookEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, frame, debug, ...divProps }: FacebookEmbedProps) => JSX.Element;
+export declare const FacebookEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, frame, debug, ...divProps }: FacebookEmbedProps) => React.JSX.Element;

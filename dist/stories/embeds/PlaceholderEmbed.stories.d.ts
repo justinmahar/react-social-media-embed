@@ -1,7 +1,7 @@
-/// <reference types="react" />
+import React from 'react';
 declare const _default: {
     title: string;
-    component: ({ url, linkText, imageUrl, spinner, spinnerDisabled, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => JSX.Element;
+    component: ({ url, linkText, imageUrl, spinner, spinnerDisabled, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => React.JSX.Element;
 };
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps>;

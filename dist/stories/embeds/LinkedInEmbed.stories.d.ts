@@ -1,7 +1,7 @@
-/// <reference types="react" />
+import React from 'react';
 declare const _default: {
     title: string;
-    component: ({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => JSX.Element;
+    component: ({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => React.JSX.Element;
 };
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps>;

@@ -14,4 +14,4 @@ export interface PinterestEmbedProps extends DivProps {
     embedPlaceholder?: React.ReactNode;
     placeholderDisabled?: boolean;
 }
-export declare const PinterestEmbed: ({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: PinterestEmbedProps) => JSX.Element;
+export declare const PinterestEmbed: ({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: PinterestEmbedProps) => React.JSX.Element;
