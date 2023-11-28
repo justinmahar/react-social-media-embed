@@ -22,4 +22,4 @@ export interface InstagramEmbedProps extends DivProps {
     frame?: Frame;
     debug?: boolean;
 }
-export declare const InstagramEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, igVersion, frame, debug, ...divProps }: InstagramEmbedProps) => JSX.Element;
+export declare const InstagramEmbed: ({ url, width, height, linkText, captioned, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, igVersion, frame, debug, ...divProps }: InstagramEmbedProps) => JSX.Element;

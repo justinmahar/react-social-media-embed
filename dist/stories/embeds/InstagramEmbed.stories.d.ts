@@ -1,8 +1,4 @@
-/// <reference types="react" />
-declare const _default: {
-    title: string;
-    component: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, igVersion, frame, debug, ...divProps }: import("../../components/embeds/InstagramEmbed").InstagramEmbedProps) => JSX.Element;
-};
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/InstagramEmbed").InstagramEmbedProps>;
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/InstagramEmbed").InstagramEmbedProps>;
 export declare const FluidWidth: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/InstagramEmbed").InstagramEmbedProps>;

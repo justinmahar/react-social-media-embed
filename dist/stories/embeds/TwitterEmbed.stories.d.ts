@@ -1,8 +1,4 @@
-import React from 'react';
-declare const _default: {
-    title: string;
-    component: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: import("../../components/embeds/TwitterEmbed").TwitterEmbedProps) => React.JSX.Element;
-};
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/TwitterEmbed").TwitterEmbedProps>;
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/TwitterEmbed").TwitterEmbedProps>;
 export declare const FluidWidth: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/TwitterEmbed").TwitterEmbedProps>;

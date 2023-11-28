@@ -1,8 +1,4 @@
-import React from 'react';
-declare const _default: {
-    title: string;
-    component: ({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/PinterestEmbed").PinterestEmbedProps) => React.JSX.Element;
-};
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/PinterestEmbed").PinterestEmbedProps>;
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/PinterestEmbed").PinterestEmbedProps>;
 export declare const FluidWidth: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/PinterestEmbed").PinterestEmbedProps>;

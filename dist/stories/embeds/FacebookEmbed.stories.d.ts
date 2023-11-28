@@ -1,8 +1,4 @@
-import React from 'react';
-declare const _default: {
-    title: string;
-    component: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, scriptLoadDisabled, retryDelay, retryDisabled, frame, debug, ...divProps }: import("../../components/embeds/FacebookEmbed").FacebookEmbedProps) => React.JSX.Element;
-};
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/FacebookEmbed").FacebookEmbedProps>;
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/FacebookEmbed").FacebookEmbedProps>;
 export declare const TextPostExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/FacebookEmbed").FacebookEmbedProps>;

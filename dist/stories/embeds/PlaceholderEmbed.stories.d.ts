@@ -1,8 +1,4 @@
-import React from 'react';
-declare const _default: {
-    title: string;
-    component: ({ url, linkText, imageUrl, spinner, spinnerDisabled, ...divProps }: import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps) => React.JSX.Element;
-};
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps>;
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps>;
 export declare const TextWidthHeight100x100: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/placeholder/PlaceholderEmbed").PlaceholderEmbedProps>;

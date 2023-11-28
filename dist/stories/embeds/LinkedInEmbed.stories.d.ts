@@ -1,8 +1,4 @@
-import React from 'react';
-declare const _default: {
-    title: string;
-    component: ({ url, postUrl, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, ...divProps }: import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps) => React.JSX.Element;
-};
+declare const _default: import("@storybook/types").ComponentAnnotations<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps>;
 export default _default;
 export declare const MainExample: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps>;
 export declare const Size250x570AtMinWidth: import("@storybook/types").AnnotatedStoryFn<import("@storybook/react/dist/types-0a347bb9").R, import("../../components/embeds/LinkedInEmbed").LinkedInEmbedProps>;

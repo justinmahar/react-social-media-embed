@@ -4,6 +4,7 @@ import { DivProps } from 'react-html-props';
 import { Subs } from 'react-sub-unsub';
 import { useFrame, Frame } from '../hooks/useFrame';
 import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/PlaceholderEmbed';
+import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
 const embedJsScriptSrc = '//www.instagram.com/embed.js';
@@ -46,6 +47,7 @@ export const InstagramEmbed = ({
   width,
   height,
   linkText = 'View post on Instagram',
+  captioned = false,
   placeholderImageUrl,
   placeholderSpinner,
   placeholderSpinnerDisabled = false,
@@ -61,9 +63,9 @@ export const InstagramEmbed = ({
   ...divProps
 }: InstagramEmbedProps): JSX.Element => {
   const [stage, setStage] = React.useState(CHECK_SCRIPT_STAGE);
-  const id = React.useId();
+  const uuidRef = React.useRef(generateUUID());
   const [processTime, setProcessTime] = React.useState(Date.now());
-  const embedContainerKey = React.useMemo(() => `${id}-${processTime}`, [processTime, id]);
+  const embedContainerKey = React.useMemo(() => `${uuidRef.current}-${processTime}`, [processTime]);
   const frm = useFrame(frame);
 
   // Debug Output
@@ -132,7 +134,7 @@ export const InstagramEmbed = ({
     if (stage === CONFIRM_EMBED_SUCCESS_STAGE) {
       subs.setInterval(() => {
         if (frm.document) {
-          const preEmbedElement = frm.document.getElementById(id);
+          const preEmbedElement = frm.document.getElementById(uuidRef.current);
           if (!preEmbedElement) {
             setStage(EMBED_SUCCESS_STAGE);
           }
@@ -145,7 +147,7 @@ export const InstagramEmbed = ({
       }
     }
     return subs.createCleanup();
-  }, [retryDelay, retryDisabled, stage, frm.document, id]);
+  }, [retryDelay, retryDisabled, stage, frm.document]);
 
   // Retrying Stage
   React.useEffect(() => {
@@ -195,7 +197,7 @@ export const InstagramEmbed = ({
   return (
     <div
       {...divProps}
-      className={classNames('rsme-embed rsme-instagram-embed', id, divProps.className)}
+      className={classNames('rsme-embed rsme-instagram-embed', uuidRef.current, divProps.className)}
       style={{
         overflow: 'hidden',
         width: width ?? undefined,
@@ -210,14 +212,14 @@ export const InstagramEmbed = ({
         className="instagram-media"
         data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
         data-instgrm-version={igVersion}
-        data-instgrm-captioned
+        data-instgrm-captioned = {captioned ? captioned : undefined}
         data-width={isPercentageWidth ? '100%' : width ?? undefined}
         style={{
           width: 'calc(100% - 2px)',
         }}
       >
         {!placeholderDisabled && placeholder}
-        <div id={id} className="instagram-media-pre-embed rsme-d-none">
+        <div id={uuidRef.current} className="instagram-media-pre-embed rsme-d-none">
           &nbsp;
         </div>
       </blockquote>
