@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlaceholderDisabled = exports.PlaceholderSpinnerDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.Width100Percent = exports.Width50Percent = exports.Width800 = exports.Width400 = exports.Width200 = exports.Width100 = exports.Size600x400 = exports.Size400x600 = exports.Size400x200 = exports.Size200x400 = exports.Size200x200 = exports.Size200x100 = exports.Size100x200 = exports.Size100x100 = exports.MainExample = void 0;
+exports.PlaceholderDisabled = exports.PlaceholderSpinnerDisabled = exports.CustomPlaceholderLinkText = exports.CustomPlaceholder = exports.WithPlaceholderImage = exports.UrlOnly = exports.YouTubeShorts = exports.Width100Percent = exports.Width50Percent = exports.Width800 = exports.Width400 = exports.Width200 = exports.Width100 = exports.Size600x400 = exports.Size400x600 = exports.Size400x200 = exports.Size200x400 = exports.Size200x200 = exports.Size200x100 = exports.Size100x200 = exports.Size100x100 = exports.MainExample = void 0;
 const react_1 = __importDefault(require("react"));
 const YouTubeEmbed_1 = require("../../components/embeds/YouTubeEmbed");
 const EmbedToggler_1 = require("../EmbedToggler");
@@ -102,6 +102,12 @@ exports.Width100Percent = ToggledOffTemplate.bind({});
 exports.Width100Percent.args = {
     url,
     width: '100%',
+};
+exports.YouTubeShorts = ToggledOffTemplate.bind({});
+exports.YouTubeShorts.args = {
+    url: 'https://www.youtube.com/shorts/zJY7NIzOmC8',
+    width: 225,
+    height: 400,
 };
 exports.UrlOnly = ToggledOffTemplate.bind({});
 exports.UrlOnly.args = {
