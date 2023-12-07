@@ -1,5 +1,5 @@
-import React from 'react';
+/// <reference types="react" />
 import { DivProps } from 'react-html-props';
 export interface CaptionPlaceholderProps extends DivProps {
 }
-export declare const CaptionPlaceholder: ({ ...divProps }: CaptionPlaceholderProps) => React.JSX.Element;
+export declare const CaptionPlaceholder: ({ ...divProps }: CaptionPlaceholderProps) => JSX.Element;

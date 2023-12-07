@@ -15,4 +15,4 @@ export interface TwitterEmbedProps extends DivPropsWithoutRef {
     placeholderDisabled?: boolean;
     twitterTweetEmbedProps?: TwitterTweetEmbedProps;
 }
-export declare const TwitterEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: TwitterEmbedProps) => React.JSX.Element;
+export declare const TwitterEmbed: ({ url, width, height, linkText, placeholderImageUrl, placeholderSpinner, placeholderSpinnerDisabled, placeholderProps, embedPlaceholder, placeholderDisabled, twitterTweetEmbedProps, ...divProps }: TwitterEmbedProps) => JSX.Element;
