@@ -7,7 +7,7 @@ import { PlaceholderEmbed, PlaceholderEmbedProps } from '../placeholder/Placehol
 import { generateUUID } from '../uuid';
 import { EmbedStyle } from './EmbedStyle';
 
-const embedJsScriptSrc = '//www.instagram.com/embed.js';
+const embedJsScriptSrc = 'https://www.instagram.com/embed.js';
 const minPlaceholderWidth = 328;
 const defaultPlaceholderHeight = 372;
 const borderRadius = 3;
@@ -212,7 +212,7 @@ export const InstagramEmbed = ({
         className="instagram-media"
         data-instgrm-permalink={`${cleanUrlWithEndingSlash}?utm_source=ig_embed&utm_campaign=loading`}
         data-instgrm-version={igVersion}
-        data-instgrm-captioned = {captioned ? captioned : undefined}
+        data-instgrm-captioned={captioned ? captioned : undefined}
         data-width={isPercentageWidth ? '100%' : width ?? undefined}
         style={{
           width: 'calc(100% - 2px)',
