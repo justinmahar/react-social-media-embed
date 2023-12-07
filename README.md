@@ -304,6 +304,8 @@ Open the video in a browser window. Copy the URL from the address bar. You can a
 
 The URL must be in the format `https://www.youtube.com/watch?v=VIDEO_ID` or `https://youtu.be/VIDEO_ID` where `VIDEO_ID` is the video ID.
 
+YouTube Shorts are also supported. For shorts, the URL must be in the format `https://youtube.com/shorts/VIDEO_ID`.
+
 ### Placeholder
 
 [👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--main-example)

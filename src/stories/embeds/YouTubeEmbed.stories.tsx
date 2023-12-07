@@ -125,6 +125,13 @@ Width100Percent.args = {
   width: '100%',
 };
 
+export const YouTubeShorts = ToggledOffTemplate.bind({});
+YouTubeShorts.args = {
+  url: 'https://www.youtube.com/shorts/zJY7NIzOmC8',
+  width: 225,
+  height: 400,
+};
+
 export const UrlOnly = ToggledOffTemplate.bind({});
 UrlOnly.args = {
   url,
