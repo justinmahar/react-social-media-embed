@@ -276,9 +276,9 @@ For a live example and more options, read the [full documentation for XEmbed](ht
 
 #### How do you get a X post URL?
 
-Open an X post in a browser window. Copy the link to the tweet from the address bar.
+Open an X post in a browser window. Copy the link to the post from the address bar.
 
-The URL must contain the tweet ID, in the format `https://twitter.com/username/status/1234567890123456789`. Short links are not supported.
+The URL must contain the post ID, in the format `https://twitter.com/username/status/1234567890123456789`. Short links are not supported.
 
 Alternate option: Select `…` > `Embed Post`, and use the `a href` attribute value from the provided embed code.
 
