@@ -52,10 +52,10 @@ export const TwitterEmbed = ({
     height: isPercentageHeight
       ? '100%'
       : typeof height !== 'undefined'
-      ? height
-      : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-      ? '100%'
-      : defaultPlaceholderHeight,
+        ? height
+        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+          ? '100%'
+          : defaultPlaceholderHeight,
     border: 'solid 1px #c9d4d9',
     borderRadius,
   };

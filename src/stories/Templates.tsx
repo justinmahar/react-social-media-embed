@@ -14,3 +14,9 @@ export const ToggledOffTemplate = (Child: any) => (
     <Child />
   </EmbedToggler>
 );
+
+export const ToggledOnTemplate = (Child: any) => (
+  <EmbedToggler defaultToggledOn>
+    <Child />
+  </EmbedToggler>
+);
