@@ -1,153 +1,183 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { FacebookEmbed } from '../../components/embeds/FacebookEmbed';
-import { EmbedToggler } from '../EmbedToggler';
+import { MainExampleTemplate, ToggledOffTemplate } from '../Templates';
 
-export default {
-  title: 'Embeds/FacebookEmbed',
-  component: FacebookEmbed,
-} as ComponentMeta<typeof FacebookEmbed>;
+// === Setup ===
+const StoryComponent = FacebookEmbed; // <-- Set to your component
+const meta: Meta<typeof StoryComponent> = {
+  title: 'Embeds/FacebookEmbed', // <-- Set to your story title
+  component: StoryComponent,
+  parameters: {
+    options: { showPanel: false }, // Don't show addons panel
+  },
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
 
+// === Stories ===
 const textUrl = 'https://www.facebook.com/andrewismusic/posts/483451443145971';
 const photoUrl = 'https://www.facebook.com/andrewismusic/posts/451971596293956';
 const linkUrl = 'https://www.facebook.com/andrewismusic/posts/479747760183006';
 const videoUrl = 'https://fb.watch/bfP8U3LBa6/';
 const placeholderImageUrl = `https://placekitten.com/325/560`;
 
-const MainExampleTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
-  <EmbedToggler defaultToggledOn>
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <FacebookEmbed {...args} />
-    </div>
-  </EmbedToggler>
-);
-
-const ToggledOffTemplate: ComponentStory<typeof FacebookEmbed> = (args) => (
-  <EmbedToggler defaultToggledOn={typeof window !== 'undefined' && window.location.href.includes('localhost')}>
-    <FacebookEmbed {...args} />
-  </EmbedToggler>
-);
-
-export const MainExample = MainExampleTemplate.bind({});
-MainExample.args = {
-  url: photoUrl,
-  width: 325,
+export const MainExample: Story = {
+  args: {
+    url: photoUrl,
+    width: 325,
+  },
+  decorators: [MainExampleTemplate],
 };
 
-export const TextPostExample = ToggledOffTemplate.bind({});
-TextPostExample.args = {
-  url: textUrl,
-  width: 325,
+export const TextPostExample: Story = {
+  args: {
+    url: textUrl,
+    width: 325,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const VideoPostExample = ToggledOffTemplate.bind({});
-VideoPostExample.args = {
-  url: videoUrl,
-  width: 325,
+export const VideoPostExample: Story = {
+  args: {
+    url: videoUrl,
+    width: 325,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const LinkPostExampleWidth550 = ToggledOffTemplate.bind({});
-LinkPostExampleWidth550.args = {
-  url: linkUrl,
-  width: 550,
+export const LinkPostExampleWidth550: Story = {
+  args: {
+    url: linkUrl,
+    width: 550,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const FluidWidth = ToggledOffTemplate.bind({});
-FluidWidth.args = {
-  url: photoUrl,
-  style: { maxWidth: 550 },
-  width: '100%',
+export const FluidWidth: Story = {
+  args: {
+    url: photoUrl,
+    style: { maxWidth: 550 },
+    width: '100%',
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const Width150 = ToggledOffTemplate.bind({});
-Width150.args = {
-  url: photoUrl,
-  width: 150,
+export const Width150: Story = {
+  args: {
+    url: photoUrl,
+    width: 150,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const Width325 = ToggledOffTemplate.bind({});
-Width325.args = {
-  url: photoUrl,
-  width: 325,
+export const Width325: Story = {
+  args: {
+    url: photoUrl,
+    width: 325,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const Width400 = ToggledOffTemplate.bind({});
-Width400.args = {
-  url: photoUrl,
-  width: 400,
+export const Width400: Story = {
+  args: {
+    url: photoUrl,
+    width: 400,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const Width600 = ToggledOffTemplate.bind({});
-Width600.args = {
-  url: photoUrl,
-  width: 600,
+export const Width600: Story = {
+  args: {
+    url: photoUrl,
+    width: 600,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const Width800 = ToggledOffTemplate.bind({});
-Width800.args = {
-  url: photoUrl,
-  width: 800,
+export const Width800: Story = {
+  args: {
+    url: photoUrl,
+    width: 800,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const Width50Percent = ToggledOffTemplate.bind({});
-Width50Percent.args = {
-  url: photoUrl,
-  width: '50%',
+export const Width50Percent: Story = {
+  args: {
+    url: photoUrl,
+    width: '50%',
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const Width100Percent = ToggledOffTemplate.bind({});
-Width100Percent.args = {
-  url: photoUrl,
-  width: '100%',
+export const Width100Percent: Story = {
+  args: {
+    url: photoUrl,
+    width: '100%',
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const UrlOnly = ToggledOffTemplate.bind({});
-UrlOnly.args = {
-  url: photoUrl,
+export const UrlOnly: Story = {
+  args: {
+    url: photoUrl,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const WithPlaceholderImage = ToggledOffTemplate.bind({});
-WithPlaceholderImage.args = {
-  url: photoUrl,
-  width: 325,
-  placeholderImageUrl,
+export const WithPlaceholderImage: Story = {
+  args: {
+    url: photoUrl,
+    width: 325,
+    placeholderImageUrl,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const CustomPlaceholder = ToggledOffTemplate.bind({});
-CustomPlaceholder.args = {
-  url: photoUrl,
-  width: 325,
-  embedPlaceholder: (
-    <div
-      style={{
-        width: 325,
-        padding: '150px 0',
-        backgroundColor: 'lightsteelblue',
-        textAlign: 'center',
-      }}
-    >
-      Custom Placeholder!
-    </div>
-  ),
+export const CustomPlaceholder: Story = {
+  args: {
+    url: photoUrl,
+    width: 325,
+    embedPlaceholder: (
+      <div
+        style={{
+          width: 325,
+          padding: '150px 0',
+          backgroundColor: 'lightsteelblue',
+          textAlign: 'center',
+        }}
+      >
+        Custom Placeholder!
+      </div>
+    ),
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const CustomPlaceholderLinkText = ToggledOffTemplate.bind({});
-CustomPlaceholderLinkText.args = {
-  url: photoUrl,
-  width: 325,
-  linkText: 'Custom link text',
+export const CustomPlaceholderLinkText: Story = {
+  args: {
+    url: photoUrl,
+    width: 325,
+    linkText: 'Custom link text',
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const PlaceholderSpinnerDisabled = ToggledOffTemplate.bind({});
-PlaceholderSpinnerDisabled.args = {
-  url: photoUrl,
-  width: 325,
-  placeholderSpinnerDisabled: true,
+export const PlaceholderSpinnerDisabled: Story = {
+  args: {
+    url: photoUrl,
+    width: 325,
+    placeholderSpinnerDisabled: true,
+  },
+  decorators: [ToggledOffTemplate],
 };
 
-export const PlaceholderDisabled = ToggledOffTemplate.bind({});
-PlaceholderDisabled.args = {
-  url: photoUrl,
-  width: 325,
-  placeholderDisabled: true,
+export const PlaceholderDisabled: Story = {
+  args: {
+    url: photoUrl,
+    width: 325,
+    placeholderDisabled: true,
+  },
+  decorators: [ToggledOffTemplate],
 };
