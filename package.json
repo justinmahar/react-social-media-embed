@@ -1,7 +1,7 @@
 {
   "name": "react-social-media-embed",
   "version": "2.5.6",
-  "coreVersion": "3.0.4",
+  "coreVersion": "3.0.7",
   "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), and YouTube in React.",
   "homepage": "https://justinmahar.github.io/react-social-media-embed/",
@@ -77,7 +77,8 @@
     "replace-in-file": "^7.1.0",
     "storybook": "^7.6.12",
     "typescript": "^5.3.3",
-    "webpack": "^5.90.1"
+    "webpack": "^5.90.1",
+    "react-html-props": "^2.0.3"
   },
   "dependencies": {
     "@types/youtube-player": "^5.5.5",

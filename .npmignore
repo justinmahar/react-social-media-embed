@@ -1,15 +1,24 @@
+# [lock:core] 🚫---------------------------------------
 # Dirs
 .github
 .storybook
 node_modules
+public
 src
 storybook-static
 # Files
+.babelrc.json
 .eslintignore
-.eslintrc
+.eslintrc.js
 .gitattributes
 .gitignore
 .npmignore
+.prettierrc.js
+CODE_OF_CONDUCT.md
 jest.config.js
+lockblocks.yml
+MAINTENANCE.md
 package-lock.json
+remove-peer-deps.js
 tsconfig.json
+# [/lock:core] ---------------------------------------🚫

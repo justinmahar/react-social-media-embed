@@ -1,3 +1,4 @@
+<!-- [lock:core] 🚫--------------------------------------- -->
 # Maintenance
 
 This document contains information on how to maintain this project.
@@ -21,3 +22,4 @@ Use `ncu` to check which packages need to be upgraded.
 #### `remark-gfm`
 
 As of 2/5/23, `remark-gfm` v4 causes the project to fail compilation. If you upgrade and compatibility had been fixed, feel free to remove this note.
+<!-- [/lock:core] ---------------------------------------🚫 -->
