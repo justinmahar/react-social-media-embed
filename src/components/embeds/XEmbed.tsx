@@ -39,7 +39,7 @@ export const XEmbed = ({
   twitterTweetEmbedProps,
   ...divProps
 }: XEmbedProps) => {
-  const tweetId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
+  const postId = url.substring(url.lastIndexOf('/') + 1).replace(/[?].*$/, '');
 
   const isPercentageWidth = !!width?.toString().includes('%');
   const isPercentageHeight = !!height?.toString().includes('%');
@@ -86,7 +86,7 @@ export const XEmbed = ({
     >
       <EmbedStyle />
       <TwitterTweetEmbed
-        tweetId={tweetId}
+        tweetId={postId}
         placeholder={placeholderDisabled ? undefined : placeholder}
         {...twitterTweetEmbedProps}
       />
