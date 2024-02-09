@@ -2,7 +2,7 @@
   📰 React Social Media Embed
 </h2>
 <h3 align="center">
-  Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, Twitter, and YouTube in React.
+  Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), and YouTube in React.
 </h3>
 <p align="center">
   <a href="https://badge.fury.io/js/react-social-media-embed" target="_blank" rel="noopener noreferrer"><img src="https://badge.fury.io/js/react-social-media-embed.svg" alt="npm Version" /></a>&nbsp;
@@ -25,7 +25,7 @@ Easily embed content from several popular social media platforms in React.
 
 All embeds only require a URL to the post. No API token is needed.
 
-Currently supporting: Facebook, Instagram, LinkedIn, Pinterest, TikTok, Twitter, and YouTube.
+Currently supporting: Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), and YouTube.
 
 ### Features include:
 
@@ -70,8 +70,8 @@ If this project helped you, please consider buying me a coffee or sponsoring me.
   - [TikTok](#tiktok)
     - [How do you get a TikTok post URL?](#how-do-you-get-a-tiktok-post-url)
     - [IFrame Support](#iframe-support-2)
-  - [Twitter](#twitter)
-    - [How do you get a Twitter tweet URL?](#how-do-you-get-a-twitter-tweet-url)
+  - [X (Twitter)](#x-twitter)
+    - [How do you get a X post URL?](#how-do-you-get-a-x-post-url)
   - [YouTube](#youtube)
     - [How do you get a YouTube video URL?](#how-do-you-get-a-youtube-video-url)
   - [Placeholder](#placeholder)
@@ -81,7 +81,7 @@ If this project helped you, please consider buying me a coffee or sponsoring me.
   - [LinkedIn](#linkedin-1)
   - [Pinterest](#pinterest-1)
   - [TikTok](#tiktok-1)
-  - [Twitter](#twitter-1)
+  - [X (Twitter)](#x-twitter-1)
   - [YouTube](#youtube-1)
     - [Thumbnail Refetching](#thumbnail-refetching)
 - [TypeScript](#typescript)
@@ -254,33 +254,33 @@ The URL must contain the video ID, in the format `https://www.tiktok.com/@userna
 
 For `iframe` support, you can provide `window` and `document` via the `frame` prop.
 
-### Twitter
+### X (Twitter)
 
 [👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example)
 
 ```jsx
-import { TwitterEmbed } from 'react-social-media-embed';
+import { XEmbed } from 'react-social-media-embed';
 ```
 
 ```jsx
 <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <TwitterEmbed url="https://twitter.com/PixelAndBracket/status/1356633038717923333" width={325} />
+  <XEmbed url="https://twitter.com/PixelAndBracket/status/1356633038717923333" width={325} />
 </div>
 ```
 
-This will display the Twitter embed centered with a width of `325`.
+This will display the X embed centered with a width of `325`.
 
 This component uses the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed content. You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
 
-For a live example and more options, read the [full documentation for TwitterEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example).
+For a live example and more options, read the [full documentation for XEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-xembed--main-example).
 
-#### How do you get a Twitter tweet URL?
+#### How do you get a X post URL?
 
-Open a Twitter tweet in a browser window. Copy the link to the tweet from the address bar.
+Open an X post in a browser window. Copy the link to the tweet from the address bar.
 
 The URL must contain the tweet ID, in the format `https://twitter.com/username/status/1234567890123456789`. Short links are not supported.
 
-Alternate option: Select `…` > `Embed Tweet`, and use the `a href` attribute value from the provided embed code.
+Alternate option: Select `…` > `Embed Post`, and use the `a href` attribute value from the provided embed code.
 
 ### YouTube
 
@@ -404,9 +404,9 @@ For example, here's the script element with `t` as the current time:
 
 Again, if there's a way to manually initialize the embed HTML through the already-loaded script, please [open an issue](https://github.com/justinmahar/react-social-media-embed/issues/new) so this can be improved. For now, this gets the job done!
 
-### Twitter
+### X (Twitter)
 
-We use the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed Twitter tweets. This completely amazing package does all the heavy lifting. Please consider supporting the project.
+We use the [`react-twitter-embed`](https://www.npmjs.com/package/react-twitter-embed) package to embed X posts. This completely amazing package does all the heavy lifting. Please consider supporting the project.
 
 You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/saurabhnemade/react-twitter-embed#usage) component via the `twitterTweetEmbedProps` prop.
 

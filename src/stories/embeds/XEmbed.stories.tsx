@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { TwitterEmbed } from '../../components/embeds/TwitterEmbed';
+import { XEmbed } from '../../components/embeds/XEmbed';
 import { MainExampleTemplate, ToggledOffTemplate } from '../Templates';
 
 // === Setup ===
-const StoryComponent = TwitterEmbed; // <-- Set to your component
+const StoryComponent = XEmbed; // <-- Set to your component
 const meta: Meta<typeof StoryComponent> = {
-  title: 'Embeds/TwitterEmbed', // <-- Set to your story title
+  title: 'Embeds/XEmbed', // <-- Set to your story title
   component: StoryComponent,
   parameters: {
     options: { showPanel: false }, // Don't show addons panel
