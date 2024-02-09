@@ -12,10 +12,12 @@ storybook-static
 .eslintrc.js
 .gitattributes
 .gitignore
+.node-version
 .npmignore
 .prettierrc.js
 CODE_OF_CONDUCT.md
 jest.config.js
+lockblocks.log
 lockblocks.yml
 MAINTENANCE.md
 package-lock.json
