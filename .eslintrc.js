@@ -47,6 +47,7 @@ const sharedTSAndJSRules = {
 
 const tsSpecificRules = {
   '@typescript-eslint/no-empty-interface': 'off', // Disable empty interface error
+  '@typescript-eslint/no-explicit-any': 'warn', // Warn on any
 };
 /** Rules specific to JS. */
 

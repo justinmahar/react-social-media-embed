@@ -1,6 +1,6 @@
 MIT License
 
-Copyright © 2023 Justin Mahar https://github.com/justinmahar
+Copyright © 2024 Justin Mahar https://github.com/justinmahar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

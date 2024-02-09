@@ -1,15 +1,26 @@
-renameFiles: []
+renameFiles:
+  - from: .storybook/main.js
+    to: .storybook/main.ts
+  - from: .storybook/manager.js
+    to: .storybook/manager.ts
+  - from: .storybook/preview.js
+    to: .storybook/preview.ts
+  - from: .storybook/theme.js
+    to: .storybook/theme.ts
 replaceFiles:
+  - .babelrc.json
   - .node-version
   - CODE_OF_CONDUCT.md
   - LICENSE.md
   - lockblocks.yml
+  - MAINTENANCE.md
   - public/support
   - public/NOTE.md
   - src/stories/core
 fillFiles:
   - .github/FUNDING.yml
-deleteFiles: []
+deleteFiles:
+  - dist
 excludePaths:
   - .git
   - .lockblocks
@@ -44,8 +55,15 @@ updateJson:
       - key: scripts.update
         replace: true
     deleteFields:
+      - devDependencies.@babel/core
+      - devDependencies.@mdx-js/react
+      - devDependencies.@storybook/addon-actions
+      - devDependencies.@storybook/addon-links
+      - devDependencies.@storybook/builder-webpack5
+      - devDependencies.@storybook/manager-webpack5
+      - devDependencies.babel-loader
       - devDependencies.html-webpack-plugin
-      - scripts.watch
       - scripts.lint
       - scripts.upgrade-storybook
+      - scripts.watch
 updateYaml: []

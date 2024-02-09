@@ -34,15 +34,15 @@ Currently supporting: Facebook, Instagram, LinkedIn, Pinterest, TikTok, Twitter,
 - **💪 Resilient**
   - If embedding fails, it automatically retries using a configurable retry delay.
 
-[lock:donate]::🚫---------------------------------------
+<!-- [lock:donate] 🚫--------------------------------------- -->
 
 ## Donate 
 
-If this project helped you, please consider buying me a coffee. Your support is much appreciated!
+If this project helped you, please consider buying me a coffee or sponsoring me. Your support is much appreciated!
 
-<a href="https://paypal.me/thejustinmahar/5"><img src="https://justinmahar.github.io/react-kindling/support/coffee-1.png" alt="Buy me a coffee" height="35" /></a> <a href="https://paypal.me/thejustinmahar/15"><img src="https://justinmahar.github.io/react-kindling/support/coffee-3.png" alt="Buy me 3 coffees" height="35" /></a> <a href="https://paypal.me/thejustinmahar/25"><img src="https://justinmahar.github.io/react-kindling/support/coffee-5.png" alt="Buy me 5 coffees" height="35" /></a>
+<a href="https://ko-fi.com/justinmahar"><img src="https://img.shields.io/static/v1?label=Buy%20me%20a%20coffee&message=%E2%9D%A4&logo=KoFi&color=%23fe8e86" alt="Buy me a coffee" /></a>&nbsp;<a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/></a>
 
-[/lock:donate]::---------------------------------------🚫
+<!-- [/lock:donate] ---------------------------------------🚫 -->
 
 ## Table of Contents
 
@@ -429,23 +429,23 @@ const [embedHeight, setEmbedHeight] = React.useState(YOUTUBE_DEFAULT_HEIGHT);
 />
 ```
 
-[lock:typescript]::🚫---------------------------------------
+<!-- [lock:typescript] 🚫--------------------------------------- -->
 
 ## TypeScript
 
 Type definitions have been included for [TypeScript](https://www.typescriptlang.org/) support.
 
-[/lock:typescript]::---------------------------------------🚫
+<!-- [/lock:typescript] ---------------------------------------🚫 -->
 
-[lock:icon]::🚫---------------------------------------
+<!-- [lock:icon] 🚫--------------------------------------- -->
 
 ## Icon Attribution
 
 Favicon by [Twemoji](https://github.com/twitter/twemoji).
 
-[/lock:icon]::---------------------------------------🚫
+<!-- [/lock:icon] ---------------------------------------🚫 -->
 
-[lock:contributing]::🚫---------------------------------------
+<!-- [lock:contributing] 🚫--------------------------------------- -->
 
 ## Contributing
 
@@ -455,7 +455,7 @@ Feel free to submit a pull request for bugs or additions, and make sure to updat
 
 For major changes, open an issue first to discuss what you'd like to change.
 
-[/lock:contributing]::---------------------------------------🚫
+<!-- [/lock:contributing] --------------------------------------🚫 -->
 
 ## ⭐ Found It Helpful? [Star It!](https://github.com/justinmahar/react-social-media-embed/stargazers)
 
