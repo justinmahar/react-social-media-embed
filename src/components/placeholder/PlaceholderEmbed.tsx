@@ -6,12 +6,15 @@ import { BorderSpinner } from './parts/BorderSpinner';
 import { EngagementIconsPlaceholder } from './parts/EngagementIconsPlaceholder';
 import { ProfilePlaceholder } from './parts/ProfilePlaceholder';
 
+const isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*\:/i
+
 export interface PlaceholderEmbedProps extends DivProps {
   url: string;
   linkText?: string;
   imageUrl?: string;
   spinner?: React.ReactNode;
   spinnerDisabled?: boolean;
+  allowJavaScriptUrls?: boolean;
 }
 
 export const PlaceholderEmbed = ({
@@ -19,9 +22,16 @@ export const PlaceholderEmbed = ({
   linkText = 'View post',
   imageUrl,
   spinner = <BorderSpinner />,
+  allowJavaScriptUrls = true,
   spinnerDisabled,
   ...divProps
 }: PlaceholderEmbedProps) => {
+
+  if (isJavaScriptProtocol.test(url) && !allowJavaScriptUrls) {
+    console.warn(`PlaceholderEmbed has blocked a javascript: URL as a security precaution`);
+    return null;
+  }
+
   return (
     <div
       {...divProps}
