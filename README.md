@@ -142,6 +142,14 @@ import { InstagramEmbed } from 'react-social-media-embed';
 
 This will display the Instagram embed centered with a width of `328`.
 
+To enable captions for the post, provide the `captioned` prop:
+
+```jsx
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <InstagramEmbed url="https://www.instagram.com/p/CUbHfhpswxt/" width={328} captioned />
+</div>
+```
+
 For a live example and more options, read the [full documentation for InstagramEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-instagramembed--main-example).
 
 #### How do you get an Instagram post URL?
