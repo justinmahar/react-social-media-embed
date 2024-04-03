@@ -48,8 +48,8 @@ export const PinterestEmbed = ({
       typeof height !== 'undefined'
         ? height
         : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-        ? '100%'
-        : defaultPlaceholderHeight,
+          ? '100%'
+          : defaultPlaceholderHeight,
     border: 'solid 1px rgba(0, 0, 0, 0.15)',
     borderRadius,
   };

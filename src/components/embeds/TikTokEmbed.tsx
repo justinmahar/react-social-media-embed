@@ -133,8 +133,8 @@ export const TikTokEmbed = ({
       typeof height !== 'undefined'
         ? height
         : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-        ? '100%'
-        : defaultPlaceholderHeight,
+          ? '100%'
+          : defaultPlaceholderHeight,
     border: 'solid 1px rgba(22,24,35,0.12)',
     borderRadius,
   };

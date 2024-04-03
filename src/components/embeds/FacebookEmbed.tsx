@@ -174,10 +174,10 @@ export const FacebookEmbed = ({
     height: isPercentageHeight
       ? '100%'
       : typeof height !== 'undefined'
-      ? height
-      : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
-      ? '100%'
-      : defaultPlaceholderHeight,
+        ? height
+        : typeof divProps.style?.height !== 'undefined' || typeof divProps.style?.maxHeight !== 'undefined'
+          ? '100%'
+          : defaultPlaceholderHeight,
     border: '1px solid #dee2e6',
     borderRadius,
   };
