@@ -26,7 +26,6 @@ export interface InstagramEmbedProps extends DivProps {
   width?: string | number;
   height?: string | number;
   linkText?: string;
-  /** Deprecated -- This has no effect. Captions are always visible due to https://github.com/justinmahar/react-social-media-embed/issues/26 */
   captioned?: boolean;
   placeholderImageUrl?: string;
   placeholderSpinner?: React.ReactNode;

@@ -27,6 +27,15 @@ export const MainExample: Story = {
   decorators: [MainExampleTemplate],
 };
 
+export const MainExampleWithCaptions: Story = {
+  args: {
+    url,
+    width: 328,
+    captioned: true,
+  },
+  decorators: [MainExampleTemplate],
+};
+
 export const FluidWidth: Story = {
   args: {
     url,
