@@ -264,7 +264,7 @@ For `iframe` support, you can provide `window` and `document` via the `frame` pr
 
 ### X (Twitter)
 
-[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-twitterembed--main-example)
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/story/embeds-xembed--main-example)
 
 ```jsx
 import { XEmbed } from 'react-social-media-embed';
