@@ -203,6 +203,7 @@ export const InstagramEmbed = ({
         height: height ?? undefined,
         borderRadius,
         ...divProps.style,
+        position: 'relative',
       }}
     >
       <EmbedStyle />
@@ -213,6 +214,9 @@ export const InstagramEmbed = ({
         data-instgrm-version={igVersion}
         data-instgrm-captioned={captioned ? captioned : undefined}
         data-width={isPercentageWidth ? '100%' : width ?? undefined}
+        style={{
+          width: 'calc(100% - 2px)',
+        }}
       >
         {!placeholderDisabled && placeholder}
         <div id={uuidRef.current} className="instagram-media-pre-embed rsme-d-none">
