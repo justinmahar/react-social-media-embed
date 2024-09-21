@@ -160,8 +160,8 @@ export const InstagramEmbed = ({
   // END Embed Stages
   // === === === === === === === === === === === === === === === === === === ===
 
-  const urlWithNoQuery = url.replace(/[?].*$/, '');
-  const cleanUrlWithEndingSlash = `${urlWithNoQuery}${urlWithNoQuery.endsWith('/') ? '' : '/'}`;
+  const urlWithNoQueryOrUsername = url.split(/[?#]/)[0].replace(/\.com\/.*?\/p/, '.com/p');
+  const cleanUrlWithEndingSlash = `${urlWithNoQueryOrUsername}${urlWithNoQueryOrUsername.endsWith('/') ? '' : '/'}`;
 
   const isPercentageWidth = !!width?.toString().includes('%');
   const isPercentageHeight = !!height?.toString().includes('%');
