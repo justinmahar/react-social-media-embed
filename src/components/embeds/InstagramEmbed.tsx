@@ -160,7 +160,7 @@ export const InstagramEmbed = ({
   // END Embed Stages
   // === === === === === === === === === === === === === === === === === === ===
 
-  const urlWithNoQueryOrUsername = url.split(/[?#]/)[0].replace(/\.com\/.*?\/p/, '.com/p');
+  const urlWithNoQueryOrUsername = url.split(/[?#]/)[0].replace(/\.com\/.*?\/p/, '.com/p').replace(/\.com\/.*?\/reel/, '.com/reel');
   const cleanUrlWithEndingSlash = `${urlWithNoQueryOrUsername}${urlWithNoQueryOrUsername.endsWith('/') ? '' : '/'}`;
 
   const isPercentageWidth = !!width?.toString().includes('%');
