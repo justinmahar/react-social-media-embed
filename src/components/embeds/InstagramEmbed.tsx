@@ -203,6 +203,7 @@ export const InstagramEmbed = ({
         height: height ?? undefined,
         borderRadius,
         ...divProps.style,
+        position: 'relative',
       }}
     >
       <EmbedStyle />
