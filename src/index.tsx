@@ -6,5 +6,6 @@ export * from './components/embeds/TikTokEmbed';
 export * from './components/embeds/TwitterEmbed';
 export * from './components/embeds/XEmbed';
 export * from './components/embeds/YouTubeEmbed';
+export * from './components/embeds/BlueskyEmbed';
 export * from './components/placeholder/PlaceholderEmbed';
 export * from './components/placeholder/parts/BorderSpinner';
