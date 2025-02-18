@@ -11,7 +11,7 @@
 </p>
 <!-- [lock:donate-badges] 🚫--------------------------------------- -->
 <p align="center">
-  <a href="https://ko-fi.com/justinmahar"><img src="https://img.shields.io/static/v1?label=Buy%20me%20a%20coffee&message=%E2%9D%A4&logo=KoFi&color=%23fe8e86" alt="Buy me a coffee" /></a>&nbsp;<a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/></a>
+  <a href="https://paypal.me/thejustinmahar/5"><img src="https://img.shields.io/static/v1?label=Buy%20me%20a%20coffee&message=%E2%9D%A4&logo=KoFi&color=%23fe8e86" alt="Buy me a coffee" /></a>&nbsp;<a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/></a>
 </p>
 <!-- [/lock:donate-badges] ---------------------------------------🚫 -->
 
@@ -42,9 +42,9 @@ Currently supporting: Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitt
 
 ## Donate 
 
-If this project helped you, please consider buying me a coffee or sponsoring me. Your support is much appreciated!
+If this project helped save you time, please consider buying me a coffee, which powers my development (and life). Your support is much appreciated!
 
-<a href="https://ko-fi.com/justinmahar"><img src="https://img.shields.io/static/v1?label=Buy%20me%20a%20coffee&message=%E2%9D%A4&logo=KoFi&color=%23fe8e86" alt="Buy me a coffee" /></a>&nbsp;<a href="https://github.com/sponsors/justinmahar" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86" alt="Sponsor"/></a>
+<a href="https://github.com/sponsors/justinmahar"><img src="https://justinmahar.github.io/react-kindling/support/sponsor.png" alt="Sponsor via GitHub" height="35" /></a>&nbsp; <a href="https://paypal.me/thejustinmahar/5"><img src="https://justinmahar.github.io/react-kindling/support/coffee-1.png" alt="Buy me a coffee" height="35" /></a>&nbsp; <a href="https://paypal.me/thejustinmahar/15"><img src="https://justinmahar.github.io/react-kindling/support/coffee-3.png" alt="Buy me 3 coffees" height="35" /></a>&nbsp; <a href="https://paypal.me/thejustinmahar/25"><img src="https://justinmahar.github.io/react-kindling/support/coffee-5.png" alt="Buy me 5 coffees" height="35" /></a>
 
 <!-- [/lock:donate] ---------------------------------------🚫 -->
 
@@ -472,6 +472,13 @@ For major changes, open an issue first to discuss what you'd like to change.
 ## ⭐ Found It Helpful? [Star It!](https://github.com/justinmahar/react-social-media-embed/stargazers)
 
 If you found this project helpful, let the community know by giving it a [star](https://github.com/justinmahar/react-social-media-embed/stargazers): [👉⭐](https://github.com/justinmahar/react-social-media-embed/stargazers)
+
+<!-- [lock:support] 🚫--------------------------------------- -->
+Want to support the project? Feel free to grab me a coffee, which is my main source of fuel for development:
+
+<a href="https://paypal.me/thejustinmahar/5"><img src="https://justinmahar.github.io/react-kindling/support/coffee-1.png" alt="Buy me a coffee" height="35" /></a>&nbsp; <a href="https://paypal.me/thejustinmahar/15"><img src="https://justinmahar.github.io/react-kindling/support/coffee-3.png" alt="Buy me 3 coffees" height="35" /></a>&nbsp; <a href="https://paypal.me/thejustinmahar/25"><img src="https://justinmahar.github.io/react-kindling/support/coffee-5.png" alt="Buy me 5 coffees" height="35" /></a>
+
+<!-- [/lock:support] ---------------------------------------🚫 -->
 
 ## License
 
