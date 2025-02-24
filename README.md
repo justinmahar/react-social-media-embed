@@ -2,7 +2,7 @@
   📰 React Social Media Embed
 </h2>
 <h3 align="center">
-  Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), and YouTube in React.
+  Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), YouTube and Bluesky in React.
 </h3>
 <p align="center">
   <a href="https://badge.fury.io/js/react-social-media-embed" target="_blank" rel="noopener noreferrer"><img src="https://badge.fury.io/js/react-social-media-embed.svg" alt="npm Version" /></a>&nbsp;
@@ -25,7 +25,7 @@ Easily embed content from several popular social media platforms in React.
 
 All embeds only require a URL to the post. No API token is needed.
 
-Currently supporting: Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), and YouTube.
+Currently supporting: Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), YouTube and Bluesky.
 
 ### Features include:
 
@@ -74,6 +74,8 @@ If this project helped save you time, please consider buying me a coffee, which 
     - [How do you get a X post URL?](#how-do-you-get-a-x-post-url)
   - [YouTube](#youtube)
     - [How do you get a YouTube video URL?](#how-do-you-get-a-youtube-video-url)
+  - [Bluesky](#bluesky)
+    - [How do you get a Bulesky post URL?](#how-do-you-get-a-bluesky-post-url)    
   - [Placeholder](#placeholder)
 - [How It Works](#how-it-works)
   - [Facebook](#facebook-1)
@@ -84,6 +86,7 @@ If this project helped save you time, please consider buying me a coffee, which 
   - [X (Twitter)](#x-twitter-1)
   - [YouTube](#youtube-1)
     - [Thumbnail Refetching](#thumbnail-refetching)
+  - [Bluesky](#bluesky-1)    
 - [TypeScript](#typescript)
 - [Icon Attribution](#icon-attribution)
 - [Contributing](#contributing)
@@ -318,6 +321,28 @@ The URL must be in the format `https://www.youtube.com/watch?v=VIDEO_ID` or `htt
 
 YouTube Shorts are also supported. For shorts, the URL must be in the format `https://youtube.com/shorts/VIDEO_ID`.
 
+### Bluesky
+
+[👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-blueskyembed--main-example)
+
+```jsx
+import { BlueskyEmbed } from 'react-social-media-embed';
+```
+
+```jsx
+<div style={{ display: 'flex', justifyContent: 'center' }}>
+  <BlueskyEmbed url="https://bsky.app/profile/jortsthecat.bsky.social/post/3lc2gif3css2l" width={325} />
+</div>
+```
+
+This will display the Bluesky embed centered with a width of `325`.
+
+For a live example and more options, read the [full documentation for BlueskyEmbed](https://justinmahar.github.io/react-social-media-embed/?path=/docs/embeds-blueskyembed--main-example).
+
+#### How do you get a Bluesky post URL?
+
+For the post you'd like to embed, select `⋯` › `Copy link to post`. 
+
 ### Placeholder
 
 [👁️ View Demo](https://justinmahar.github.io/react-social-media-embed/?path=/docs/placeholder-placeholderembed--main-example)
@@ -423,6 +448,32 @@ You can specify props for the internal [`TwitterTweetEmbed`](https://github.com/
 We use the [`react-youtube`](https://www.npmjs.com/package/react-youtube) package to embed YouTube videos. This incredibly awesome package does all the heavy lifting. Please consider supporting the project.
 
 You can specify props for the internal [`YouTube`](https://github.com/tjallingt/react-youtube#usage) component via the `youTubeProps` prop.
+
+### Bluesky
+
+We use the [Bluesky embed.js JavaScript library](https://docs.bsky.app/docs/advanced-guides/oembed) to embed content. 
+
+This loads a [script](https://embed.bsky.app/static/embed.js) which initializes the Bluesky embedder
+
+A Bluesky post uses the following form:
+
+```html
+<blockquote class="bluesky-embed" data-bluesky-uri="{post-url}">
+  <div>Placeholder</div>
+</blockquote>
+```
+
+Unfortunately, unlike Facebook and Instagram, there is no documented or obvious way to manually initialize the embed HTML. **[If you know how to do this, please open a GitHub issue with the info!](https://github.com/justinmahar/react-social-media-embed/issues/new)**
+
+So, in order to initialize the embed HTML, we must load the embed script from TikTok every time we render the Bluesky embed. To do this, we use time-based query param cache busting and replace the embed.js script element in the `head` node. This forces the browser to load the script anew each time, which then performs the embed.
+
+For example, here's the script element with `t` as the current time:
+
+```html
+<script src="https://embed.bsky.app/static/embed.js?t=1645275849920" id="bluesky-embed-script"></script>
+```
+
+Again, if there's a way to manually initialize the embed HTML through the already-loaded script, please [open an issue](https://github.com/justinmahar/react-social-media-embed/issues/new) so this can be improved. For now, this gets the job done!
 
 #### Thumbnail Refetching
 

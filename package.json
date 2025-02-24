@@ -3,7 +3,7 @@
   "version": "2.5.18",
   "coreVersion": "3.0.9",
   "author": "Justin Mahar <contact@justinmahar.com>",
-  "description": "Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), and YouTube in React.",
+  "description": "Easily embed social media posts from Facebook, Instagram, LinkedIn, Pinterest, TikTok, X (Twitter), YouTube and Bluesky in React.",
   "homepage": "https://justinmahar.github.io/react-social-media-embed/",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -45,6 +45,7 @@
     "video",
     "x",
     "youtube",
+    "bluesky",
     "yt"
   ],
   "peerDependencies": {
